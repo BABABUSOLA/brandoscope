@@ -6,7 +6,7 @@
 
    @include('layouts.head')
 
-
+@section('body')
 
     <body class=" login">
         <!-- BEGIN LOGO -->
@@ -19,7 +19,7 @@
 
         <div class="content">
             <!-- BEGIN FORGOT PASSWORD FORM -->
-            <form class="forget-form" action="index.html" method="post">
+            <form class="forget-form" action="#" method="post">
                 <h3>Forget Password ?</h3>
                 <p> Enter your e-mail address below to reset your password. </p>
                 <div class="form-group">

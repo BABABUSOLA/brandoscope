@@ -83,7 +83,7 @@
                             </div>
                             <div class="col-xs-7 bs-reset">
                                 <div class="login-copyright text-right">
-                                    <p>Copyright &copy; Keenthemes 2015</p>
+                                    <p>Copyright &copy; SCI TALENTS 2016</p>
                                 </div>
                             </div>
                         </div>

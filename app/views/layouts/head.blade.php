@@ -38,8 +38,9 @@
         <!-- BEGIN LAYOUT FOR LOGIN fORM -->
         {{ HTML::style("../assets/pages/css/login-3.min.css")}}
         {{ HTML::style("../assets/pages/css/login-5.min.css")}}
+        {{ HTML::style("../assets/pages/css/metroui_custom.css")}}
         
-        {{-- <link href="{{ ('') }}" rel="stylesheet" type="text/css" id="style_color" /> --}}
+      
         
         <!-- END THEME LAYOUT STYLES -->
         {{ HTML::style("favicon.ico")}}

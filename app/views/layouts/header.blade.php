@@ -1,5 +1,6 @@
 <div class="page-wrapper-row">
 	<div class="page-wrapper-top">
+		
 		<!--begin header-->
 		<div class="page-header">
 			
@@ -220,25 +221,25 @@
 						
 							<li class="menu-dropdown classic-menu-dropdown active">
 								<a href="{{ ('javascript:;') }}">
-									Dashboard
+									FEATURES
 									<span class="arrow"></span>
 								</a>
 								<ul class="dropdown-menu pull-left">
 									<li class="active">
 										<a  href="{{('#')}}" class="nav-link  active">
 											<i class="icon-bar-chart"></i>
-											Default Dashboard
+											USER
 											<span class="badge badge-success">1</span>
 										</a>
 									</li>
 									<li class="">
 										<a href="{{('#')}}"  class="nav-link  ">
-											<i class="icon-bulb"></i>Dashboard 2</a>
+											<i class="icon-bulb"></i>AUTHOR</a>
 									</li>
 									<li class=" ">
 										<a href="{{('#')}}"  class="nav-link  ">
 											<i class="icon-graph"></i>
-											Dashboard 3
+											ADMIN
 											<span class="badge badge-danger">3</span>
 										</a>
 									</li>
@@ -246,7 +247,7 @@
 							</li>
 							<li class="menu-dropdown mega-menu-dropdown">
 								<a href="{{('javascript:; ')}}">
-									UI Features
+									LIFESTYLE
 									<span class="arrow"></span>
 								</a>
 								<ul class="dropdown-menu" style="min-width: 500px">
@@ -256,29 +257,29 @@
 												<div class="col-md-4">
 													<ul class="mega-menu-submenu">
 														<li>
-															<a href="{{('#')}}">Color Library</a>
+															<a href="{{('#')}}">Entertainment</a>
 														</li>
 														<li>
-															<a href="{{('#')}}"> General Components </a>
+															<a href="{{('#')}}"> Office Productivity </a>
 														</li>
 														<li>
-															<a href="{{('#')}}"> Buttons</a>
+															<a href="{{('#')}}"> Gaming</a>
 														</li>
 														<li>
-															<a href="{{('#')}}"> Spinner Buttons</a>
+															<a href="{{('#')}}"> Browser</a>
 														</li>	
 													</ul>
 												</div>
 												<div class="col-md-4">
 													<ul class="mega-menu-submenu">
 														<li>
-															<a href="{{('#')}}"> Vector Maps</a>
+															<a href="{{('#')}}"> Social Media</a>
 														</li>
 														<li>
-															<a href="{{('#')}}">Timeline 1</a>
+															<a href="{{('#')}}">Finance</a>
 														</li>
 														<li>
-															<a href="{{('#')}}">Timeline 2</a>
+															<a href="{{('#')}}">Self Improvement</a>
 														</li>
 														<li>
 															<a href="{{('#')}}">Horizontal Timeline</a>

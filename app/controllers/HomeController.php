@@ -24,4 +24,8 @@ class HomeController extends BaseController {
 	{
 		return View::make('users.home');
 	}
+	public function landingpage()
+	{
+		return View::make('users.landingpage');
+	}
 }
