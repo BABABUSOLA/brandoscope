@@ -22,3 +22,4 @@ Route::get('logout','UsersController@logout');
 Route::get('forgot','UsersController@forgot');
 Route::get('adminLogin','UsersController@adminLogin');
 Route::get('landing','HomeController@landingpage');
+ROute::get('adminHome','UsersController@homepage');

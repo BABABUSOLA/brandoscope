@@ -25,7 +25,7 @@
 						
 						<!-- begin mega menu -->
 						<div class="font-grey-cararra">
-							<ul class="nav navbar-nav pull-right  "  style="display: block; color:white;">
+							<ul class="nav navbar-nav pull-right " id="custom-top-nav"  style="display: block; color:white;">
 								
 								<li class="menu-dropdown classic-menu-dropdown active ">
 									<a href="{{ ('javascript:;') }}">
@@ -52,6 +52,12 @@
 										<span class="arrow"></span>
 									</a>
 									
+								</li>
+
+								<li class="menu-dropdown classic-menu-dropdown" id="">
+								<a href="{{('javascript:;')}}" onclick="myFunction()">&#9776;
+									<span class="arrow"></span>
+								</a>
 								</li>
 								
 							</ul>

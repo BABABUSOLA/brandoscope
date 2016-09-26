@@ -44,6 +44,6 @@
         
         <!-- END THEME LAYOUT STYLES -->
         {{ HTML::style("favicon.ico")}}
-        
+        {{ HTML::style("../assets/pages/css/profile.min.css")}}
     </head>
     <!-- END HEAD -->

@@ -178,7 +178,8 @@
 									<li>
 										<a href="{{ ('#') }}"><i class="icon-key"></i> Log Out</a>
 									</li>
-															</ul>
+
+								</ul>
 							</li>
 							<!-- end user login dropdown -->
 							<!-- begin quick sidebar toggler -->

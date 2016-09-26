@@ -54,4 +54,5 @@
         <!-- END THEME LAYOUT SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
        {{ HTML::script("../assets/pages/scripts/login.min.js")}}
+       {{ HTML::script("../assets/pages/scripts/profile.min.js")}}
         <!-- END PAGE LEVEL SCRIPTS -->

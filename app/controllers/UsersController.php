@@ -17,4 +17,8 @@ class UsersController extends BaseController
 		{
 			Return View::make('admin.login');
 		}
+		public function homepage()
+		{
+			Return View::make('admin.homepage');
+		}
 	}
