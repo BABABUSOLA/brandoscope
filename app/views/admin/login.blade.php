@@ -13,17 +13,32 @@
             <div class="row bs-reset">
                 <div class="col-md-6 bs-reset mt-login-5-bsfix">
                     <div class="login-bg" style="background-image:url(../assets/pages/img/login/bg1.jpg)">
-                        <img class="login-logo" src="../assets/pages/img/login/logo.png" /> </div>
+                        <h1><strong style="color:white;">BRANDOSCOPE</strong></h1> </div>
                 </div>
                 <div class="col-md-6 login-container bs-reset mt-login-5-bsfix">
                     <div class="login-content">
                         <h1>Brandoscope Admin Login</h1>
                         <p> User has access to content and analytics about all organizations and industries.</p>
-                        <form action="javascript:;" class="login-form" method="post">
-                            <div class="alert alert-danger display-hide">
+                        <form action="#" class="login-form" method="post" enctype="multipart/form-data">
+                            @if(Session::has('message'))
+                    <div class="col-md-10">
+                        <div class="alert alert-info">
+                            {{ Session::get('message') }}
+                        </div>
+                    </div>
+                    @endif
+
+                    @foreach($errors->all() as $error)
+                    <div class="col-md-10">
+                        <div class="alert alert-info">
+                            {{ $error }}
+                        </div>
+                    </div>
+                    @endforeach
+                           {{--  <div class="alert alert-danger display-hide">
                                 <button class="close" data-close="alert"></button>
                                 <span>Enter any username and password. </span>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-xs-6">
                                     <input class="form-control form-control-solid placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Username" name="username" required/> </div>
@@ -47,18 +62,7 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- BEGIN FORGOT PASSWORD FORM -->
-                        <form class="forget-form" action="javascript:;" method="post">
-                            <h3 class="font-green">Forgot Password ?</h3>
-                            <p> Enter your e-mail address below to reset your password. </p>
-                            <div class="form-group">
-                                <input class="form-control placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
-                            <div class="form-actions">
-                                <button type="button" id="back-btn" class="btn green btn-outline">Back</button>
-                                <button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
-                            </div>
-                        </form>
-                        <!-- END FORGOT PASSWORD FORM -->
+                       
                     </div>
                     <div class="login-footer">
                         <div class="row bs-reset">

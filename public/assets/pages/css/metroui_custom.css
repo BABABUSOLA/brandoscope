@@ -1,6 +1,6 @@
 .header-bg-custom{
 	background-size:  100%;
-	background-image: url('/assets/pages/img/background/43_1.jpg');
+	background-image: url('/assets/pages/img/background/16.jpg');
 	background-position-x: 0;
 	background-position-y: 0;
 	background-repeat: no-repeat;
@@ -18,9 +18,23 @@
 	   -o-background-size: cover;
 
 }
+#imageText{
+	z-index: 100;
+	position: absolute;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	
+	left: 30%;
+	top:40%;
+	}
 
-
-
+#imageText h1{
+	text-transform: uppercase;
+	margin: 0;
+	font-size: 3rem;
+	white-space: normal;
+}
 .custom-logo{
 	padding-top: 10px;
 }

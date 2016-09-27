@@ -21,4 +21,8 @@ class UsersController extends BaseController
 		{
 			Return View::make('admin.homepage');
 		}
+		public function signup()
+		{
+			Return View::make('admin.register');
+		}
 	}
