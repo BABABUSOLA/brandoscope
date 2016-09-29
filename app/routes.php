@@ -15,13 +15,16 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+//users section
+Route::get('homepage',array('uses'=>'HomeController@index', 'as'=>'freepage'));
+Route::get('login',array('uses'=>'UsersController@login', 'as'=> 'login'));
+Route::post('login',array('uses'=>'UsersController@authenticate','as'=>'authenticate'));
+Route::get('logout',array('uses'=>'UsersController@logout', 'as'=>'logout'));
+Route::get('forgot',array('uses'=>'UsersController@forgot', 'as'=>'forgotpass'));
+Route::get('landing',array('uses'=>'HomeController@landingpage','as'=>'landingpage'));
+Route::get('register',array('uses'=>'UsersController@signup','as'=>'register'));
+Route::post('register',array('uses'=>'UsersController@store','as'=>'store'));
 
-Route::get('/','HomeController@index');
-Route::get('login','UsersController@Login');
-Route::get('logout','UsersController@logout');
-Route::get('forgot','UsersController@forgot');
-Route::get('adminLogin','UsersController@adminLogin');
-Route::get('landing','HomeController@landingpage');
-Route::get('adminHome','UsersController@homepage');
-Route::get('register','UsersController@signup');
-
+//admin section
+Route::get('adminLogin',array('uses'=>'UsersController@adminLogin', 'as'=>'adminLogin'));
+Route::get('adminHome',array('uses'=>'UsersController@homepage','as'=>'adminHome'));

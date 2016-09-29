@@ -16,7 +16,7 @@ class CreateCompanyPhonesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('company_id')->unsigned();
-			$table->foreign('company_id')->reference('id')->on('companies');
+			$table->foreign('company_id')->references('id')->on('companies');
 			$table->string('phone_number');
 			$table->text('description');
 			$table->timestamps();

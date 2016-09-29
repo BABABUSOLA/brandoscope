@@ -17,7 +17,7 @@ class CreateCompaniesTable extends Migration {
 			$table->increments('id');
 			$table->string('name', 100);
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->reference('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->text('address');
 			$table->string('website');
 			$table->timestamps();

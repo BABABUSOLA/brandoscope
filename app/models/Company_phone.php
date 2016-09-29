@@ -15,13 +15,14 @@ class Company_phone extends Eloquent implements UserInterface, RemindableInterfa
 	 * @var string
 	 */
 	protected $table = 'company_phones';
+	protected $fillable = array('company_id','phone_number','description');
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('company_id','phone_number','description');
-	protected $hidden = array('password', 'remember_token');
+	
+	
 
 }

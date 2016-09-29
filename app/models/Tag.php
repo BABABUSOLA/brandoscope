@@ -15,13 +15,13 @@ class Tag extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'tags';
+	protected $fillable = array('name','slug');
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('name','slug');
-	protected $hidden = array('password', 'remember_token');
+	
 
 }

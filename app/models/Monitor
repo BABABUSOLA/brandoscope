@@ -15,13 +15,13 @@ class Monitor extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'monitor';
+	protected $fillable = array('keyword','frequency','email','phone_number','company_id');
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('keyword','frequency','email','phone_number','company_id');
-	protected $hidden = array('password', 'remember_token');
-
+	
+	
 }
