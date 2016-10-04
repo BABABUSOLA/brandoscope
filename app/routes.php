@@ -24,7 +24,13 @@ Route::get('forgot',array('uses'=>'UsersController@forgot', 'as'=>'forgotpass'))
 Route::get('landing',array('uses'=>'HomeController@landingpage','as'=>'landingpage'));
 Route::get('register',array('uses'=>'UsersController@signup','as'=>'register'));
 Route::post('register',array('uses'=>'UsersController@store','as'=>'store'));
+Route::get('contact',array('uses'=>'UsersController@contacts','as'=>'contact'));
 
 //admin section
 Route::get('adminLogin',array('uses'=>'UsersController@adminLogin', 'as'=>'adminLogin'));
 Route::get('adminHome',array('uses'=>'UsersController@homepage','as'=>'adminHome'));
+Route::get('adminiHome',array('uses'=>'UsersController@adminhomepage','as'=>'adminiHome'));
+
+//authors section
+
+Route::get('newArticle',array('uses'=>'UsersController@newArticle','as'=>'newArticle'));

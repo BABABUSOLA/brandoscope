@@ -103,5 +103,19 @@ class UsersController extends BaseController
 				 }
 				 return View::make('users.login')->withErrors('Invalid email or password');
 			}
-		
+			public function contacts()
+			{
+				Return View::make('users.contact');
+			}
+			public function adminhomepage()
+			{
+				Return View::make('admin.adminiHome');
+			}
+			public function newArticle()
+			{
+
+				$article_roles = Role::get();
+				$article_cat = Category::get();
+				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat]);
+			}
 	}

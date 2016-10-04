@@ -39,6 +39,8 @@
         {{ HTML::style("../assets/pages/css/login-3.min.css")}}
         {{ HTML::style("../assets/pages/css/login-5.min.css")}}
         {{ HTML::style("../assets/pages/css/metroui_custom.css")}}
+        {{ HTML::style("../assets/pages/css/about.min.css")}}
+        
         
       
         
