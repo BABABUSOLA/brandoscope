@@ -1,25 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-    
-    <!-- BEGIN HEAD -->
-    @include('layouts.head')
-    <body class=" login">
-        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                    
-                    <a href="#" class="navbar-brand page-scroll">BRANDOSCOPE</a>
+@extends('layouts.masterAdminHome')
+
+
+@section('body')
+
+
+<body>
+    <!-- BEGIN HEADER -->
+                    <div class="page-header">
+                        <!-- BEGIN HEADER TOP -->
+                        <div class="page-header-top">
+                            <div class="container">
+                                <div class="page-logo font-blue-steel" style="font-size:30px; padding-top:10px;">
+                                        <strong>BRANDOSCOPE</strong>
+                                        <!-- if the person registers under admin then it should be the name of the company -->
+                                    </div>
+                               <!-- BEGIN TOP NAVIGATION MENU -->
+                                <div class="top-menu">
+                                   
+                                  
+                                  
+                                    {{link_to_route('logout','LOGOUT','',array('class'=>'btn blue-oleo'))}}
+                                      
+                                </div>
+                                <!-- END TOP NAVIGATION MENU -->
+                            </div>
+                        </div>
+                        <!-- END HEADER TOP -->
+                        <!-- BEGIN HEADER MENU -->
+                        <div class="page-header-menu">
+                            <div class="container">
+                                 <!-- BEGIN HEADER SEARCH BOX -->
+                                <form class="search-form" action="page_general_search.html" method="GET">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search" name="query">
+                                        <span class="input-group-btn">
+                                            <a href="#" class="btn submit">
+                                                <i class="icon-magnifier"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </form>
+                                <!-- END HEADER SEARCH BOX -->
+                               
+                                <!-- END HEADER SEARCH BOX -->
+                                
+                                <div class="hor-menu  ">
+                                    <ul class="nav navbar-nav">
+                                        <li class="menu-dropdown ">
+                                            <a href="{{url('articleDashboard')}}"> HOME
+                                                <span class="arrow"></span>
+                                            </a>
+                                         
+                                        </li>
+                                        <li class="menu-dropdown ">
+                                            <a href="{{('#')}}"> ARTICLE
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{url('editArticle')}}">Edit Article</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                        
+                                       
+                                </div>
+                                <!-- END MEGA MENU -->
+                            </div>
+                        </div>
+                        <!-- END HEADER MENU -->
+                    </div>
+                    <!-- END HEADER -->
                 </div>
-                <div  class="collapse navbar-collapse">
-                </div>
-                <!-- end .navbar collapse -->
-                <!-- en container fluid -->
             </div>
-        </nav>
-        <br>
-        <br>
-        <br>
-        <div class="page-content">
+    <div class="page-content">
             <div class="container">
                 <div class="page-content-inner">
                     <div class="row">
@@ -77,27 +135,14 @@
                                                 </div>
                                             </div>
                                             <div class="btn-group btn-group-solid">
-                                                <button class="btn btn-warning pull-left" >Previous</button>
+                                                <button class="btn btn-warning pull-left" >Edit</button>
                                             </div>
                                            
-                                                <button class="btn btn-primary" type="button">Next</button>
-                                                 <div class=" pull-right">
-                                                <div class="btn-group ">
-                                                                <button id="btnGroupVerticalDrop5" type="button" class="btn yellow dropdown-toggle" data-toggle="dropdown"> Page(s)
-                                                                <i class="fa fa-angle-down"></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop5">
-                                                                    <li>
-                                                                        <a href="{{url('homepage')}}"> Page1 </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#"> Page 2 </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                            <div class=" pull-right">
+                                                
                                                 <button class="btn btn-success  " type="button">Upload
                                                 </button>
-                                            {{-- </div> --}}
+                                            </div>
                                         </div>
                                     </fieldset>
                                     {{Form::close()}}
@@ -108,37 +153,9 @@
                 </div>
             </div>
         </div>
-        
-        
-        <!-- BEGIN COPYRIGHT -->
-        <div class="copyright"> 2016 &copy; ROBOTICS SYSTEM - BRANDOSOPE. </div>
-        <!-- END COPYRIGHT -->
-        <!--[if lt IE 9]>
-        {{ HTML::script("../assets/global/plugins/respond.min.js")}}
-        {{ HTML::script("../assets/global/plugins/excanvas.min.js")}}
-        {{ HTML::script("../assets/global/plugins/ie8.fix.min.js")}}
-        <![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        {{ HTML::script("../assets/global/plugins/jquery.min.js")}}
-        {{ HTML::script("../assets/global/plugins/bootstrap/js/bootstrap.min.js")}}
-        {{ HTML::script("../assets/global/plugins/js.cookie.min.js")}}
-        {{ HTML::script("../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js")}}
-        {{ HTML::script("../assets/global/plugins/jquery.blockui.min.js" )}}
-        {{ HTML::script("../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js")}}
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        {{ HTML::script("../assets/global/scripts/app.min.js")}}
-        
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        {{ HTML::script("../assets/layouts/layout3/scripts/layout.min.js")}}
-        {{ HTML::script("../assets/layouts/layout3/scripts/demo.min.js")}}
-        {{ HTML::script("../assets/layouts/global/scripts/quick-sidebar.min.js")}}
-        {{ HTML::script("../assets/layouts/global/scripts/quick-nav.min.js")}}
-        
-        <!-- END THEME LAYOUT SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        {{ HTML::script("../assets/pages/scripts/login.min.js")}}
-        {{ HTML::script("../assets/pages/scripts/jquery.min.js")}}
-        <!-- END PAGE LEVEL SCRIPTS -->
-    </body>
+        </body>
+
+
+
+
+@stop

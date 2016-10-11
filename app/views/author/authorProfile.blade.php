@@ -47,13 +47,13 @@
                                 <div class="hor-menu  ">
                                     <ul class="nav navbar-nav">
                                         <li class="menu-dropdown ">
-                                            <a href="{{url('articleDashboard')}}"> HOME
+                                            <a href="{{url('homepage')}}"> HOME
                                                 <span class="arrow"></span>
                                             </a>
                                          
                                         </li>
                                         <li class="menu-dropdown ">
-                                            <a href="{{('#')}}"> ARTICLE
+                                            <a href="{{('#about')}}"> ARTICLE
                                                 <span class="arrow"></span>
                                             </a>
                                             <ul class="dropdown-menu">
@@ -61,7 +61,7 @@
                                                     <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{url('editArticle')}}">Edit Article</a>
+                                                    <a href="#">Edit Article</a>
                                                 </li>
                                             </ul>
                                             

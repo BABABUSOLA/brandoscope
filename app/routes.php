@@ -38,4 +38,7 @@ Route::get('adminiHome',array('uses'=>'UsersController@adminhomepage','as'=>'adm
 Route::get('newArticle',array('uses'=>'UsersController@newArticle','as'=>'newArticle'));
 Route::get('editArticle',array('uses'=>'UsersController@editArticle','as'=>'editArticle'));
 Route::get('articleDashboard',array('uses'=>'UsersController@articleDashboard','as'=>'articleDashboard'));
+Route::get('authorProfile',array('uses'=>'UsersController@authorProfile','as'=>'authorProfile'));
+Route::get('listArticle',array('uses'=>'UsersController@listArticle','as'=>'listArticle'));
+Route::get('viewArticle',array('uses'=>'UsersController@viewArticle','as'=>'viewArticle'));
 

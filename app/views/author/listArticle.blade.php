@@ -92,6 +92,7 @@
                             <div class="page-content">
                                 <div class="container">
                                     
+                         
                                      <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                        <div class="row">
@@ -114,70 +115,36 @@
                                                 </div>
                                         <!-- end page portlet light-->
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-9">
                                                 <div class="portlet">
                                                 <div class="portlet-title">
                                                 
-                                                <div class="actions">
-                                                    <div class="btn-group">
-                                                        <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Upload Schedule
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu pull-right">
-                                                            <li>
-                                                                <a href="#"> Daily</a>
-                                                            </li>
-                                                            <li class="divider"> </li>
-                                                            <li>
-                                                                <a href="#">Weekly</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Montly</a>
-                                                            </li>
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="caption pull-left">Aricles</div>
+                                                
+                                                <div class="caption "><strong>Top five Stories</strong></div>
 
                                                 </div>
                                                 <div class="portlet-body">
                                              
                                                         @foreach($news as $new)
-                                                        <div class="portlet-body">
+                                                        <div class="portlet-title">
                                                             <h3> {{$new->slug}}</h3>
-                                                            <p>{{$new->text}}</p>
-                                                            <div style="margin:20px 0;">
-                                                               
-                                                            </div>
                                                         </div>
-                                                           
-                                                        @endforeach
-                                                         {{$news->links() }} 
+                                                        <div class="portlet-body">
+                                                            {{$new->text}}
+
+                                                            <button class="btn btn-info pull-right">Read More</button>
+                                                        </div>
+                                                           <br>
+                                                            
+                                                        @endforeach 
                                                 </div>
-                                            
+                                                
                                                 </div>
                                             </div>
                                         <!-- end page portlet light-->
                                        
                                         <!-- end col-md-6 -->
-                                        <div class="col-md-3">
-                                                <div class="portlet light ">
-                                                    <div class="portlet-title">
-                                                      Top Stories
-                                                    </div>
-                                                    <div class="portlet-body">
-                                                        @foreach($news as $news)
-                                                            <p><a href="{{$news->slug}}">{{$news->slug}}</a></p>
-                                                            @endforeach
-                                                            <div style="margin:20px 0;">
-                                                                {{$categories->links() }}
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                               
-
-                                       </div>
+                                        
                                         
                                     </div>
                                     <!-- END PAGE CONTENT INNER -->
