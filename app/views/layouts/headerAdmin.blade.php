@@ -16,7 +16,7 @@
 					</div>
 					<!-- end logo -->
 					<!--begin responsive menu toogler -->
-					<a href="{{ ('javascript:;') }}" class="menu-toggler"></a>
+					<a href="{{ ('#') }}" class="menu-toggler"></a>
 					<!-- end responsive menu toogler -->
 					<!-- begin top navigation menu toogler -->
 					<div class="top-menu">
@@ -60,7 +60,7 @@
 									<li>
 										<ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
 											<li>
-												<a href="{{ ('javascript:;') }}">
+												<a href="{{ ('#') }}">
 													<span class="task">
 														<span class="desc">New release v1.2></span>
 														<span class="percent">30%</span>
@@ -100,9 +100,7 @@
 											</li>
 											<li>
 												<a href="{{ ('#')}}">
-													<span class="photo">
-														<img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""/>
-													</span>
+													
 													<span class="subject">
 														<span class="from">Richard Doe</span>
 														<span class="time">16mins</span>
@@ -112,9 +110,7 @@
 											</li>
 											<li>
 												<a href="{{ ('#')}}">
-													<span class="photo">
-														<img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""/>
-													</span>
+													
 													<span class="subject">
 														<span class="from">Bob Nilson</span>
 														<span class="time">2 hrs</span>
@@ -124,9 +120,7 @@
 											</li>
 											<li>
 												<a href="{{ ('#')}}">
-													<span class="photo">
-														<img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""/>
-													</span>
+													
 													<span class="subject">
 														<span class="from">Lisa Wong</span>
 														<span class="time">40min</span>
@@ -136,9 +130,7 @@
 											</li>
 											<li>
 												<a href="{{ ('#')}}">
-													<span class="photo">
-														<img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""/>
-													</span>
+													
 													<span class="subject">
 														<span class="from">Richard Doe</span>
 														<span class="time">46 mins</span>
@@ -178,7 +170,7 @@
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search" name="query">
 							<span class="input-group-btn">
-								<a href="{{ ('javascript:;') }}" class="btn submit">
+								<a href="{{ ('#') }}" class="btn submit">
 									<i class="icon-magnifier">
 									
 									</i>

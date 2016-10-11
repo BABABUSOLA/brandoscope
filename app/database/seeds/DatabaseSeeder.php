@@ -9,13 +9,12 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		DB::table('roles')->delete();
-		Role::create(['id'=> 1, 'name'=>'Reader']);
-		Role::create(['id'=> 2, 'name'=> 'Author']);
-		Role::create(['id'=> 3, 'name'=> 'Admin']);
-		Eloquent::unguard();
 
-		// $this->call('UserTableSeeder');
+		$this->call('RoleTableSeeder');
+		$this->call('UserTableSeeder');
+		$this->call('CategoryTableSeeder');
+		$this->call('TagTableSeeder');
+		$this->call('NewsTableSeeder');
 	}
 
 }

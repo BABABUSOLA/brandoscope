@@ -26,6 +26,8 @@ Route::get('register',array('uses'=>'UsersController@signup','as'=>'register'));
 Route::post('register',array('uses'=>'UsersController@store','as'=>'store'));
 Route::get('contact',array('uses'=>'UsersController@contacts','as'=>'contact'));
 
+Route::get('home',array('uses'=>'UsersController@homepage2', 'as'=>'home'));
+
 //admin section
 Route::get('adminLogin',array('uses'=>'UsersController@adminLogin', 'as'=>'adminLogin'));
 Route::get('adminHome',array('uses'=>'UsersController@homepage','as'=>'adminHome'));
@@ -34,3 +36,6 @@ Route::get('adminiHome',array('uses'=>'UsersController@adminhomepage','as'=>'adm
 //authors section
 
 Route::get('newArticle',array('uses'=>'UsersController@newArticle','as'=>'newArticle'));
+Route::get('editArticle',array('uses'=>'UsersController@editArticle','as'=>'editArticle'));
+Route::get('articleDashboard',array('uses'=>'UsersController@articleDashboard','as'=>'articleDashboard'));
+

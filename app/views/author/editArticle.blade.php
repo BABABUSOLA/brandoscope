@@ -77,27 +77,14 @@
                                                 </div>
                                             </div>
                                             <div class="btn-group btn-group-solid">
-                                                <button class="btn btn-warning pull-left" >Previous</button>
+                                                <button class="btn btn-warning pull-left" >Edit</button>
                                             </div>
                                            
-                                                <button class="btn btn-primary" type="button">Next</button>
-                                                 <div class=" pull-right">
-                                                <div class="btn-group ">
-                                                                <button id="btnGroupVerticalDrop5" type="button" class="btn yellow dropdown-toggle" data-toggle="dropdown"> Page(s)
-                                                                <i class="fa fa-angle-down"></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop5">
-                                                                    <li>
-                                                                        <a href="{{url('homepage')}}"> Page1 </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#"> Page 2 </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                            <div class=" pull-right">
+                                                
                                                 <button class="btn btn-success  " type="button">Upload
                                                 </button>
-                                            {{-- </div> --}}
+                                            </div>
                                         </div>
                                     </fieldset>
                                     {{Form::close()}}

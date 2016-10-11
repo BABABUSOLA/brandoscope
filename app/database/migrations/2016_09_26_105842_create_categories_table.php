@@ -16,7 +16,6 @@ class CreateCategoriesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name', 50);
-			$table->string('slug', 150);
 			$table->timestamps();
 		});
 	}

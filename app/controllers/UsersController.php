@@ -21,6 +21,10 @@ class UsersController extends BaseController
 		{
 			Return View::make('admin.homepage');
 		}
+		public function homepage2()
+		{
+			Return View::make('users.home');
+		}
 		public function signup()
 		{
 			Return View::make('admin.register');
@@ -116,6 +120,20 @@ class UsersController extends BaseController
 
 				$article_roles = Role::get();
 				$article_cat = Category::get();
-				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat]);
+				$article_tag = Tag::get();
+				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
+			}
+			public function editArticle()
+			{
+				$article_roles = Role::get();
+				$article_cat = Category::get();
+				$article_tag = Tag::get();
+				Return View::make('author.editArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
+			}
+			public function articleDashboard()
+			{
+				$categories = Category::paginate(30);
+				$news = News::paginate(3);
+				Return View::make('admin.articlePublisherDashboard')->with('categories',$categories)->with('news',$news);
 			}
 	}

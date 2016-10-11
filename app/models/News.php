@@ -15,7 +15,7 @@ class News extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'news';
-	protected $fillable = array('title','slug','text');
+	protected $fillable = array('slug','text','category_id','tag_id','user_id');
 
 	/**
 	 * The attributes excluded from the model's JSON form.
