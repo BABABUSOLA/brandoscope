@@ -243,6 +243,19 @@
                                             </div>
                                         </div>
                                         <!-- end page portlet light-->
+                                        <div class="portlet light" id="notifica">
+                                            <div class="portlet-title uppercase">
+                                                Notifications
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div col-md>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         
                                     </div>
                                     <!-- END PAGE CONTENT INNER -->

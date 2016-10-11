@@ -15,14 +15,14 @@ class NewsTableSeeder extends DatabaseSeeder {
 		$categories = Category::all()->lists('id');
 		$tags = Tag::all()->lists('id');
 		$users = User::all()->lists('id');
-		foreach(range(1,10))
+		foreach(range(1,100) as $index)
 		{
 			News::create([
 				'slug'=>$faker->word,
-				'text'=>$faker->text,
+				'text'=>$faker->text($maxNbChars = 800, $index = 2 ),
 				'category_id'=>$faker->randomElement($categories),
 				'tag_id'=> $faker->randomElement($tags),
-				'user_id'=>$faker->randomElement($users),
+				
 				]);
 		}
 		

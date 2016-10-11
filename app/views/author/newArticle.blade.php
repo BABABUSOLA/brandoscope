@@ -85,7 +85,7 @@
                             <div class="portlet box">
                                 
                                 <div class="portlet-body form">
-                                    {{Form::open(array('route'=>'store','class'=>'login-form'))}}
+                                    {{Form::open(array('route'=>'storeArticle','class'=>'login-form'))}}
                                     <fieldset>
                                         <div class="form-body">
                                             <div class="form-group">
@@ -99,16 +99,11 @@
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">
+                                                     
+                                                            @if(isset($cats2))
+                                                            {{ Form::select('category_id',$cats2,array('class'=>'form-control col-md-9','placeholder'=>'Section','required data validation-required-message'=>'please select the category'))}}
+                                                            @endif
                                                         
-                                                        <div class="controls">
-                                                            <select class="form-control" required="required">
-                                                                <option>Section</option>
-                                                                @foreach($cats as $cat)
-                                                                <option value="{{$cat->id}}">{{$cat->name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -122,26 +117,24 @@
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">
-                                                        <div class="controls">
-                                                            <select class="form-control" required="required">
-                                                                <option>Content Type</option>
-                                                                @foreach($tags as $tag)
-                                                                <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            
-                                                        </div>
+                                                         @if(isset($tags2))
+                                                         
+                                                            {{ Form::select('tag_id',$tags2,array('class'=>'form-control ','placeholder'=>'Tags','required data validation-required-message'=>'please select the tag'))}}
+                                                            @endif
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="btn-group btn-group-solid">
-                                                <button class="btn btn-warning pull-left" >Edit</button>
+                                               
+                                                 {{link_to_route('editArticle','Edit','',array('class'=>'btn btn-warning pull-left'))}}
                                             </div>
                                            
                                             <div class=" pull-right">
                                                 
-                                                <button class="btn btn-success  " type="button">Upload
+                                                <button class="btn btn-success " type="submit">Upload
                                                 </button>
+                                               
                                             </div>
                                         </div>
                                     </fieldset>

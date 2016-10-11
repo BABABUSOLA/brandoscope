@@ -138,7 +138,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="caption pull-left">Aricles</div>
+                                                <div class="caption pull-left">Articles</div>
 
                                                 </div>
                                                 <div class="portlet-body">

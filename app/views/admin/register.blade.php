@@ -104,13 +104,14 @@
                         <span></span>
                     </label>
                    
-                </div>
+                
                 <div class="form-actions">
                     {{-- <button id="register-back-btn" type="button" class="btn red btn-outline"> Back </button> --}}
                    {{link_to_route('freepage','Back','',array('class'=>'btn red pull-left'))}}
                     {{-- <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button> --}}
                     {{Form::submit('Sign Up',array('class'=>'btn green pull-right'))}}
                 </div>
+                
            {{--  </form> --}}
        </fieldset>
            {{Form::close()}}

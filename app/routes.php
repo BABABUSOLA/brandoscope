@@ -35,10 +35,12 @@ Route::get('adminiHome',array('uses'=>'UsersController@adminhomepage','as'=>'adm
 
 //authors section
 
-Route::get('newArticle',array('uses'=>'UsersController@newArticle','as'=>'newArticle'));
-Route::get('editArticle',array('uses'=>'UsersController@editArticle','as'=>'editArticle'));
-Route::get('articleDashboard',array('uses'=>'UsersController@articleDashboard','as'=>'articleDashboard'));
-Route::get('authorProfile',array('uses'=>'UsersController@authorProfile','as'=>'authorProfile'));
-Route::get('listArticle',array('uses'=>'UsersController@listArticle','as'=>'listArticle'));
-Route::get('viewArticle',array('uses'=>'UsersController@viewArticle','as'=>'viewArticle'));
+Route::get('newArticle',array('uses'=>'articlesController@newArticle','as'=>'newArticle'));
+Route::post('newArticle',array('uses'=>'articlesController@storeArticle','as'=>'storeArticle'));
+Route::get('editArticle',array('uses'=>'articlesController@editArticle','as'=>'editArticle'));
+Route::post('editArticle',array('uses'=>'articlesController@authArticle','as'=>'authArticle'));
+Route::get('articleDashboard',array('uses'=>'articlesController@articleDashboard','as'=>'articleDashboard'));
+Route::get('authorProfile',array('uses'=>'articlesController@authorProfile','as'=>'authorProfile'));
+Route::get('listArticle',array('uses'=>'articlesController@listArticle','as'=>'listArticle'));
+Route::get('viewArticle',array('uses'=>'articlesController@viewArticle','as'=>'viewArticle'));
 

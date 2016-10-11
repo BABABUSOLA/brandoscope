@@ -115,45 +115,5 @@ class UsersController extends BaseController
 			{
 				Return View::make('admin.adminiHome');
 			}
-			public function newArticle()
-			{
-
-				$article_roles = Role::get();
-				$article_cat = Category::get();
-				$article_tag = Tag::get();
-				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
-			}
-			public function editArticle()
-			{
-				$article_roles = Role::get();
-				$article_cat = Category::get();
-				$article_tag = Tag::get();
-				Return View::make('author.editArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
-			}
-			public function articleDashboard()
-			{
-				$categories = Category::paginate(30);
-				$news = News::paginate(20);
-				Return View::make('admin.articlePublisherDashboard')->with('categories',$categories)->with('news',$news);
-			}
-			public function authorProfile()
-			{
-				$article_roles = Role::get();
-				$article_cat = Category::get();
-				$article_tag = Tag::get();
-				Return View::make('author.authorProfile')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
-			}
-			public function listArticle()
-			{
-				$categories = Category::paginate(30);
-				$news = News::paginate(5);
-				Return View::make('author.listArticle')->with('categories',$categories)->with('news',$news);
-			}
-			public function viewArticle()
-			{
-				$categories = Category::paginate(10);
-				$news = News::paginate(1);
-				Return View::make('author.viewArticle')->with('categories',$categories)->with('news',$news);
-			}
-
+			
 	}
