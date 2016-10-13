@@ -115,10 +115,10 @@
                                                 </div>
                                                 <div class="portlet-body">
                                              <div class=""></div>
-                                                        <div class="portlet-body">
+                <div class="portlet-body">
                                                           
                                 
-      <h4 class="uppercase">Search results for {{ $keyword }}</h4>
+                <h4 class="uppercase">Search results for {{ $keyword }}</h4>
       
            
              
@@ -148,17 +148,18 @@
               
             <a class="btn btn-success pull-right" href="{{url('viewArticle')}}/{{$new->id}}" type>Continue Reading</a>
               @endforeach
-          
+            <div style="margin:20px 0;">
+            {{$news->links()}}
+             </div>
+                                                      
           </div>
     </div>
-  </section>
+ 
                                                            
                                                         </div>
                                                       
                                                 </div>
-                                            {{-- 
-                                                </div>
-                                            </div> --}}
+                                           
                                         <!-- end page portlet light-->
                                        
                                         <!-- end col-md-6 -->

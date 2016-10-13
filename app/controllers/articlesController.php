@@ -75,7 +75,7 @@ class articlesController extends BaseController {
 				$categories = Category::paginate(20);
 				$cats  = Category::all();
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
-				Return View::make('author.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->get())->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
+				Return View::make('author.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
 
 			}
 
