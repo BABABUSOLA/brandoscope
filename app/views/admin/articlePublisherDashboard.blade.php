@@ -34,16 +34,21 @@
                         <div class="page-header-menu">
                             <div class="container">
                                  <!-- BEGIN HEADER SEARCH BOX -->
-                                <form class="search-form" action="page_general_search.html" method="GET">
+                                <!-- BEGIN HEADER SEARCH BOX -->
+                                <form class="search-form" action="{{URL::route('getSearch')}}" method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="query">
+                                        <input type="text" class="form-control" placeholder="Search" name="keyword">
                                         <span class="input-group-btn">
-                                            <a href="#" class="btn submit">
+                                          
                                                 <i class="icon-magnifier"></i>
-                                            </a>
+                                          
+                                             <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
                                         </span>
+                                       
                                     </div>
+
                                 </form>
+                                 
                                 <!-- END HEADER SEARCH BOX -->
                                
                                 <!-- END HEADER SEARCH BOX -->
@@ -143,10 +148,10 @@
                                                 </div>
                                                 <div class="portlet-body">
                                              
-                                                        @foreach($news as $new)
+                                                        @foreach($arts as $art)
                                                         <div class="portlet-body">
-                                                            <h3> {{$new->slug}}</h3>
-                                                            <p>{{$new->text}}</p>
+                                                            <h3> {{$art->slug}}</h3>
+                                                            <p>{{$art->text}}</p>
                                                             <div style="margin:20px 0;">
                                                                
                                                             </div>
@@ -167,11 +172,11 @@
                                                       Top Stories
                                                     </div>
                                                     <div class="portlet-body">
-                                                        @foreach($news as $news)
-                                                            <p><a href="{{$news->slug}}">{{$news->slug}}</a></p>
+                                                        @foreach($newSearchs as $newSearch)
+                                                            <p><a href="{{$newSearch->slug}}">{{$newSearch->slug}}</a></p>
                                                             @endforeach
                                                             <div style="margin:20px 0;">
-                                                                {{$categories->links() }}
+                                                                {{$news->links() }}
                                                             </div>
                                                     </div>
                                                 </div>

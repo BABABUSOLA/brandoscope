@@ -21,39 +21,30 @@ class articlesController extends BaseController {
 			{
 				$data = Input::all();
 
-				$cats=  Category::lists('name','id');
-				$tags= Tag::lists('name','id');
+				
 				$article = new News;
 				$article->fill($data);
 				$article->save();
 				
-				Return View::make('author.newArticle')->with(['cats2'=>$cats,'tags2'=>$tags]);
+				Return Redirect::route('listArticle');
 			}
-			public function authArticle()
-			{
-				$cat = Input::get('category');
-				$tag = Input::get('tag');
-				if(Auth::attempt(['category'=>$cat,'tag'=>$tag]))
-				{
-					//fetch news
-					$news = Auth::news();
-					$news->save();
-					Return Redirect::to('editArticle');
-				}
-				Return View::make('newArticle')->withMessage('invalid selections');
-			}
+			
 			public function editArticle()
 			{
 				$article_roles = Role::get();
 				$article_cat = Category::get();
 				$article_tag = Tag::get();
-				Return View::make('author.editArticle')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
+				$cats=  Category::lists('name','id');
+				$tags= Tag::lists('name','id');
+				Return View::make('author.editArticle')->with(['roles'=>$article_roles, 'cats2'=>$cats,'cats'=>$article_cat, 'tags'=>$article_tag, 'tags2'=>$tags]);
 			}
 			public function articleDashboard()
 			{
 				$categories = Category::paginate(30);
 				$news = News::paginate(20);
-				Return View::make('admin.articlePublisherDashboard')->with('categories',$categories)->with('news',$news);
+				$arts = News::orderBy('id','desc')->take(20)->get();
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				Return View::make('admin.articlePublisherDashboard')->with('categories',$categories)->with('news',$news)->with('arts',$arts)->with('newSearchs',$newSearchs);
 			}
 			public function authorProfile()
 			{
@@ -65,14 +56,27 @@ class articlesController extends BaseController {
 			public function listArticle()
 			{
 				$categories = Category::paginate(30);
-				$news = News::paginate(5);
+				$news = News::paginate(20);
+				$news = News::orderBy('id','desc')->take(20)->get();
 				Return View::make('author.listArticle')->with('categories',$categories)->with('news',$news);
 			}
-			public function viewArticle()
+			public function viewArticle($id)
 			{
 				$categories = Category::paginate(10);
-				$news = News::paginate(1);
-				Return View::make('author.viewArticle')->with('categories',$categories)->with('news',$news);
+				$new = News::find($id);
+				Return View::make('author.viewArticle')->with('new',$new)->with('categories',$categories);
+			}
+			public function getSearch()
+			{
+
+				$keyword = Input::get('keyword');
+				$tags = Tag::all();
+				$news = News::all();
+				$categories = Category::paginate(20);
+				$cats  = Category::all();
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				Return View::make('author.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->get())->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
+
 			}
 
 

@@ -89,20 +89,19 @@
                                     <fieldset>
                                         <div class="form-body">
                                             <div class="form-group">
-                                                {{ Form::text('title','',array('class'=>'form-control','placeholder'=>'Title','required data validation-required-message'=>'Please the title'))}}
+                                                {{ Form::text('slug','',array('class'=>'form-control','placeholder'=>'Title','required data validation-required-message'=>'Please the title'))}}
                                                 
                                             </div>
                                             <div class="form-group">
-                                                {{ Form::textarea('body','',array('class'=>'form-control','placeholder'=>'Body','required data validation-required-message'=>'Please enter your text'))}}
+                                                {{ Form::textarea('text','',array('class'=>'form-control','placeholder'=>'Body','required data validation-required-message'=>'Please enter your text'))}}
                                                 
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">
-                                                     
-                                                            @if(isset($cats2))
-                                                            {{ Form::select('category_id',$cats2,array('class'=>'form-control col-md-9','placeholder'=>'Section','required data validation-required-message'=>'please select the category'))}}
-                                                            @endif
+                                    
+                                                            {{ Form::select('category_id',$cats2,array('class'=>'form-control ','placeholder'=>'Section','required data validation-required-message'=>'please select the category'))}}
+                                                          
                                                         
                                                     </div>
                                                 </div>
@@ -118,7 +117,7 @@
                                                 <div class="col-md-9">
                                                     <div class="form-group">
                                                          @if(isset($tags2))
-                                                         
+
                                                             {{ Form::select('tag_id',$tags2,array('class'=>'form-control ','placeholder'=>'Tags','required data validation-required-message'=>'please select the tag'))}}
                                                             @endif
                                                         

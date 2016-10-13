@@ -42,5 +42,5 @@ Route::post('editArticle',array('uses'=>'articlesController@authArticle','as'=>'
 Route::get('articleDashboard',array('uses'=>'articlesController@articleDashboard','as'=>'articleDashboard'));
 Route::get('authorProfile',array('uses'=>'articlesController@authorProfile','as'=>'authorProfile'));
 Route::get('listArticle',array('uses'=>'articlesController@listArticle','as'=>'listArticle'));
-Route::get('viewArticle',array('uses'=>'articlesController@viewArticle','as'=>'viewArticle'));
-
+Route::get('viewArticle/{id}',array('uses'=>'articlesController@viewArticle','as'=>'viewArticle'));
+Route::get('search',array('uses'=>'articlesController@getSearch','as'=>'getSearch'));

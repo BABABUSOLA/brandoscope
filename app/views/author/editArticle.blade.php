@@ -89,11 +89,11 @@
                                     <fieldset>
                                         <div class="form-body">
                                             <div class="form-group">
-                                                {{ Form::text('title','',array('class'=>'form-control','placeholder'=>'Title','required data validation-required-message'=>'Please the title'))}}
+                                                {{ Form::text('slug','',array('class'=>'form-control','placeholder'=>'Title','required data validation-required-message'=>'Please the title'))}}
                                                 
                                             </div>
                                             <div class="form-group">
-                                                {{ Form::textarea('body','',array('class'=>'form-control','placeholder'=>'Body','required data validation-required-message'=>'Please enter your text'))}}
+                                                {{ Form::textarea('text','',array('class'=>'form-control','placeholder'=>'Body','required data validation-required-message'=>'Please enter your text'))}}
                                                 
                                             </div>
                                             <div class="row">

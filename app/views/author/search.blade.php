@@ -33,18 +33,7 @@
                         <!-- BEGIN HEADER MENU -->
                         <div class="page-header-menu">
                             <div class="container">
-                                 <!-- BEGIN HEADER SEARCH BOX -->
-                                <form class="search-form" action="page_general_search.html" method="GET">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="query">
-                                        <span class="input-group-btn">
-                                            <a href="#" class="btn submit">
-                                                <i class="icon-magnifier"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </form>
-                                <!-- END HEADER SEARCH BOX -->
+                                
                                
                                 <!-- END HEADER SEARCH BOX -->
                                 
@@ -115,31 +104,82 @@
                                                 </div>
                                         <!-- end page portlet light-->
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-6">
+
                                                 <div class="portlet">
                                                 <div class="portlet-title">
                                                 
-                                                
-                                                <div class="caption "><strong>{{$new->slug}}</strong></div>
+                                                <div class="caption">Articles</div>
+                                               
 
                                                 </div>
                                                 <div class="portlet-body">
-                                             
+                                             <div class=""></div>
                                                         <div class="portlet-body">
-                                                            {{$new->text}}
+                                                          
+                                
+      <h4 class="uppercase">Search results for {{ $keyword }}</h4>
+      
+           
+             
+              @foreach($news as $new)
+              
+                <a href="#">{{ $new->slug }}</a>
+                <div class="portlet title">
+                @foreach($cats as $cat)
+                @if($cat->id == $new->category_id )
+                {{ $cat->name }}
+                @endif
+                 @endforeach
+                </div>
+               
+               
+                <div>
+                @foreach($tags as $tag)
+                @if($tag->id == $new->tag_id)
+                {{ $tag->name }}
+                @endif
+                @endforeach
+                </div>
+                
 
+                
+                
+              
+            <a class="btn btn-success pull-right" href="{{url('viewArticle')}}/{{$new->id}}" type>Continue Reading</a>
+              @endforeach
+          
+          </div>
+    </div>
+  </section>
                                                            
                                                         </div>
-                                                           <br>
-                                                            
-                                                     
+                                                      
                                                 </div>
-                                            
+                                            {{-- 
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         <!-- end page portlet light-->
                                        
                                         <!-- end col-md-6 -->
+                                        <div class="col-md-3">
+
+                                            <div class="portlet light">
+                                                <div class="portlet-title">
+                                                     <div class="caption">Top Latest Stories</div>
+                                                </div>
+                                                @foreach($newSearchs as $newSearch)
+                                                
+                                                <div class="portlet-body">
+                                                     <a href="{{url('viewArticle/' . $new->id)}}"><div class="font-blue-ebonyclay caption "><strong>{{$newSearch->slug}}</strong></div></a>
+                                                      {{$newSearch->text}}
+                                                </div>
+                                                <div class="portlet-title">
+                                                    
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
                                       
                                     </div>
                                     <!-- END PAGE CONTENT INNER -->

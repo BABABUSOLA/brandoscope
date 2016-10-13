@@ -131,8 +131,8 @@
                                                         </div>
                                                         <div class="portlet-body">
                                                             {{$new->text}}
-
-                                                            <button class="btn btn-info pull-right">Read More</button>
+                                                            <a href="{{url('viewArticle/' . $new->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                            
                                                         </div>
                                                            <br>
                                                             

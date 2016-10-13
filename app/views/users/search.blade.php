@@ -4,12 +4,8 @@
 @section('body')
 
 
-
-    <body class="page-container-bg-solid">
-        <div class="page-wrapper">
-            <div class="page-wrapper-row">
-                <div class="page-wrapper-top">
-                    <!-- BEGIN HEADER -->
+<body>
+    <!-- BEGIN HEADER -->
                     <div class="page-header">
                         <!-- BEGIN HEADER TOP -->
                         <div class="page-header-top">
@@ -18,15 +14,7 @@
                                         <strong>BRANDOSCOPE</strong>
                                         <!-- if the person registers under admin then it should be the name of the company -->
                                     </div>
-                               <!-- BEGIN TOP NAVIGATION MENU -->
-                                <div class="top-menu">
-                                   
-                                  
-                                  
-                                    {{link_to_route('logout','LOGOUT','',array('class'=>'btn blue-oleo'))}}
-                                      
-                                </div>
-                                <!-- END TOP NAVIGATION MENU -->
+                               
                             </div>
                         </div>
                         <!-- END HEADER TOP -->
@@ -62,10 +50,10 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a href="{{('newArticle')}}" class="nav-link"> New Article</a>
+                                                    <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{('editArticle')}}">Edit Article</a>
+                                                    <a href="{{url('editArticle')}}">Edit Article</a>
                                                 </li>
                                             </ul>
                                             
@@ -81,21 +69,10 @@
                     <!-- END HEADER -->
                 </div>
             </div>
-            <div class="page-wrapper-row full-height">
-                <div class="page-wrapper-middle">
-                    <!-- BEGIN CONTAINER -->
-                    <div class="page-container">
-                        <!-- BEGIN CONTENT -->
-                        <div class="page-content-wrapper">
-                            <!-- BEGIN CONTENT BODY -->
-                       
-                            <div class="page-content">
-                                <div class="container">
-                                    
-                         
-                                     <!-- BEGIN PAGE CONTENT INNER -->
-                                    <div class="page-content-inner">
-                                       <div class="row">
+    <div class="page-content">
+            <div class="container">
+                <div class="page-content-inner">
+                        <div class="row">
                                             <div class="col-md-3">
                                                 <div class="portlet light ">
                                                     <div class="portlet-title">
@@ -115,24 +92,46 @@
                                                 </div>
                                         <!-- end page portlet light-->
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-6">
                                                 <div class="portlet">
                                                 <div class="portlet-title">
                                                 
-                                                
-                                                <div class="caption "><strong>{{$new->slug}}</strong></div>
+                                                <div class="actions">
+                                                    <div class="btn-group">
+                                                        <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Upload Schedule
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu pull-right">
+                                                            <li>
+                                                                <a href="#"> Daily</a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="#">Weekly</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Montly</a>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="caption pull-left">Articles</div>
 
                                                 </div>
                                                 <div class="portlet-body">
                                              
+                                                        @foreach($arts as $art)
                                                         <div class="portlet-body">
-                                                            {{$new->text}}
-
-                                                           
+                                                            <h3> {{$art->slug}}</h3>
+                                                            <p>{{$art->text}}</p>
+                                                            <div style="margin:20px 0;">
+                                                               
+                                                            </div>
                                                         </div>
-                                                           <br>
-                                                            
-                                                     
+                                                           
+                                                        @endforeach
+                                                         {{$news->links() }} 
                                                 </div>
                                             
                                                 </div>
@@ -140,26 +139,29 @@
                                         <!-- end page portlet light-->
                                        
                                         <!-- end col-md-6 -->
-                                      
+                                        <div class="col-md-3">
+                                                <div class="portlet light ">
+                                                    <div class="portlet-title">
+                                                      Top Stories
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        @foreach($news as $new)
+                                                            <p><a href="{{$new->slug}}">{{$new->slug}}</a></p>
+                                                            @endforeach
+                                                          {{--   <div style="margin:20px 0;">
+                                                                {{$news->links() }}
+                                                            </div> --}}
+                                                    </div>
+                                                </div>
+                                               
+
+                                       </div>
+                                        
                                     </div>
-                                    <!-- END PAGE CONTENT INNER -->
-                                </div>
-                            </div>
-                            <!-- END PAGE CONTENT BODY -->
-                            <!-- END CONTENT BODY -->
-                        </div>
-                        <!-- END CONTENT -->
-                    
-                    </div>
-                    <!-- END CONTAINER -->
                 </div>
             </div>
-           
         </div>
-      
-        
-    </body>
-
+        </body>
 
 
 
