@@ -159,5 +159,17 @@ class UsersController extends BaseController
 				$categories = Category::paginate(20);
 				Return View::make('users.useraccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
 			}
+			public function usersearch()
+			{
+
+				$keyword = Input::get('keyword');
+				$tags = Tag::all();
+				$news = News::all();
+				$categories = Category::paginate(20);
+				$cats  = Category::all();
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				Return View::make('users.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
+
+			}
 			
 	}

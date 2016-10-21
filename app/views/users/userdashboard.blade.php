@@ -35,7 +35,7 @@
                             <div class="container">
                                  <!-- BEGIN HEADER SEARCH BOX -->
                                 <!-- BEGIN HEADER SEARCH BOX -->
-                                <form class="search-form" action="{{URL::route('getSearch')}}" method="GET">
+                                <form class="search-form" action="{{URL::route('userSearch')}}" method="GET">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search" name="keyword">
                                         <span class="input-group-btn">
@@ -102,10 +102,10 @@
                                             <div class="tabbable-line tabbable-full-width">
                                                 <ul class="nav nav-tabs">
                                                     <li class="active">
-                                                        <a href="{{url('userdash')}}" data-toggle="tab"> Overview </a>
+                                                        <a href="{{url('userdash')}}" > Overview</a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{url('useraccount')}}" > Account </a>
+                                                        <a href="{{url('usersearch')}}" > Search</a>
                                                     </li>
                                                    
                                                 </ul>
@@ -144,7 +144,6 @@
                                                                                 <div class="panel-heading caption">
                                                                                     <h1 class="panel-title caption uppercase">
                                                                                         CATEGORIES
-
                                                                                     </h1>
                                                                                 </div>
                                                                                 
@@ -157,7 +156,7 @@
                                                                                 </div>
                                                                          
                                                                                
-                                                                              </div>
+                                                                            </div>
                                                                             <div style="margin:20px 0;">
                                                                             {{$categories->links() }}
                                                                             </div>

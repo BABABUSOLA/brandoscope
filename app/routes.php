@@ -31,6 +31,7 @@ Route::get('home',array('uses'=>'UsersController@homepage2', 'as'=>'home'));
 //user view
 Route::get('userdash',array('uses'=>'UsersController@userdash','as'=>'userdash'));
 Route::get('useraccount',array('uses'=>'UsersController@useraccount','as'=>'useraccount'));
+Route::get('usersearch',array('uses'=>'UsersController@usersearch','as'=>'userSearch'));
 
 //admin section
 Route::get('adminLogin',array('uses'=>'UsersController@adminLogin', 'as'=>'adminLogin'));
