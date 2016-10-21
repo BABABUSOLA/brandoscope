@@ -243,7 +243,7 @@
                                             </div>
                                         </div>
                                         <!-- end page portlet light-->
-                                        <div class="portlet light" id="notifica">
+                                        <div class="portlet light" id="notification">
                                             <div class="portlet-title uppercase">
                                                 Notifications
                                             </div>

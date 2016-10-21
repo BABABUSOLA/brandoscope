@@ -18,6 +18,7 @@ Route::get('/', function()
 //users section
 Route::get('homepage',array('uses'=>'HomeController@index', 'as'=>'freepage'));
 Route::get('login',array('uses'=>'UsersController@login', 'as'=> 'login'));
+// Route::post('postlogin',array('uses'=>'UsersController@postlogin', 'as'=> 'postlogin'));
 Route::post('login',array('uses'=>'UsersController@authenticate','as'=>'authenticate'));
 Route::get('logout',array('uses'=>'UsersController@logout', 'as'=>'logout'));
 Route::get('forgot',array('uses'=>'UsersController@forgot', 'as'=>'forgotpass'));
@@ -27,11 +28,14 @@ Route::post('register',array('uses'=>'UsersController@store','as'=>'store'));
 Route::get('contact',array('uses'=>'UsersController@contacts','as'=>'contact'));
 
 Route::get('home',array('uses'=>'UsersController@homepage2', 'as'=>'home'));
+//user view
+Route::get('userdash',array('uses'=>'UsersController@userdash','as'=>'userdash'));
+Route::get('useraccount',array('uses'=>'UsersController@useraccount','as'=>'useraccount'));
 
 //admin section
 Route::get('adminLogin',array('uses'=>'UsersController@adminLogin', 'as'=>'adminLogin'));
-Route::get('adminHome',array('uses'=>'UsersController@homepage','as'=>'adminHome'));
-Route::get('adminiHome',array('uses'=>'UsersController@adminhomepage','as'=>'adminiHome'));
+Route::get('adminhome',array('uses'=>'UsersController@homepage','as'=>'adminHome'));
+Route::get('adminihome',array('uses'=>'UsersController@adminhomepage','as'=>'adminiHome'));
 
 //authors section
 

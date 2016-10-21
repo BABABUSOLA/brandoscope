@@ -156,9 +156,9 @@
     </div>
  
                                                            
-                                                        </div>
+          </div>
                                                       
-                                                </div>
+    </div>
                                            
                                         <!-- end page portlet light-->
                                        
@@ -172,7 +172,7 @@
                                                 @foreach($newSearchs as $newSearch)
                                                 
                                                 <div class="portlet-body">
-                                                     <a href="{{url('viewArticle/' . $new->id)}}"><div class="font-blue-ebonyclay caption "><strong>{{$newSearch->slug}}</strong></div></a>
+                                                     <a href="{{url('viewArticle/' . $newSearch->id)}}"><div class="font-blue-ebonyclay caption "><strong>{{$newSearch->slug}}</strong></div></a>
                                                       {{$newSearch->text}}
                                                 </div>
                                                 <div class="portlet-title">

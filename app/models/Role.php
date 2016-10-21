@@ -23,5 +23,7 @@ class Role extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	
-
+	public function users(){
+       return $this->hasMany('Role', 'role_id');
+   }
 }

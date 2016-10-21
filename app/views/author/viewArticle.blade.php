@@ -97,46 +97,54 @@
                                     <div class="page-content-inner">
                                        <div class="row">
                                             <div class="col-md-3">
-                                                <div class="portlet light ">
-                                                    <div class="portlet-title">
-                                                        <div class="caption">Categories</div>
-                                                    </div>
-                                                    <div class="portlet-body">
-                                                       
-                                                            @foreach($categories as $category)
-                                                            <p><a href="{{$category->name}}">{{$category->name}}</a></p>
-                                                            @endforeach
-                                                            <div style="margin:20px 0;">
-                                                                {{$categories->links() }}
-                                                            </div>
-                                                      
-                                                
-                                                    </div>
-                                                </div>
+                                                <div class="panel panel-info">
+                                                                                 
+                                                                                <div class="panel-heading caption">
+                                                                                    <h1 class="panel-title caption uppercase">
+                                                                                        CATEGORIES
+
+                                                                                    </h1>
+                                                                                </div>
+                                                                                
+                                                                                <div id="accordion1_1" class="panel">
+                                                                                     @foreach($categories as $category)
+                                                                                    <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
+                                                                                    
+                                                                                    </div>
+                                                                                     @endforeach
+                                                                                </div>
+                                                                         
+                                                                               
+                                                                              </div>
+                                                                            <div style="margin:20px 0;">
+                                                                            {{$categories->links() }}
+                                                                            </div>
                                         <!-- end page portlet light-->
                                             </div>
                                             <div class="col-md-9">
-                                                <div class="portlet">
-                                                <div class="portlet-title">
-                                                
-                                                
-                                                <div class="caption "><strong>{{$new->slug}}</strong></div>
+                                                <div id="tab_1_1" class="tab-pane active">
+                                                    <div class="panel-group">
+                                                      
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading caption">
+                                                                <h3 class="panel-title caption uppercase">
+                                                                    {{$new->slug}}
 
-                                                </div>
-                                                <div class="portlet-body">
-                                             
-                                                        <div class="portlet-body">
-                                                            {{$new->text}}
+                                                                </h3>
+                                                            </div>
+                                                            <div id="accordion1_1" class="panel">
+                                                                <div class="panel-body"> {{$new->text}}
+                                                                </div>
 
-                                                           
+                                                            </div>
                                                         </div>
-                                                           <br>
-                                                            
-                                                     
+                                                      
+                                                    </div>
                                                 </div>
-                                            
-                                                </div>
+
+
                                             </div>
+                                        </div>
                                         <!-- end page portlet light-->
                                        
                                         <!-- end col-md-6 -->

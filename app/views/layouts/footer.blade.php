@@ -26,25 +26,25 @@
 						<h2>Follow Us On</h2>
 						<ul class="social-icons">
 							<li>
-								<a href="javascript:;" data-original-title="rss" class="rss"></a>
+								<a href="#" data-original-title="github" class="github"></a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="facebook" class="facebook"></a>
+								<a href="#" data-original-title="facebook" class="facebook"></a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="twitter" class="twitter"></a>
+								<a href="#" data-original-title="twitter" class="twitter"></a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="googleplus" class="googleplus"></a>
+								<a href="#" data-original-title="googleplus" class="googleplus"></a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="linkedin" class="linkedin"></a>
+								<a href="#" data-original-title="linkedin" class="linkedin"></a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="youtube" class="youtube"></a>
+								<a href="#" data-original-title="youtube" class="youtube"></a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="vimeo" class="vimeo"></a>
+								<a href="#" data-original-title="vimeo" class="vimeo"></a>
 							</li>
 						</ul>
 					</div>

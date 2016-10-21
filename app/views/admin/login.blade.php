@@ -56,9 +56,10 @@
                                 </div>
                                 <div class="col-sm-8 text-right">
                                     <div class="forgot-password">
-                                        <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+                                        <a href="#" id="forget-password" class="forget-password">Forgot Password?</a>
                                     </div>
                                     <button class="btn green" type="submit">Sign In</button>
+                              
                                 </div>
                             </div>
                         </form>
@@ -69,17 +70,17 @@
                             <div class="col-xs-5 bs-reset">
                                 <ul class="login-social">
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="#">
                                             <i class="icon-social-facebook"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="#">
                                             <i class="icon-social-twitter"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="#">
                                             <i class="icon-social-dribbble"></i>
                                         </a>
                                     </li>

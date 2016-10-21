@@ -5,6 +5,52 @@ class UsersController extends BaseController
 		{
 			Return View::make('users.login');
 		}
+		// public function postLogin()
+		// {
+		// 	$validator = Validator::make(Input::all(),array('email'=>'required|email','password'=>'required'));
+		// 	if($validator->fails())
+		// 	{
+		// 		return Redirect::route('login')->withErrors($validator)->withInput();
+
+		// 	}
+		// 	else
+		// 	{
+		// 		$remember = (Input::has('remember')) ? true: false;
+		// 		$auth = Auth::attempt(array(
+		// 			'email'=> Input::get('email'),
+		// 			'password'=> Input::get('password')
+		// 			), $remember);
+		// 		if (!$auth)
+		// 			{
+		// 			return Redirect::route('login')->with('fail','You entered the wrong email or password');
+		// 		    }
+		// 		else
+		// 		{	
+					
+		// 			if (1)
+		// 				dd(User()->role);
+						
+		// 			{
+
+		// 				return Redirect::route('userdash');
+		// 			}
+		// 			if (2)
+		// 			 {
+						
+		// 				return Redirect::route('articlePublisherDashboard');
+
+		// 			}
+		// 			if(3)
+		// 			{
+		// 				return Redirect::route('adminiHome');
+		// 			}
+					
+		// 		}
+		
+				
+		// 	}
+
+		// }
 		public function logout()
 		{
 			Return View::make('users.logout');
@@ -13,10 +59,7 @@ class UsersController extends BaseController
 		{
 			Return View::make('users.forgotpassword');
 		}
-		public function adminLogin()
-		{
-			Return View::make('admin.login');
-		}
+		
 		public function homepage()
 		{
 			Return View::make('admin.homepage');
@@ -36,52 +79,8 @@ class UsersController extends BaseController
 			$user = new User;
 			$user->fill($data);
 			$user->save();
-			// retrieve all input
-			// $data['password']=Hash::make($data['password']); // hash password
-			// $firstname=$data['first_name']; //retrieve first name
-			// $lastname=$data['last_name'];  //retrieve last name
-			// $email=$data['email'];
-			// $mobilephone=$data['mobile_phone'];
-			// $password=$data['password']; //store password
-			// $roleid=$data['role_id']; // get the hidden role id from form
-			// $user = new User; // instance of user model
 
 			
-			//get the role_id of the user
-			// $data=array('first_name'=>$firstname,'last_name'=>$lastname,'email'=>$email,'mobile_phone'=>$mobilephone,'password'=>$password); //passes this values into the role
-			// $validator=Validator::make($data,User::$rules);
-			// if($validator->passes())
-			// {
-			// 	//save the value
-
-			// //save the informationa after getting from form
-			// $user->first_name=$firstname;
-			// $user->last_name=$lastname;
-			// $user->email=$email;
-			// $user->mobile_phone=$mobilephone;
-			// $user->password=$password;
-			// $user->role_id=$roleid; // role id of the user
-
-			// 	//$user->fill($data1);
-			// 	$user->save();
-				//after saving find the id of the user created and pass it to another page
-				// if($user->role_id == 1)
-				// {
-				// 	// if the role_id is 1 then it wud know it as the reader
-				// 	$use=User::select('id')->where('email','=',$email)->first();
-				// 	return View::make('user.login');
-				// }
-				// if($user->role_id == 2)
-				// {
-				// 	// if the role_id is 2 then it wud know it as the author
-				// 	$use=User::select('id')->where('email','=',$email)->first();
-				// 	return View::make('user.login');
-				// }
-				// if($user->roles_id == 3)
-				// {
-				// 	//if role_id is 3 then it is admin
-				// 	return View::make('admin.companyreg');
-				// }
 				
 				return Redirect::to('login')->withMessage('Registration successful. Please login!');
 			// }
@@ -96,15 +95,42 @@ class UsersController extends BaseController
 			}
 			public function authenticate()
 			{
-				$email = Input::get('email');
-				$password = Input::get('password');
-				 if(Auth::attempt(['email'=>$email, 'password'=>$password]))
+				
+				$remember = (Input::has('remember')) ? true: false;
+				 if (Auth::attempt(array('email' => Input::get('email'),'password' => Input::get('password')),$remember))
 				 {
 				 	//fetch user profile details
 				 	$user = Auth::user();
 				 	$user->save();
-				 	return Redirect::to('adminHome');
+				 	
+					
+					
+					if (Auth::User()->role_id === 1)
+					
+					{
+
+						return Redirect::route('userdash');
+					}
+					if (Auth::User()->role_id === 2)
+					 {
+						
+						return Redirect::route('articleDashboard');
+
+					}
+					if(Auth::User()->role_id === 3)
+					{
+						return Redirect::route('adminiHome');
+					}
+				
+					else
+						{
+					return Redirect::route('login')->with('fail','You entered the wrong email or password');
+				    }
+				
+				
+			
 				 }
+				 
 				 return View::make('users.login')->withErrors('Invalid email or password');
 			}
 			public function contacts()
@@ -114,6 +140,24 @@ class UsersController extends BaseController
 			public function adminhomepage()
 			{
 				Return View::make('admin.adminiHome');
+			}
+			public function userdash()
+			{	
+				$user = User::all();
+				$news = News::paginate(15);
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				$arts = News::orderBy('id','desc')->take(5)->get();
+				$categories = Category::paginate(20);
+				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
+			}
+			public function useraccount()
+			{	
+				$user = User::get();
+				$news = News::paginate(15);
+				$newSearchs = News::orderBy('id','desc')->take(5)->get();
+				$arts = News::orderBy('id','desc')->take(20)->get();
+				$categories = Category::paginate(20);
+				Return View::make('users.useraccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
 			}
 			
 	}
