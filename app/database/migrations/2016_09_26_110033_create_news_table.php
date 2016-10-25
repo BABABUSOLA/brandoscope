@@ -22,7 +22,8 @@ class CreateNewsTable extends Migration {
 			$table->foreign('tag_id')->references('id')->on('tags');
 			$table->integer('category_id')->unsigned();
 			$table->foreign('category_id')->references('id')->on('categories');
-			
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->timestamps();
 		});
 	}

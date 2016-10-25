@@ -104,6 +104,8 @@
                                                           
                                                         
                                                     </div>
+                                                    
+                                                    <input class="hidden" value="{{$user2->id}}" name="user_id">
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">

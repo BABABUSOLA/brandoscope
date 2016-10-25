@@ -39,7 +39,7 @@
                                 <div class="hor-menu  ">
                                     <ul class="nav navbar-nav">
                                         <li class="menu-dropdown ">
-                                            <a href="#"> HOME
+                                            <a href="{{url('homepage')}}"> HOME
                                                 <span class="arrow"></span>
                                             </a>
                                          
@@ -55,12 +55,6 @@
                                                 <span class="arrow"></span>
                                             </a>
                                             
-                                        </li>
-                                        <li class="menu-dropdown ">
-                                            <a href="#"> SERVICES
-                                                <span class="arrow"></span>
-                                            </a>
-                                           
                                         </li>
                                        
                                 </div>

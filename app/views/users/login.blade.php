@@ -84,7 +84,7 @@
                 </div>
                 <div class="create-account">
                     <p> Don't have an account yet ?&nbsp;
-                        <a href="#" id="register-btn"> Create an account </a>
+                        <a href="{{URL::route('register')}}" id="register-btn"> Create an account </a>
                     </p>
                 </div>
             {{-- </form> --}}

@@ -22,7 +22,7 @@ class NewsTableSeeder extends DatabaseSeeder {
 				'text'=>$faker->text($maxNbChars = 800, $index = 2 ),
 				'category_id'=>$faker->randomElement($categories),
 				'tag_id'=> $faker->randomElement($tags),
-				
+				'user_id'=>$faker->randomElement($users),
 				]);
 		}
 		

@@ -102,10 +102,10 @@
                                             <div class="tabbable-line tabbable-full-width">
                                                 <ul class="nav nav-tabs">
                                                     <li class="active">
-                                                        <a href="{{url('userdash')}}" > Overview</a>
+                                                        <a href="{{url('userdash')}}" data-toggle="tab"> Overview </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{url('usersearch')}}" > Search</a>
+                                                        <a href="{{url('useraccount')}}" > Account </a>
                                                     </li>
                                                    
                                                 </ul>

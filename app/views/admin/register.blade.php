@@ -97,14 +97,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="mt-checkbox mt-checkbox-outline">
+                   {{--  <label class="mt-checkbox mt-checkbox-outline">
                         <input type="checkbox" name="tnc" /> I agree to the
                         <a href="#">Terms of Service </a> &
                         <a href="#">Privacy Policy </a>
                         <span></span>
                     </label>
                    
-                
+                 --}}
                 <div class="form-actions">
                     {{-- <button id="register-back-btn" type="button" class="btn red btn-outline"> Back </button> --}}
                    {{link_to_route('freepage','Back','',array('class'=>'btn red pull-left'))}}

@@ -18,6 +18,8 @@ Route::get('/', function()
 //users section
 Route::get('homepage',array('uses'=>'HomeController@index', 'as'=>'freepage'));
 Route::get('login',array('uses'=>'UsersController@login', 'as'=> 'login'));
+Route::post('storeprofile',array('uses'=>'UsersController@storeprofile','as'=>'storeprofile'));
+
 // Route::post('postlogin',array('uses'=>'UsersController@postlogin', 'as'=> 'postlogin'));
 Route::post('login',array('uses'=>'UsersController@authenticate','as'=>'authenticate'));
 Route::get('logout',array('uses'=>'UsersController@logout', 'as'=>'logout'));
@@ -45,7 +47,9 @@ Route::post('newArticle',array('uses'=>'articlesController@storeArticle','as'=>'
 Route::get('editArticle',array('uses'=>'articlesController@editArticle','as'=>'editArticle'));
 Route::post('editArticle',array('uses'=>'articlesController@authArticle','as'=>'authArticle'));
 Route::get('articleDashboard',array('uses'=>'articlesController@articleDashboard','as'=>'articleDashboard'));
-Route::get('authorProfile',array('uses'=>'articlesController@authorProfile','as'=>'authorProfile'));
+Route::get('authorprofile',array('uses'=>'articlesController@authorProfile','as'=>'authorProfile'));
+Route::get('authorAccount',array('uses'=>'articlesController@authorAccount','as'=>'authorAccount'));
+
 Route::get('listArticle',array('uses'=>'articlesController@listArticle','as'=>'listArticle'));
 Route::get('viewArticle/{id}',array('uses'=>'articlesController@viewArticle','as'=>'viewArticle'));
 Route::get('search',array('uses'=>'articlesController@getSearch','as'=>'getSearch'));

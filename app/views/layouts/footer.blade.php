@@ -85,6 +85,8 @@
         {{ HTML::script("../assets/global/plugins/js.cookie.min.js")}}
         {{ HTML::script("../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js")}}
         {{ HTML::script("../assets/global/plugins/jquery.blockui.min.js" )}}
+
+
         {{ HTML::script("../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js")}}
 
         <!-- END CORE PLUGINS -->

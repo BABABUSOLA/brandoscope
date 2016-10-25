@@ -45,7 +45,7 @@
                                          
                                         </li>
                                         <li class="menu-dropdown ">
-                                            <a href="{{('#about')}}"> ABOUT
+                                            <a href="#about"> ABOUT
                                                 <span class="arrow"></span>
                                             </a>
                                             
@@ -55,12 +55,6 @@
                                                 <span class="arrow"></span>
                                             </a>
                                             
-                                        </li>
-                                        <li class="menu-dropdown ">
-                                            <a href="#"> SERVICES
-                                                <span class="arrow"></span>
-                                            </a>
-                                           
                                         </li>
                                        
                                 </div>

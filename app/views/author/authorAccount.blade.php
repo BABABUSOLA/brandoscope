@@ -102,11 +102,11 @@
                                             <div class="tabbable-line tabbable-full-width">
                                                 <ul class="nav nav-tabs">
                                                     <li >
-                                                        <a href="{{url('userdash')}}" > Overview </a>
+                                                        <a href="{{url('authorProfile')}}" > Overview </a>
                                                     </li>
                                                     <li class="active">
 
-                                                        <a href="{{url('useraccount')}}"> Account </a>
+                                                        <a href="{{url('authorAccount')}}"> Account </a>
                                                     </li>
                                                     
                                                 </ul>
@@ -121,16 +121,12 @@
                                                         <div class="row profile-account">
                                                             <div class="col-md-3">
                                                                 <ul class="ver-inline-menu tabbable margin-bottom-10">
-                                                                    <li class="active" id="main">
+                                                                    <li class="active">
                                                                         <a data-toggle="tab" href="#tab_1-1">
                                                                             <i class="fa fa-cog"></i> Personal info </a>
                                                                         <span class="after"> </span>
                                                                     </li>
-                                                                    <li id="pencil">
-                                                                        <a data-toggle="tab" href="#tab_1-2">
-                                                                            <i class="fa fa-pencil"></i> Edit info </a>
-                                                                        <span class="after"> </span>
-                                                                    </li>
+                                                                    
                                                                     <li>
                                                                         <a data-toggle="tab" href="#tab_3-3">
                                                                             <i class="fa fa-lock"></i> Change Password </a>
@@ -142,7 +138,7 @@
                                                                 <div class="tab-content">
 
                                                                     <div id="tab_1-1" class="tab-pane active">
-                                                                        {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
+                                                                        {{Form::open(array('route'=>'store','class'=>'login-form'))}}
                                                                     <fieldset>
                     
               
@@ -152,7 +148,7 @@
                                                                     <div class="input-icon">
                                                                         <i class="fa fa-font"></i>
                        
-                                                                        {{ Form::text('first_name',$user2->first_name,array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name','disabled'))}}
+                                                                        {{ Form::text('first_name','',array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -160,7 +156,7 @@
                                                                     <div class="input-icon">
                                                                         <i class="fa fa-font"></i>
                                
-                                                                        {{ Form::text('last_name',$user2->last_name,array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name','disabled'))}}
+                                                                        {{ Form::text('last_name','',array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name'))}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -169,7 +165,7 @@
                                                                     <div class="input-icon">
                                                                         <i class="fa fa-envelope"></i>
                       
-                                                                        {{ Form::email('email',$user2->email,array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email','disabled'))}}
+                                                                        {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -177,76 +173,34 @@
                                                                     <div class="input-icon">
                                                                         <i class="fa fa-phone-square"></i>
                        
-                                                                         {{ Form::input('tel','mobile_phone',$user2->mobile_phone,array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.','disabled'))}}
+                                                                         {{ Form::input('tel','mobile_phone','',array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
                                                                     </div>
                                                                 </div>
         
-                                                                
-                                                               
+                                                                <div class="form-group">
+                                                                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                                                                    <div class="input-icon">
+                                                                        <i class="fa fa-lock"></i>
+                        
+                                                                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+                                                                    <div class="controls">
+                                                                        <div class="input-icon">
+                                                                        <i class="fa fa-check"></i>
+                          
+                                                                        {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+               
                                                                 <div class="form-actions">
                    
-                                                                        {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
-
-                                                                    
-                                                                        
-                                                                </div>
-         
-                                                                </fieldset>
-                                                                    {{Form::close()}}
-                                                                    <button class="btn blue pull-right" onclick="doThis()" id="edit">Edit</button>
-            <!-- END REGISTRATION FORM -->          
-                                                                      
-                                                            </div>
-                                                            <!-- end tab_1 -->
-                                                            <div id="tab_1-2" class="tab-pane ">
-                                                                        {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
-                                                                    <fieldset>
-                    
-              
-        
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">first name</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-font"></i>
-                       
-                                                                        {{ Form::text('first_name',$user2->first_name,array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-font"></i>
-                               
-                                                                        {{ Form::text('last_name',$user2->last_name,array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                    
-                                                                    <label class="control-label visible-ie8 visible-ie9">Email</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-envelope"></i>
-                      
-                                                                        {{ Form::email('email',$user2->email,array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-phone-square"></i>
-                       
-                                                                         {{ Form::input('tel','mobile_phone',$user2->mobile_phone,array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
-                                                                    </div>
-                                                                </div>
-        
-                                                                
-                                                               
-                                                                <div class="form-actions">
-                   
-                                                                        {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
-
-                                                                       
-                                                                        {{Form::submit('Save',array('class'=>'btn green pull-right'))}}
-                                                                        
+                                                                        {{link_to_route('authorAccount','Back','',array('class'=>'btn red pull-left'))}}
+                
+                                                                        {{Form::submit('Edit',array('class'=>'btn green pull-right'))}}
                                                                 </div>
          
                                                                 </fieldset>
@@ -254,9 +208,10 @@
             <!-- END REGISTRATION FORM -->
                                                                       
                                                             </div>
+                                                            <!-- end tab_1 -->
                                                             <div id="tab_3-3" class="tab-pane">
                                                                        
-                                                                             {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
+                                                                             {{Form::open(array('route'=>'store','class'=>'login-form'))}}
                                                                              <fieldset>
                                                                             <div class="form-group">
                                                                                 <label class="control-label">Current Password</label>
@@ -295,8 +250,8 @@
                                                                             
                                                                            
                                                                             <div class="margin-top-10">
-                                                                                <a href="#" class="btn green"> Change Password </a>
-                                                                                <a href="#" class="btn default"> Cancel </a>
+                                                                                <a href="javascript:;" class="btn green"> Change Password </a>
+                                                                                <a href="javascript:;" class="btn default"> Cancel </a>
                                                                             </div>
                                                                         </fieldset>
                                                                             {{Form::close()}}
@@ -336,13 +291,7 @@
 
 </div>
       
-    <script>
-        function doThis(){
-            console.log('cool');
-            $(#main).removeClass('active');
-            $(#pencil).addClass('active');
-        }
-    </script>
+        
     </body>
 
 

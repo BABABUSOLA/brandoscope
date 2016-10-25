@@ -5,56 +5,15 @@ class UsersController extends BaseController
 		{
 			Return View::make('users.login');
 		}
-		// public function postLogin()
-		// {
-		// 	$validator = Validator::make(Input::all(),array('email'=>'required|email','password'=>'required'));
-		// 	if($validator->fails())
-		// 	{
-		// 		return Redirect::route('login')->withErrors($validator)->withInput();
-
-		// 	}
-		// 	else
-		// 	{
-		// 		$remember = (Input::has('remember')) ? true: false;
-		// 		$auth = Auth::attempt(array(
-		// 			'email'=> Input::get('email'),
-		// 			'password'=> Input::get('password')
-		// 			), $remember);
-		// 		if (!$auth)
-		// 			{
-		// 			return Redirect::route('login')->with('fail','You entered the wrong email or password');
-		// 		    }
-		// 		else
-		// 		{	
-					
-		// 			if (1)
-		// 				dd(User()->role);
-						
-		// 			{
-
-		// 				return Redirect::route('userdash');
-		// 			}
-		// 			if (2)
-		// 			 {
-						
-		// 				return Redirect::route('articlePublisherDashboard');
-
-		// 			}
-		// 			if(3)
-		// 			{
-		// 				return Redirect::route('adminiHome');
-		// 			}
-					
-		// 		}
-		
-				
-		// 	}
-
-		// }
+	
 		public function logout()
 		{
-			Return View::make('users.logout');
+			Auth::logout();
+			Session::flush();
+			Return Redirect::route('freepage');
 		}
+		
+	
 		public function forgot()
 		{
 			Return View::make('users.forgotpassword');
@@ -74,48 +33,44 @@ class UsersController extends BaseController
 		}
 		public function store()
 		{
-			$data=Input::all(); 
+			$data=Input::all();
 			$data['password']=Hash::make($data['password']);
 			$user = new User;
 			$user->fill($data);
 			$user->save();
-
 			
 				
 				return Redirect::to('login')->withMessage('Registration successful. Please login!');
 			// }
-			// 	else
-			// 	{
-			// 		//if validation fails
-			// 		$message=$validator->message();
-			// 		Input::flash();
-			// 		return View::make('users.landingpage');
-			// 	}
-
+						// 	else
+						// 	{
+									// 		//if validation fails
+									// 		$message=$validator->message();
+									// 		Input::flash();
+									// 		return View::make('users.landingpage');
+						// 	}
 			}
 			public function authenticate()
 			{
 				
 				$remember = (Input::has('remember')) ? true: false;
-				 if (Auth::attempt(array('email' => Input::get('email'),'password' => Input::get('password')),$remember))
-				 {
-				 	//fetch user profile details
-				 	$user = Auth::user();
-				 	$user->save();
-				 	
+				if (Auth::attempt(array('email' => Input::get('email'),'password' => Input::get('password')),$remember))
+				{
+					//fetch user profile details
+					$user = Auth::user();
+					$user->save();
+					
 					
 					
 					if (Auth::User()->role_id === 1)
 					
 					{
-
 						return Redirect::route('userdash');
 					}
 					if (Auth::User()->role_id === 2)
-					 {
+					{
 						
-						return Redirect::route('articleDashboard');
-
+						return Redirect::route('authorProfile');
 					}
 					if(Auth::User()->role_id === 3)
 					{
@@ -125,13 +80,13 @@ class UsersController extends BaseController
 					else
 						{
 					return Redirect::route('login')->with('fail','You entered the wrong email or password');
-				    }
+				}
 				
 				
 			
-				 }
-				 
-				 return View::make('users.login')->withErrors('Invalid email or password');
+				}
+				
+				return View::make('users.login')->withErrors('Invalid email or password');
 			}
 			public function contacts()
 			{
@@ -142,7 +97,7 @@ class UsersController extends BaseController
 				Return View::make('admin.adminiHome');
 			}
 			public function userdash()
-			{	
+				{
 				$user = User::all();
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
@@ -151,17 +106,17 @@ class UsersController extends BaseController
 				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
 			}
 			public function useraccount()
-			{	
+				{
+				$user2 = Auth::User();
 				$user = User::get();
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(5)->get();
 				$arts = News::orderBy('id','desc')->take(20)->get();
 				$categories = Category::paginate(20);
-				Return View::make('users.useraccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
+				Return View::make('users.useraccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('user2',$user2);
 			}
 			public function usersearch()
 			{
-
 				$keyword = Input::get('keyword');
 				$tags = Tag::all();
 				$news = News::all();
@@ -169,7 +124,18 @@ class UsersController extends BaseController
 				$cats  = Category::all();
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				Return View::make('users.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
-
 			}
+
+			public function storeprofile()
+		{
+			$data=Input::all();
 			
+			$user = Auth::User();
+			$user->fill($data);
+			$user->save();
+			
+				
+				return Redirect::route('userdash');
+			
+			}
 	}

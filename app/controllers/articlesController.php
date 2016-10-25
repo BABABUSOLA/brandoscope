@@ -13,9 +13,11 @@ class articlesController extends BaseController {
 				$article_roles = Role::get();
 				$article_cat = Category::get();
 				$article_tag = Tag::get();
+				$users= Auth::User();
+
 				$cats=  Category::lists('name','id');
 				$tags= Tag::lists('name','id');
-				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats2'=>$cats,'cats'=>$article_cat, 'tags'=>$article_tag, 'tags2'=>$tags]);
+				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats2'=>$cats,'cats'=>$article_cat, 'tags'=>$article_tag, 'tags2'=>$tags, 'user2'=>$users]);
 			}
 			public function storeArticle()
 			{
@@ -26,7 +28,7 @@ class articlesController extends BaseController {
 				$article->fill($data);
 				$article->save();
 				
-				Return Redirect::route('listArticle');
+				Return Redirect::route('authorProfile');
 			}
 			
 			public function editArticle()
@@ -47,12 +49,33 @@ class articlesController extends BaseController {
 				Return View::make('admin.articlePublisherDashboard')->with('categories',$categories)->with('news',$news)->with('arts',$arts)->with('newSearchs',$newSearchs);
 			}
 			public function authorProfile()
+
 			{
+			
 				$article_roles = Role::get();
 				$article_cat = Category::get();
 				$article_tag = Tag::get();
-				Return View::make('author.authorProfile')->with(['roles'=>$article_roles, 'cats'=>$article_cat, 'tags'=>$article_tag]);
+
+				$user = Auth::User();
+				$userArticles = News::where('user_id', '=', $user->id)->get();
+			
+				$news = News::paginate(15);
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				$arts = News::orderBy('id','desc')->take(5)->get();
+				$categories = Category::paginate(20);
+				Return View::make('author.authorProfile')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles);
 			}
+			public function authorAccount()
+			{	
+				$user = User::get();
+				$news = News::paginate(15);
+				$newSearchs = News::orderBy('id','desc')->take(5)->get();
+				$arts = News::orderBy('id','desc')->take(20)->get();
+				$categories = Category::paginate(20);
+				Return View::make('author.authorAccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
+			}
+				
+		
 			public function listArticle()
 			{
 				$categories = Category::paginate(30);
