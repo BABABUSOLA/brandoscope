@@ -141,7 +141,7 @@
                                                                             
                                                                             <div id="accordion1_1" class="panel">
                                                                                 @foreach($categories as $category)
-                                                                                <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
+                                                                                <div class="panel-body"><a href="{{url('viewArticleCategory/' . $category->id)}}">{{$category->name}}</a>
                                                                                 
                                                                             </div>
                                                                             @endforeach

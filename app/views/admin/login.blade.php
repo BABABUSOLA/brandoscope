@@ -49,7 +49,7 @@
                                 <div class="col-sm-4">
                                     <div class="rem-password">
                                         <label class="rememberme mt-checkbox mt-checkbox-outline">
-                                            <input type="checkbox" name="remember" value="1" /> Remember me
+                                            <input type="checkbox" name="remember" value="1" checked="checked"/> Remember me
                                             <span></span>
                                         </label>
                                     </div>

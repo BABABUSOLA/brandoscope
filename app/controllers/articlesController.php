@@ -57,7 +57,7 @@ class articlesController extends BaseController {
 				$article_tag = Tag::get();
 
 				$user = Auth::User();
-				$userArticles = News::where('user_id', '=', $user->id)->get();
+				$userArticles = News::orderBy('id','desc')->take(10)->where('user_id', '=', $user->id)->get();
 			
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
@@ -86,8 +86,23 @@ class articlesController extends BaseController {
 			public function viewArticle($id)
 			{
 				$categories = Category::paginate(10);
-				$new = News::find($id);
-				Return View::make('author.viewArticle')->with('new',$new)->with('categories',$categories);
+				$news = News::where('category_id', '=', $id)->paginate(10);
+				$newArts = News::all();
+				Return View::make('author.viewArticle')->with('news',$news)->with('categories',$categories)->with('newArts',$newArts);
+			}
+			public function viewArtCategory($id)
+			{
+				$categories = Category::paginate(10);
+				$news = News::where('category_id', '=', $id)->paginate(10);
+				$newArts = News::all();
+				// $entertainments = Category::where('slug', '=', 'entertainment')->news;				
+				Return View::make('author.viewArticle')->with('categories',$categories)->with('newArts',$newArts)->with('news',$news);
+			}
+			public function deleteArticle($id)
+			{
+				$noneed = News::find($id);
+				$noneed->delete();
+				Return Redirect::back()->with('noneed',$noneed);
 			}
 			public function getSearch()
 			{

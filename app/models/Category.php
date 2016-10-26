@@ -23,6 +23,9 @@ class Category extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	
-	
+	public function news()
+	{
+		return $this -> hasMany('News','category_id');
+	}
 
 }

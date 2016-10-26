@@ -103,7 +103,13 @@ class UsersController extends BaseController
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				$categories = Category::paginate(20);
-				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
+				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
+				$sports = Category::where('name','=','sports')->first();
+				$politics= Category::where('name','=','politics')->first();
+				$news_arts = News::orderBy('id','desc')->take(5)->get();
+				
+
+				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics);
 			}
 			public function useraccount()
 				{
@@ -122,8 +128,17 @@ class UsersController extends BaseController
 				$news = News::all();
 				$categories = Category::paginate(20);
 				$cats  = Category::all();
+
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				Return View::make('users.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
+			}
+			public function userviewArticle($id)
+			{
+				$categories = Category::paginate(10);
+				$news = News::where('category_id', '=', $id);
+				$newArts = News::all();
+				// $entertainments = Category::where('slug', '=', 'entertainment')->news;				
+				Return View::make('user.userviewarticle')->with('categories',$categories)->with('newArts',$newArts)->with('news',$news);
 			}
 
 			public function storeprofile()

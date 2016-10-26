@@ -51,7 +51,7 @@
                                 <div class="hor-menu  ">
                                     <ul class="nav navbar-nav">
                                         <li class="menu-dropdown ">
-                                            <a href="{{url('articleDashboard')}}"> HOME
+                                            <a href="{{url('authorprofile')}}"> HOME
                                                 <span class="arrow"></span>
                                             </a>
                                          
@@ -62,10 +62,10 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a href="{{('newArticle')}}" class="nav-link"> New Article</a>
+                                                    <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{('editArticle')}}">Edit Article</a>
+                                                    <a href="{{url('editArticle')}}">Edit Article</a>
                                                 </li>
                                             </ul>
                                             
@@ -98,37 +98,35 @@
                                        <div class="row">
                                             <div class="col-md-3">
                                                 <div class="panel panel-info">
-                                                                                 
-                                                                                <div class="panel-heading caption">
-                                                                                    <h1 class="panel-title caption uppercase">
-                                                                                        CATEGORIES
+                                                    <div class="panel-heading caption">
+                                                        <h1 class="panel-title caption uppercase">
+                                                            CATEGORIES
 
-                                                                                    </h1>
-                                                                                </div>
+                                                        </h1>
+                                                    </div>
                                                                                 
-                                                                                <div id="accordion1_1" class="panel">
-                                                                                     @foreach($categories as $category)
-                                                                                    <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
+                                                    <div id="accordion1_1" class="panel">
+                                                        @foreach($categories as $category)
+                                                            <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
                                                                                     
-                                                                                    </div>
-                                                                                     @endforeach
-                                                                                </div>
-                                                                         
-                                                                               
-                                                                              </div>
-                                                                            <div style="margin:20px 0;">
-                                                                            {{$categories->links() }}
-                                                                            </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            <div style="margin:20px 0;">
+                                                {{$categories->links() }}
+                                            </div>
                                         <!-- end page portlet light-->
                                             </div>
                                             <div class="col-md-9">
                                                 <div id="tab_1_1" class="tab-pane active">
+                                                    @foreach($news as $new)
                                                     <div class="panel-group">
                                                       
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
                                                                 <h3 class="panel-title caption uppercase">
-                                                                    {{$new->slug}}
+                                                                   {{ Str::limit($new->slug, 100) }}
 
                                                                 </h3>
                                                             </div>
@@ -140,8 +138,9 @@
                                                         </div>
                                                       
                                                     </div>
+                                                    @endforeach
                                                 </div>
-
+                                                {{$news->links()}}
 
                                             </div>
                                         </div>

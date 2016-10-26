@@ -4,12 +4,8 @@
 @section('body')
 
 
-
-    <body class="page-container-bg-solid">
-        <div class="page-wrapper">
-            <div class="page-wrapper-row">
-                <div class="page-wrapper-top">
-                    <!-- BEGIN HEADER -->
+<body>
+    <!-- BEGIN HEADER -->
                     <div class="page-header">
                         <!-- BEGIN HEADER TOP -->
                         <div class="page-header-top">
@@ -34,26 +30,21 @@
                         <div class="page-header-menu">
                             <div class="container">
                                  <!-- BEGIN HEADER SEARCH BOX -->
-                                <!-- BEGIN HEADER SEARCH BOX -->
-                                <form class="search-form" action="{{URL::route('userSearch')}}" method="GET">
+                                <form class="search-form" action="page_general_search.html" method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="keyword">
+                                        <input type="text" class="form-control" placeholder="Search" name="query">
                                         <span class="input-group-btn">
-                                          
+                                            <a href="#" class="btn submit">
                                                 <i class="icon-magnifier"></i>
-                                          
-                                             <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
+                                            </a>
                                         </span>
-                                       
                                     </div>
-
                                 </form>
-                                 
                                 <!-- END HEADER SEARCH BOX -->
                                
                                 <!-- END HEADER SEARCH BOX -->
                                 
-                                 <div class="hor-menu  ">
+                                <div class="hor-menu  ">
                                     <ul class="nav navbar-nav">
                                         <li class="menu-dropdown ">
                                             <a href="{{url('homepage')}}"> HOME
@@ -62,19 +53,21 @@
                                          
                                         </li>
                                         <li class="menu-dropdown ">
-                                            <a href="{{('#about')}}"> ABOUT
+                                            <a href="{{('#about')}}"> ARTICLE
                                                 <span class="arrow"></span>
                                             </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Edit Article</a>
+                                                </li>
+                                            </ul>
                                             
                                         </li>
-                                        <li class="menu-dropdown">
-                                            <a href="{{url('contact')}}"> CONTACTS
-                                                <span class="arrow"></span>
-                                            </a>
-                                            
-                                        </li>
+                                        
                                        
-
                                 </div>
                                 <!-- END MEGA MENU -->
                             </div>
@@ -84,19 +77,10 @@
                     <!-- END HEADER -->
                 </div>
             </div>
-            <div class="page-wrapper-row full-height">
-                <div class="page-wrapper-middle">
-                    <!-- BEGIN CONTAINER -->
-                    <div class="page-container">
-                        <!-- BEGIN CONTENT -->
-                        <div class="page-content-wrapper">
-                            <!-- BEGIN CONTENT BODY -->
-                       
-                            <div class="page-content">
-                                <div class="container">
-                                    
-                                     <!-- BEGIN PAGE CONTENT INNER -->
-                                      <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="page-content">
+            <div class="container">
+                <div class="page-content-inner">
+                     <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         <div class="profile">
                                             <div class="tabbable-line tabbable-full-width">
@@ -196,14 +180,22 @@
                                                                                 <div id="accordion1_1" class="panel">
                                                                                 <div class="panel-body">{{ Str::limit($art->text, 300) }}
                                                                                     <br>
-                                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a> </div>
-
+                                                                                    <br>
+                                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                                    <br>
+                                                                                    <hr>
+                                                                                            Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                                 </div>
+                                                                                     </div>
+                                                                                   
+                                                                                    
                                                                             </div>
                                                                             @endforeach
                                                                           {{$news->links() }}
 
-
+                                                                          <!-- start entertainment -->
+                                                                         
                                                                           <div class="panel panel-success">
                                                                                 <div class="panel-heading caption">
                                                                                     <h3 class="panel-title caption uppercase">
@@ -215,22 +207,109 @@
                                                                             </div>
                                                                             <!-- entertainment -->
 
+                                                                            @foreach($entertainments->news() as $entertainment)
                                                                             <div class="panel panel-info">
                                                                                 <div class="panel-heading caption">
                                                                                     <h3 class="panel-title caption uppercase">
-                                                                                        {{$art->slug}}
+                                                                                        {{$entertainment->slug}}
 
                                                                                     </h3>
                                                                                 </div>
                                                                                 <div id="accordion1_1" class="panel">
-                                                                                <div class="panel-body">{{ Str::limit($art->text, 300) }}
+                                                                                <div class="panel-body">{{ Str::limit($entertainment->text, 300) }}
                                                                                     <br>
-                                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a> </div>
+                                                                                    <br>
+                                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a> 
+                                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                                    <br>
+                                                                                    <hr>
+                                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                                </div>
 
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
+                                                                            {{$news->links() }}
 
+                                                                           <!-- end entertainment -->
 
+                                                                            <!-- start entertainment -->
+                                                                         
+                                                                          <div class="panel panel-success">
+                                                                                <div class="panel-heading caption">
+                                                                                    <h3 class="panel-title caption uppercase">
+                                                                                       Sport
+
+                                                                                    </h3>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                            <!-- entertainment -->
+
+                                                                            @foreach($sports->news() as $sport)
+                                                                            <div class="panel panel-info">
+                                                                                <div class="panel-heading caption">
+                                                                                    <h3 class="panel-title caption uppercase">
+                                                                                        {{$sport->slug}}
+
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <div id="accordion1_1" class="panel">
+                                                                                <div class="panel-body">{{ Str::limit($sport->text, 300) }}
+                                                                                    <br>
+                                                                                    <br>
+                                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a> 
+                                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                                    <br>
+                                                                                    <hr>
+                                                                                            Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                                </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            @endforeach
+                                                                            {{$news->links() }}
+
+                                                                           <!-- end entertainment -->
+
+                                                                            <!-- start entertainment -->
+                                                                         
+                                                                          <div class="panel panel-success">
+                                                                                <div class="panel-heading caption">
+                                                                                    <h3 class="panel-title caption uppercase">
+                                                                                       Politics
+
+                                                                                    </h3>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                            <!-- entertainment -->
+
+                                                                            @foreach($politics->news() as $politics)
+                                                                            <div class="panel panel-info">
+                                                                                <div class="panel-heading caption">
+                                                                                    <h3 class="panel-title caption uppercase">
+                                                                                        {{$politics->slug}}
+
+                                                                                    </h3>
+                                                                                </div>
+                                                                                <div id="accordion1_1" class="panel">
+                                                                                <div class="panel-body">{{ Str::limit($politics->text, 300) }}
+                                                                                    <br>
+                                                                                    <br>
+                                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a> 
+                                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                                    <br>
+                                                                                    <hr>
+                                                                                            Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                                </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            @endforeach
+                                                                            {{$news->links() }}
+
+                                                                           <!-- end entertainment -->
                                                                         </div>
                                                                     </div>
                                                                </div>
@@ -253,25 +332,10 @@
                                     </div>
                                     <!-- END PAGE CONTENT INNER -->
                                 </div>
-                            </div>
-                            <!-- END PAGE CONTENT BODY -->
-                            <!-- END CONTENT BODY -->
-                        </div>
-                        <!-- END CONTENT -->
-                    
-                    </div>
-                    <!-- END CONTAINER -->
-                </div>
             </div>
-           
         </div>
-    </div>
+        </body>
 
-</div>
-</div>
-
-        
-    </body>
 
 
 

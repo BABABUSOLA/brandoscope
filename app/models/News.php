@@ -23,6 +23,15 @@ class News extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	
-	
+	public function category()
+	{
+		return $this->belongsTo('Category','category_id');
+
+	}
+	public function user()
+	{
+		return $this->belongsTo('User','user_id');
+		
+	}
 
 }

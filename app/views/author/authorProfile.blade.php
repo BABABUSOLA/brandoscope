@@ -130,7 +130,7 @@
                                                     
                                                     <div id="accordion1_1" class="panel">
                                                         @foreach($categories as $category)
-                                                        <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
+                                                        <div class="panel-body"><a href="{{url('viewArticleCategory/' . $category->id)}}">{{$category->name}}</a>
                                                         
                                                     </div>
                                                     @endforeach
@@ -198,16 +198,22 @@
                                                                 
                                                             </div>
                                                             
-                                                            <div id="accordion1_1" class="panel">
+                                                          
                                                                <div class="panel-body">
                                                                     {{ Str::limit($userArticle->text, 300) }}
                                                                                     <br>
-                                                                                    <a href="{{url('viewArticle/' . $userArticle->id)}}"><button class="btn btn-info pull-right" >Read More</button></a> 
+                                                                                    <a href="{{url('viewArticle/' . $userArticle->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                                    <a href="{{url('delarticle/' . $userArticle->id)}}"><button class="btn btn-info pull-right" >Delete</button></a> 
                                                                     
                                                                 </div>
-                                                            </div>
+
+                                                        
+
                                                             @endforeach
+
                                                         </div>
+
+
                                                         {{$news->links() }}
                                                         
                                                         <!-- entertainment -->
@@ -216,7 +222,8 @@
                                                 </div>
                                             </div>
                                             
-                                        {{--     </div> --}}
+                                        </div>
+
                                     </div>
                                     <!-- end  col-md-9 -->
                                 </div>

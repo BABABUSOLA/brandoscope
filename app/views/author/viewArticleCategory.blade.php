@@ -4,8 +4,12 @@
 @section('body')
 
 
-<body>
-    <!-- BEGIN HEADER -->
+
+    <body class="page-container-bg-solid">
+        <div class="page-wrapper">
+            <div class="page-wrapper-row">
+                <div class="page-wrapper-top">
+                    <!-- BEGIN HEADER -->
                     <div class="page-header">
                         <!-- BEGIN HEADER TOP -->
                         <div class="page-header-top">
@@ -77,77 +81,92 @@
                     <!-- END HEADER -->
                 </div>
             </div>
-    <div class="page-content">
-            <div class="container">
-                <div class="page-content-inner">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="portlet box">
-                                
-                                <div class="portlet-body form">
-                                    {{Form::open(array('route'=>'storeArticle','class'=>'login-form'))}}
-                                    <fieldset>
-                                        <div class="form-body">
-                                            <div class="form-group">
-                                                {{ Form::text('slug','',array('class'=>'form-control','placeholder'=>'Title','required data validation-required-message'=>'Please the title'))}}
-                                                
-                                            </div>
-                                            <div class="form-group">
-                                                {{ Form::textarea('text','',array('class'=>'form-control','placeholder'=>'Body','required data validation-required-message'=>'Please enter your text'))}}
-                                                
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-9">
-                                                    <div class="form-group">
+            <div class="page-wrapper-row full-height">
+                <div class="page-wrapper-middle">
+                    <!-- BEGIN CONTAINER -->
+                    <div class="page-container">
+                        <!-- BEGIN CONTENT -->
+                        <div class="page-content-wrapper">
+                            <!-- BEGIN CONTENT BODY -->
+                       
+                            <div class="page-content">
+                                <div class="container">
                                     
-                                                            {{ Form::select('category_id',$cats2,array('class'=>'form-control ','placeholder'=>'Section','required data validation-required-message'=>'please select the category'))}}
-                                                          
-                                                        
-                                                    </div>
-                                                    
-                                                    <input class="hidden" value="{{$user2->id}}" name="user_id">
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-9">
-                                                    <div class="form-group">
-                                                         @if(isset($tags2))
+                         
+                                     <!-- BEGIN PAGE CONTENT INNER -->
+                                    <div class="page-content-inner">
+                                       <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading caption">
+                                                        <h1 class="panel-title caption uppercase">
+                                                            CATEGORIES
 
-                                                            {{ Form::select('tag_id',$tags2,array('class'=>'form-control ','placeholder'=>'Tags','required data validation-required-message'=>'please select the tag'))}}
-                                                            @endif
-                                                        
+                                                        </h1>
+                                                    </div>
+                                                                                
+                                                    <div id="accordion1_1" class="panel">
+                                                        @foreach($categories as $category)
+                                                            <div class="panel-body"><a href="{{url('viewArtCategory/' . $category->id)}}">{{$category->name}}</a>
+                                                                                    
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
+                                            <div style="margin:20px 0;">
+                                                {{$categories->links() }}
                                             </div>
-                                            <div class="btn-group btn-group-solid">
-                                               
-                                                 {{link_to_route('editArticle','Edit','',array('class'=>'btn btn-warning pull-left'))}}
+                                        <!-- end page portlet light-->
                                             </div>
-                                           
-                                            <div class=" pull-right">
-                                                
-                                                <button class="btn btn-success " type="submit">Upload
-                                                </button>
-                                               
+                                            <div class="col-md-9">
+                                                <div id="tab_1_1" class="tab-pane active">
+                                                    @foreach($news as $new)
+                                                    <div class="panel-group">
+                                                      
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading caption">
+                                                                <h3 class="panel-title caption uppercase">
+                                                                   {{ Str::limit($new->slug, 100) }}
+
+                                                                </h3>
+                                                            </div>
+                                                            <div id="accordion1_1" class="panel">
+                                                                <div class="panel-body"> {{$new->text}}
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                      
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                                {{$news->links()}}
+
                                             </div>
                                         </div>
-                                    </fieldset>
-                                    {{Form::close()}}
+                                        <!-- end page portlet light-->
+                                       
+                                        <!-- end col-md-6 -->
+                                      
+                                    </div>
+                                    <!-- END PAGE CONTENT INNER -->
                                 </div>
                             </div>
+                            <!-- END PAGE CONTENT BODY -->
+                            <!-- END CONTENT BODY -->
                         </div>
+                        <!-- END CONTENT -->
+                    
                     </div>
+                    <!-- END CONTAINER -->
                 </div>
             </div>
+           
         </div>
-        </body>
+      
+        
+    </body>
+
 
 
 

@@ -19,6 +19,7 @@ Route::get('/', function()
 Route::get('homepage',array('uses'=>'HomeController@index', 'as'=>'freepage'));
 Route::get('login',array('uses'=>'UsersController@login', 'as'=> 'login'));
 Route::post('storeprofile',array('uses'=>'UsersController@storeprofile','as'=>'storeprofile'));
+Route::get('userviewarticle/{id}',array('uses'=>'UsersController@userviewArticle','as'=>'userviewArt'));
 
 // Route::post('postlogin',array('uses'=>'UsersController@postlogin', 'as'=> 'postlogin'));
 Route::post('login',array('uses'=>'UsersController@authenticate','as'=>'authenticate'));
@@ -52,4 +53,6 @@ Route::get('authorAccount',array('uses'=>'articlesController@authorAccount','as'
 
 Route::get('listArticle',array('uses'=>'articlesController@listArticle','as'=>'listArticle'));
 Route::get('viewArticle/{id}',array('uses'=>'articlesController@viewArticle','as'=>'viewArticle'));
+Route::get('viewArticleCategory/{id}',array('uses'=>'articlesController@viewArtCategory','as'=>'viewArticleCat'));
+Route::get('delarticle/{id}',array('uses'=>'articlesController@deleteArticle','as'=>'delArticle'));
 Route::get('search',array('uses'=>'articlesController@getSearch','as'=>'getSearch'));
