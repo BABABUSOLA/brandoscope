@@ -29,27 +29,92 @@ class UsersController extends BaseController
 		}
 		public function signup()
 		{
+			Return View::make('users.registeruser');
+		}
+		public function signupadmin()
+		{
 			Return View::make('admin.register');
 		}
 		public function store()
 		{
 			$data=Input::all();
+			$role_id = $data['role_id'];
+			$userpassword = $data['password'];
 			$data['password']=Hash::make($data['password']);
 			$user = new User;
 			$user->fill($data);
 			$user->save();
 			
-				
-				return Redirect::to('login')->withMessage('Registration successful. Please login!');
-			// }
-						// 	else
-						// 	{
-									// 		//if validation fails
-									// 		$message=$validator->message();
-									// 		Input::flash();
-									// 		return View::make('users.landingpage');
-						// 	}
+			if($user->save())
+			{
+
+			$email = Input::get('email');
+			$first_name = Input::get('first_name');
+			$last_name = Input::get('last_name');
+			$fullname = Input::get($first_name ." ". $last_name);
+			$app_status = 'successful';
+			
+			$info = [$email,$first_name];
+			$cool= [$fullname,$app_status];
+			
+
+				Mail::send('emails.message', ['cool'=>$cool], function($message)use($info)
+					
+				{
+					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope your password is'. $userpassword  );
+				}); 
+
+
 			}
+			
+			if($role_id === '3')
+			{
+				
+				return View::make('admin.registerAdmin')->with('userid',$user->id);
+			}
+			else
+			 {
+			 	return Redirect::to('login')->withMessage('Registration successful. Please login!');
+			 }
+			
+			}
+		public function storeadmin()
+		{
+			$user = new User;
+			$data=Input::all();
+			$userid= Session::get('userid');
+			$data['password']=Hash::make($data['password']);
+			$data['user_id']= $userid;
+			$user->fill($data);
+			$user->save();
+			
+			if($user->save())
+			{
+
+			$email = Input::get('email');
+			$first_name = Input::get('first_name');
+			$last_name = Input::get('last_name');
+			$fullname = Input::get($first_name ." ". $last_name);
+			$app_status = 'successful';
+			
+			$info = [$email,$first_name];
+			$cool= [$fullname,$app_status];
+			
+
+				Mail::send('emails.message', ['cool'=>$cool], function($message)use($info)
+					
+				{
+					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope');
+				}); 
+
+
+			}
+			
+				
+				return Redirect::to('adminihome')->withMessage('You have successful added a User!');
+			
+			}
+
 			public function authenticate()
 			{
 				
@@ -92,20 +157,73 @@ class UsersController extends BaseController
 			{
 				Return View::make('users.contact');
 			}
+
+			public function admincont()
+			{
+				$company = new Company;
+				$data=Input::all();
+				$company->fill($data);
+				$company->save();
+			
+			if($company->save())
+			{
+
+			$companyname = Input::get('name');
+			$address = Input::get('address');
+			$website = Input::get('website');
+			$app_status = 'successful';
+			
+			
+
+			}
+			
+				
+				return Redirect::to('adminihome')->withMessage('Welcome to Brandoscope!');
+			}
 			public function adminhomepage()
 			{
-				Return View::make('admin.adminiHome');
+				$userid =Session::get('userid');
+				$users = User::orderBy('id','desc')->where('user_id',$userid)->take(5)->get();
+				$userscount = User::where('user_id',$userid)->get();
+				$user = User::all();
+				$news = News::paginate(15);
+
+
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+
+				$arts = News::orderBy('id','desc')->take(5)->get();
+
+				$latest_posts = News::orderBy('id','desc')->first();
+
+				$categories = Category::paginate(20);
+
+				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
+
+				$sports = Category::where('name','=','sports')->first();
+
+				$politics= Category::where('name','=','politics')->first();
+
+				$news_arts = News::orderBy('id','desc')->take(5)->get();
+				
+				Return View::make('admin.adminiHome')->with('users',$users)->with('userscount',$userscount)->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics)->with('latest_posts',$latest_posts)->with('users',$users);
 			}
 			public function userdash()
 				{
 				$user = User::all();
 				$news = News::paginate(15);
+
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+
 				$arts = News::orderBy('id','desc')->take(5)->get();
+
 				$categories = Category::paginate(20);
+
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
+
 				$sports = Category::where('name','=','sports')->first();
+
 				$politics= Category::where('name','=','politics')->first();
+
 				$news_arts = News::orderBy('id','desc')->take(5)->get();
 				
 

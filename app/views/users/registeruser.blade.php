@@ -29,9 +29,11 @@
 
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-           
-                {{Form::open(array('route'=>'adminstore','class'=>'login-form'))}}
-         
+           {{--  @if(Auth::user()->role_id == '3') --}}
+                
+         {{--    @else --}}
+               {{Form::open(array('route'=>'store','class'=>'login-form'))}}
+           {{--  @endif --}}
                 <fieldset>
                     
                 <h4><strong>REGISTER TO BRANDOSCOPE</strong></h4>
@@ -95,6 +97,8 @@
                            <select  name ="role_id" required="required" class="form-control">
                             <option  value="1">Reader</option>
                             <option  value="2">Author</option>
+                            <option  value="3">Admin</option>
+                        
                            </select>
 
     

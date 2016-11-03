@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration {
+class CreateCommentTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,14 @@ class CreateCompaniesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('companies', function(Blueprint $table)
+		Schema::create('comment', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 100);
+			$table->string('text');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->text('address');
-			$table->string('website')->nullable();
+			$table->integer('news_id')->unsigned();
+			$table->foreign('news_id')->references('id')->on('news');
 			$table->timestamps();
 		});
 	}
@@ -31,7 +31,7 @@ class CreateCompaniesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('companies');
+		Schema::drop('comment');
 	}
 
 }

@@ -14,5 +14,17 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+	public function __construct()
+	{
+		if (Auth::check())
+		{
+			$user =Auth::user();
+			View::share('authUser',$user);
+			Session::put('userid',$user->id);
+			Session::put('roleid',$user->role_id);
+
+		}
+	}
+
 
 }

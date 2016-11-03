@@ -15,7 +15,8 @@ return array(
 	|
 	*/
 
-	'driver' => 'smtp',
+	// 'driver' => 'smtp',
+	'driver' => 'log',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	// 'host' => 'smtp.mailgun.org',
+	'host'=> 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +56,8 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	// 'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'sci@brandoscope.com', 'name' => 'sci'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +83,8 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	// 'username' => null,
+	'username' => 'root',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +97,8 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	// 'password' => null,
+	'password' => 'root',
 
 	/*
 	|--------------------------------------------------------------------------

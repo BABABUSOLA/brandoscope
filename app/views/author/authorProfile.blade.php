@@ -84,7 +84,10 @@
                     <div class="tabbable-line tabbable-full-width">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="{{url('authorProfile')}}" data-toggle="tab"> Overview </a>
+                                <a href="{{url('authorprofile')}}" data-toggle="tab"> Overview </a>
+                            </li>
+                            <li>
+                                <a href="{{url('authornews')}}">News</a>
                             </li>
                             <li>
                                 <a href="{{url('authorAccount')}}" > Account </a>

@@ -74,7 +74,27 @@ class articlesController extends BaseController {
 				$categories = Category::paginate(20);
 				Return View::make('author.authorAccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
 			}
-				
+			public function authorNews()
+			{
+
+				$article_roles = Role::get();
+				$article_cat = Category::get();
+				$article_tag = Tag::get();
+
+				$user = Auth::User();
+				$userArticles = News::orderBy('id','desc')->take(10)->where('user_id', '=', $user->id)->get();
+				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
+
+				$sports = Category::where('name','=','sports')->first();
+
+				$politics= Category::where('name','=','politics')->first();
+
+				$news = News::paginate(15);
+				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				$arts = News::orderBy('id','desc')->take(5)->get();
+				$categories = Category::paginate(20);
+				Return View::make('author.authorNews')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics);
+			}
 		
 			public function listArticle()
 			{
@@ -116,6 +136,22 @@ class articlesController extends BaseController {
 				Return View::make('author.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
 
 			}
+			public function postComment()
+			{
+				$data = Input::all();
+				$comment = new Comment();
+				$comment->fill($data);
 
 
+				//dd($comment);
+				if($comment->save($data))
+				{
+					return Redirect::back()->with('success','Comment Added Successfully');
+				}
+				else
+				{
+					return Redirect::back()->with('fail','Something went wrong, Please try again later');
+				}
+			}
+			
 }

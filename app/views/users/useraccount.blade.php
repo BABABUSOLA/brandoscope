@@ -338,7 +338,8 @@
       
     <script>
         function doThis(){
-            console.log('cool');
+            console.log('cool'
+                );
             $(#main).removeClass('active');
             $(#pencil).addClass('active');
         }

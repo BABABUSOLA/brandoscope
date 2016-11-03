@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Company extends Eloquent implements UserInterface, RemindableInterface {
+class Comment extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
@@ -14,8 +14,8 @@ class Company extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'companies';
-	protected $fillable = array('name','user_id','address','website');
+	protected $table = 'comment';
+	protected $fillable = array('text','user_id','news_id');
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -23,10 +23,12 @@ class Company extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	
-	
-	public static $rules= array(
-		'name'=>'required|max:15|unique:companies,name',
-		'website'=>'required|url',
-		);
-
+	public function news()
+	{
+		return $this->belongsTo('News','news_id');
+	}
+	public function user()
+	{
+		return $this->belongsTo('User','user_id');
+	}
 }

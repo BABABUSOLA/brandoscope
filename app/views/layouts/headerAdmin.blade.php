@@ -166,18 +166,21 @@
 				<div class="container">
 				
 					<!-- begin header search box -->
-					<form class="search-form" action="page_general_search.html" method="GET">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" name="query">
-							<span class="input-group-btn">
-								<a href="{{ ('#') }}" class="btn submit">
-									<i class="icon-magnifier">
-									
-									</i>
-								</a>
-							</span>
-						</div>
-					</form>
+					 <!-- BEGIN HEADER SEARCH BOX -->
+                            <form class="search-form" action="{{URL::route('getSearch')}}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="keyword">
+                                    <span class="input-group-btn">
+                                        
+                                        <i class="icon-magnifier"></i>
+                                        
+                                        <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
+                                    </span>
+                                    
+                                </div>
+                            </form>
+                            
+                            <!-- END HEADER SEARCH BOX -->
 					<!-- end header search box -->
 					<!-- begin mega menu -->
 					<div class="hor-menu">

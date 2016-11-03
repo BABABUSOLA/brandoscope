@@ -33,5 +33,9 @@ class News extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsTo('User','user_id');
 		
 	}
+	public function comments()
+	{
+		return $this->hasMany('Comment','news_id');
+	}
 
 }

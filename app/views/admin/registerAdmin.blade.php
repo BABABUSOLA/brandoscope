@@ -28,33 +28,43 @@
           
             <fieldset>
                 
-                <h4><strong> FORGOT PASSWORD</strong></h4>
+                <h4><strong> CONTINUE COMPANY REGISTRATION TO BRANDOSCOPE</strong></h4>
                 <p> Enter your personal details below: </p>
-                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">First Name</label>
                     <div class="input-icon">
-                        <i class="fa fa-lock"></i>
-                        {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password" placeholder="Password" name="password" />  --}}
-                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
+                        <i class="fa fa-font"></i>
+                        
+                        {{ Form::text('name','',array('class'=>'form-control','placeholder'=>'Company name','required data validation-required-message'=>'Please enter your  company name'))}}
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Email</label>
+                    <div class="input-icon">
+                        <i class="fa fa-envelope"></i>
+                       
+                        {{ Form::text('address','',array('class'=>'form-control','placeholder'=>'Company Address','required data validation-required-message'=>'Please enter your Company Address'))}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-                    <div class="controls">
-                        <div class="input-icon">
-                            <i class="fa fa-check"></i>
-                            {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> --}}
-                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
-                             </div>
+                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
+                    <div class="input-icon">
+                        <i class="fa fa-phone-square"></i>
+                       
+                        {{ Form::text('website','',array('class'=>'form-control','placeholder'=>'Company website','required data validation-required-message'=>'Please enter your  company website.'))}}
                     </div>
                 </div>
-                  
+                    @if(isset($userid))
+                    {{Form::hidden('user_id',$userid)}}
+                    @endif
                
                 <div class="form-group">
                     
                     <div class="form-actions">
                         {{-- <button id="register-back-btn" type="button" class="btn red btn-outline"> Back </button> --}}
-                        {{link_to_route('freepage','Back','',array('class'=>'btn red btn-outline pull-left'))}}
+                        {{link_to_route('freepage','Back','',array('class'=>'btn red pull-left'))}}
                         {{-- <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button> --}}
                         {{Form::submit('Sign Up',array('class'=>'btn green pull-right'))}}
                     </div>

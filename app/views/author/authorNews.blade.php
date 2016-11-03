@@ -51,7 +51,7 @@
                             
                         </li>
                         <li class="menu-dropdown ">
-                            <a href="{{('#about')}}"> ARTICLE
+                            <a href="#"> ARTICLE
                                 <span class="arrow"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -83,11 +83,14 @@
                 <div class="profile">
                     <div class="tabbable-line tabbable-full-width">
                         <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="{{url('userdash')}}" data-toggle="tab"> Overview </a>
+                            <li >
+                                <a href="{{url('authorprofile')}}" > Overview </a>
                             </li>
-                            <li>
-                                <a href="{{url('useraccount')}}" > Account </a>
+                            <li class="active">
+                                <a href="{{url('authornews')}}">News</a>
+                            </li>
+                            <li >
+                                <a href="{{url('authorAccount')}}"> Account </a>
                             </li>
                             
                         </ul>
@@ -429,14 +432,9 @@
             </div>
         </div>
     </div>
-        <!-- END PAGE CONTENT INNER -->
-        </div>
-    </div>
+    <!-- END PAGE CONTENT INNER -->
 </div>
-<script>
-// $('#comment').click(function(){
-//          $('#hide').toggleClass('hidden');
-//     });
-</script>
+</div>
+</div>
 </body>
 @stop

@@ -26,6 +26,11 @@
        <br>
 
         <div class="content">
+             @if (Session::has('message'))
+                        <div class="panel panel-info">
+                            <div class="panel-heading"> {{Session::get('message')}}</div>
+                        </div>
+             @endif
             <!-- BEGIN LOGIN FORM -->
             {{-- <form class="login-form" action="index.html" method="post"> --}}
                  {{Form::open(array('route'=>'authenticate','class'=>'login-form'))}}
@@ -54,29 +59,13 @@
                 </div>
                 <div class="form-actions">
                     <label class="rememberme mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="remember" value="1" /> Remember me
+                        <input type="checkbox" name="remember" value="1" checked="checked" /> Remember me
                         <span></span>
                     </label>
                     <button type="submit" class="btn green pull-right"> Login </button>
                    {{--  {{link_to_route('authenticate','Login','',array('class'=>'btn btn-warning'))}} --}}
                 </div>
-                <div class="login-options">
-                    <h4>Or login with</h4>
-                    <ul class="social-icons">
-                        <li>
-                            <a class="facebook" data-original-title="facebook" href="#"> </a>
-                        </li>
-                        <li>
-                            <a class="twitter" data-original-title="Twitter" href="#"> </a>
-                        </li>
-                        <li>
-                            <a class="googleplus" data-original-title="Goole Plus" href="#"> </a>
-                        </li>
-                        <li>
-                            <a class="linkedin" data-original-title="Linkedin" href="#"> </a>
-                        </li>
-                    </ul>
-                </div>
+                
                 <div class="forget-password">
                     <h4>Forgot your password ?</h4>
                     <p> no worries, click
