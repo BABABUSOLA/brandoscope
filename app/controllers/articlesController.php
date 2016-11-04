@@ -67,12 +67,13 @@ class articlesController extends BaseController {
 			}
 			public function authorAccount()
 			{	
+				$user2 = Auth::User();
 				$user = User::get();
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(5)->get();
 				$arts = News::orderBy('id','desc')->take(20)->get();
 				$categories = Category::paginate(20);
-				Return View::make('author.authorAccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user);
+				Return View::make('author.authorAccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('user2',$user2);
 			}
 			public function authorNews()
 			{

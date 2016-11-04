@@ -22,37 +22,60 @@
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
         
-            @if (Session::has('status'))
+            
+         @if (Session::has('error'))
                         <div class="panel panel-info">
-                            <div class="panel-heading"> {{Session::get('status')}}</div>
-                        </div>
-                        @elseif(Session::has('error'))
-                        <div class="panel panel-danger">
                             <div class="panel-heading"> {{Session::get('error')}}</div>
                         </div>
-                        @endif
-            
-            {{Form::open(array('route'=>'postRemind','class'=>'login-form'))}}
+              @endif          
+            {{Form::open(array('route'=>'postReset','class'=>'login-form'))}}
           
             <fieldset>
                 
                 <h4><strong> RESET PASSWORD</strong></h4>
-                <p> Enter your email below: </p>
+                <p> Enter your personal details below: </p>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    <div class="input-icon">
+                        <i class="fa fa-lock"></i>
+                      
+                        {{ Form::text('email','',array('class'=>'form-control','placeholder'=>'Enter your Email','required data validation-required-message'=>'Please enter a valid password'))}}
+                    </div>
+                </div>
                  <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
                       
-                        {{ Form::text('email','',array('class'=>'form-control','placeholder'=>'Enter email','required data validation-required-message'=>'Please enter a valid email'))}}
+                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
                     </div>
                 </div>
-               
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+                    <div class="controls">
+                        <div class="input-icon">
+                            <i class="fa fa-check"></i>
+                           
+                            {{ Form::password('password_confirmation',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
+                             </div>
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+                    <div class="controls">
+                        <div class="input-icon">
+                            <i class="fa fa-check"></i>
+                           <input type="hidden" name="token" value="{{$token}}">
+                             </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     
                     <div class="form-actions">
                         {{-- <button id="register-back-btn" type="button" class="btn red btn-outline"> Back </button> --}}
                         {{link_to_route('freepage','Back','',array('class'=>'btn red btn-outline pull-left'))}}
-                        {{-- <button type="submit" id="register-submit-btn" class="btn green pull-right"> Send </button> --}}
+                        {{-- <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button> --}}
                         {{Form::submit('Send',array('class'=>'btn green pull-right'))}}
                     </div>
                     

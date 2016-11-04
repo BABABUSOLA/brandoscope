@@ -69,7 +69,7 @@
                 <div class="forget-password">
                     <h4>Forgot your password ?</h4>
                     <p> no worries, click
-                        <a href="#" id="forget-password"> here </a> to reset your password. </p>
+                        <a href="{{url('remind')}}" id="forget-password"> here </a> to reset your password. </p>
                 </div>
                 <div class="create-account">
                     <p> Don't have an account yet ?&nbsp;

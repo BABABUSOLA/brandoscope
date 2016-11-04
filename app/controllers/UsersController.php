@@ -39,7 +39,7 @@ class UsersController extends BaseController
 		{
 			$data=Input::all();
 			$role_id = $data['role_id'];
-			$userpassword = $data['password'];
+			
 			$data['password']=Hash::make($data['password']);
 			$user = new User;
 			$user->fill($data);
@@ -61,7 +61,7 @@ class UsersController extends BaseController
 				Mail::send('emails.message', ['cool'=>$cool], function($message)use($info)
 					
 				{
-					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope your password is'. $userpassword  );
+					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope' );
 				}); 
 
 
@@ -83,6 +83,7 @@ class UsersController extends BaseController
 			$user = new User;
 			$data=Input::all();
 			$userid= Session::get('userid');
+			
 			$data['password']=Hash::make($data['password']);
 			$data['user_id']= $userid;
 			$user->fill($data);
@@ -104,7 +105,7 @@ class UsersController extends BaseController
 				Mail::send('emails.message', ['cool'=>$cool], function($message)use($info)
 					
 				{
-					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope');
+					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope.');
 				}); 
 
 

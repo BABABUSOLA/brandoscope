@@ -24,8 +24,7 @@ Route::get('userviewarticle/{id}',array('uses'=>'UsersController@userviewArticle
 // Route::post('postlogin',array('uses'=>'UsersController@postlogin', 'as'=> 'postlogin'));
 Route::post('login',array('uses'=>'UsersController@authenticate','as'=>'authenticate'));
 Route::get('logout',array('uses'=>'UsersController@logout', 'as'=>'logout'));
-Route::get('forgot',array('uses'=>'UsersController@forgot', 'as'=>'forgotpass'));
-Route::get('landing',array('uses'=>'HomeController@landingpage','as'=>'landingpage'));
+Route::get('landing',array('uses'=>'HomeControlleyr@landingpage','as'=>'landingpage'));
 Route::get('register',array('uses'=>'UsersController@signup','as'=>'register'));
 Route::post('register',array('uses'=>'UsersController@store','as'=>'store'));
 Route::get('contact',array('uses'=>'UsersController@contacts','as'=>'contact'));
@@ -40,7 +39,13 @@ Route::get('adminLogin',array('uses'=>'UsersController@adminLogin', 'as'=>'admin
 Route::get('adminhome',array('uses'=>'UsersController@homepage','as'=>'adminHome'));
 Route::post('registeradmincont',array('uses'=>'UsersController@admincont','as'=>'adminRegCont'));
 
+// password remind and reset section
+Route::get('remind', array('uses' => 'RemindersController@getRemind', 'as' => 'getRemind'));
+Route::post('remind', array('uses' => 'RemindersController@postRemind', 'as' => 'postRemind'));
+Route::get('password/reset/{token}', array('uses' => 'RemindersController@getReset', 'as' => 'getReset'));
+Route::post('password/reset/{token}', array('uses' => 'RemindersController@postReset', 'as' => 'postReset'));
 //authors section
+
 
 Route::get('newArticle',array('uses'=>'articlesController@newArticle','as'=>'newArticle'));
 Route::post('newArticle',array('uses'=>'articlesController@storeArticle','as'=>'storeArticle'));
@@ -66,3 +71,4 @@ Route::group(['before'=>'auth'], function()
 		Route::post('registeradmin',array('uses'=>'UsersController@storeadmin','as'=>'adminstore'));
 		Route::get('userdash',array('uses'=>'UsersController@userdash','as'=>'userdash'));
 	});
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

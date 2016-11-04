@@ -28,13 +28,13 @@
           
             <fieldset>
                 
-                <h4><strong> FORGOT PASSWORD</strong></h4>
+                <h4><strong> RESET PASSWORD</strong></h4>
                 <p> Enter your personal details below: </p>
                  <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
-                        {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password" placeholder="Password" name="password" />  --}}
+                      
                         {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="controls">
                         <div class="input-icon">
                             <i class="fa fa-check"></i>
-                            {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> --}}
+                           
                             {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
                              </div>
                     </div>

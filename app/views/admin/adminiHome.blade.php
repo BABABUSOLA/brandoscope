@@ -141,7 +141,7 @@
                                                             <div class="number"> 12 </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tile double selected bg-green-turquoise">
+                                                   {{--  <div class="tile double selected bg-green-turquoise">
                                                         <div class="corner"> </div>
                                                         <div class="check"> </div>
                                                         <div class="tile-body">
@@ -155,7 +155,7 @@
                                                             </div>
                                                             <div class="number"> 14 </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="tile selected bg-yellow-saffron">
                                                         <div class="corner"> </div>
                                                         <div class="tile-body">
@@ -180,20 +180,20 @@
                                                             <p>{{ Str::limit($latest_posts->text, 50) }} </p>
                                                         </div>
                                                         <div class="tile-object">
-                                                            <div class="name"> {{$latest_posts->user->first_name}} </div>
-                                                            <div class="number"> {{$latest_posts->created_at->toDateString()}} </div>
+                                                            <div class=" name uppercase"> {{$latest_posts->user->first_name}} {{$latest_posts->user->last_name}} </div>
+                                                            <div class="number"> {{$latest_posts->created_at}} </div>
                                                         </div>
                                                        
                                                     </div>
                                                     
-                                                    <div class="tile image selected">
+                                                    {{-- <div class="tile image selected">
                                                         <div class="tile-body">
                                                         <img src="../assets/pages/media/gallery/image2.jpg" alt=""> </div>
                                                         <div class="tile-object">
                                                             <div class="name"> Media </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tile bg-green">
+                                                    </div> --}}
+                                                    {{-- <div class="tile bg-green">
                                                         <div class="tile-body">
                                                             <i class="fa fa-bar-chart-o"></i>
                                                         </div>
@@ -201,7 +201,7 @@
                                                             <div class="name"> Reports </div>
                                                             <div class="number"> </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="tile double bg-grey-cascade">
                                                         <div class="tile-body">
                                                             
@@ -228,7 +228,7 @@
                                                     </div>
                                                     
                                                     
-                                                    <div class="tile bg-red-sunglo">
+                                                   {{--  <div class="tile bg-red-sunglo">
                                                         <div class="tile-body">
                                                             <i class="fa fa-plane"></i>
                                                         </div>
@@ -236,7 +236,7 @@
                                                             <div class="name"> Projects </div>
                                                             <div class="number"> 34 </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -264,7 +264,7 @@
                                                             <br>
                                                             
 
-                                                            <h3>@ {{ $user->first_name}}</h3>
+                                                            <h3 class="uppercase"> {{ $user->first_name}} {{ $user->last_name}}</h3>
                                                             <p>{{$user->email}}</p>
                                                             <p>{{$user->role->name}}</p>
 
@@ -422,7 +422,7 @@
                                                                         </div>
                                                                     </div>
                                                                     @endforeach
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -483,7 +483,7 @@
                                                                     </div>
                                                                     @endforeach
                                                                     <hr>
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -544,7 +544,7 @@
                                                                     </div>
                                                                     @endforeach
                                                                     <hr>
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -595,7 +595,7 @@
                                                                 <i class="fa fa-pencil"></i>
                                                                 <a href="">View Profile</a>
                                                             </div>
-                                                            <div class="number">{{$user->created_at->toDateString()}}</div>
+                                                            <div class="number">{{$user->created_at}}</div>
                                                         </div>
                                                     </div>
                                                     @endforeach
