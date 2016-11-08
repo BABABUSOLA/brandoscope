@@ -180,13 +180,13 @@
                                                                                     <div class="panel-heading caption">
                                                                                         <div class="row">
                                                                                             <div class="col-md-12">
-                                                                                                <div class="col-md-9">
-                                                                                                    <h1 class="panel-title caption uppercase pull-right">
+                                                                                                <div class="col-md-8">
+                                                                                                    <h1 class="panel-title caption uppercase ">
                                                                                                     
-                                                                                                    <a href="#">{{ $new->slug }}</a>
+                                                                                                   {{--  <a href="#">{{ $new->slug }}</a> --}}
                                                                                                     </h1>
                                                                                                 </div>
-                                                                                                <div class="col-md-1">
+                                                                                                <div class="col-md-2">
                                                                                                     <h1 class="panel-title caption uppercase pull-right">
                                                                                                     @foreach($cats as $cat)
                                                                                                     @if($cat->id == $new->category_id )

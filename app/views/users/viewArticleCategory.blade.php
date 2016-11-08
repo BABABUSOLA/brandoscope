@@ -34,18 +34,19 @@
                         <div class="page-header-menu">
                             <div class="container">
                                 <!-- BEGIN HEADER SEARCH BOX -->
-                            <form class="search-form" action="{{URL::route('getSearch')}}" method="GET">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="keyword">
-                                    <span class="input-group-btn">
-                                        
-                                        <i class="icon-magnifier"></i>
-                                        
-                                        <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
-                                    </span>
-                                    
-                                </div>
-                            </form>
+                            <form class="search-form" action="{{URL::route('userSearch')}}" method="GET">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search" name="keyword">
+                                        <span class="input-group-btn">
+                                          
+                                                <i class="icon-magnifier"></i>
+                                          
+                                             <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
+                                        </span>
+                                       
+                                    </div>
+
+                                </form>
                             <!-- END HEADER SEARCH BOX -->
                                
                                 <!-- END HEADER SEARCH BOX -->
@@ -53,7 +54,7 @@
                                 <div class="hor-menu  ">
                                     <ul class="nav navbar-nav">
                                         <li class="menu-dropdown ">
-                                            <a href="{{url('authorprofile')}}"> Home
+                                            <a href="{{url('userdash')}}"> Home
                                                 <span class="arrow"></span>
                                             </a>
                                          
@@ -107,13 +108,13 @@
                                                         </h1>
                                                     </div>
                                                                                 
-                                                    <div id="accordion1_1" class="panel">
+                                                     <div id="accordion1_1" class="panel">
                                                         @foreach($categories as $category)
-                                                            <div class="panel-body"><a href="{{url('viewArticleCategory/' . $category->id)}}">{{$category->name}}</a>
-                                                                                    
-                                                            </div>
-                                                        @endforeach
+                                                        <div class="panel-body"><a href="{{url('userviewArticleCategory/' . $category->id)}}">{{$category->name}}</a>
+                                                        
                                                     </div>
+                                                    @endforeach
+                                                </div>
                                                 </div>
                                             <div style="margin:20px 0;">
                                                 {{$categories->links() }}
@@ -127,7 +128,7 @@
                             <div class=" panel-heading " style="text-align:center"> There is no news in the category selected</div>
                             <!-- to view the particular dashboard of the user -->
                             <div class="panel-body" style="text-align:center">
-                                Please select another category or click on this <a href="{{url('homepage')}}">link</a> to go back to your homepage
+                                Please select another category or click on this <a href="{{url('')}}">link</a> to go back to your homepage
                             </div>
                         </div>
                                                     @endif
@@ -146,15 +147,16 @@
                                                             <div id="accordion1_1" class="panel">
                                                                 <div class="panel-body"> {{ Str::limit($newCat->text, 300) }}
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $newCat->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    <a href="{{url('userviewarticle/' . $newCat->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                 </div>
-
+                                                                
                                                             </div>
                                                         </div>
                                                       
                                                     </div>
                                                     @endforeach
                                                     @endif
+                                                    
                                                 </div>
                                                 {{$newCats->links()}}
 

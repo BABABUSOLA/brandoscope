@@ -29,6 +29,7 @@
 
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
+             
            
                 {{Form::open(array('route'=>'adminstore','class'=>'login-form'))}}
          
@@ -36,55 +37,91 @@
                     
                 <h4><strong>REGISTER TO BRANDOSCOPE</strong></h4>
                 <p> Enter your personal details below: </p>
-                <div class="form-group">
+                <div class="form-group  {{ ($errors->has('first_name')) ? 'has-error' : ''}}">
                     <label class="control-label visible-ie8 visible-ie9">First Name</label>
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                        
                         {{ Form::text('first_name','',array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
+                        
+                         </div>
+                         <div>
+                           @if ($errors->has('first_name'))
+                                            {{ $errors->first('first_name') }}
+                                        @endif
                          </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group {{ ($errors->has('last_name')) ? 'has-error' : ''}}">
                     <label class="control-label visible-ie8 visible-ie9">Last Name</label>
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                        {{--  <input class="form-control placeholder-no-fix" type="text" placeholder="last Name" name="last_name" /> --}}
                        {{ Form::text('last_name','',array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name'))}}
+                       
+                         </div>
+                         <div>
+                           @if ($errors->has('last_name'))
+                                            {{ $errors->first('last_name') }}
+                                        @endif
                          </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group {{ ($errors->has('email')) ? 'has-error' : ''}}">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
                     <div class="input-icon">
                         <i class="fa fa-envelope"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />  --}}
                         {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
+                       
+                    </div>
+                    <div>
+                        @if ($errors->has('email'))
+                                            {{ $errors->first('email') }}
+                                        @endif
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group {{ ($errors->has('mobile_phone')) ? 'has-error' : ''}}">
                     <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
                     <div class="input-icon">
                         <i class="fa fa-phone-square"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="text" placeholder="mobile_phone" name="mobile_phone" /> --}}
                         {{ Form::input('tel','mobile_phone','',array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
+                        
+                         </div>
+                         <div>
+                           @if ($errors->has('mobile_phone'))
+                                            {{ $errors->first('mobile_phone') }}
+                                        @endif
                          </div>
                 </div>
         
-                <div class="form-group">
+                <div class="form-group {{ ($errors->has('password')) ? 'has-error' : ''}}">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password" placeholder="Password" name="password" />  --}}
                         {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
+                        
+                    </div>
+                    <div>
+                        @if ($errors->has('password'))
+                                            {{ $errors->first('password') }}
+                                        @endif
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group {{ ($errors->has('confirm_password')) ? 'has-error' : ''}}">
                     <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
                     <div class="controls">
                         <div class="input-icon">
                             <i class="fa fa-check"></i>
                             {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> --}}
                             {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
+                             
+                             </div>
+                             <div>
+                               @if ($errors->has('confirm_password'))
+                                            {{ $errors->first('confirm_password') }}
+                                        @endif
                              </div>
                     </div>
                 </div>

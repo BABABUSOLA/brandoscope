@@ -37,15 +37,35 @@ class UsersController extends BaseController
 		}
 		public function store()
 		{
+			$validate = Validator::make(Input::all(), array(
+            'first_name' => 'required|min:4',
+            'last_name' => 'required|min:4',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password',
+            'email' => 'required|unique:users|min:10',
+            'mobile_phone' => 'required|min:11',
+        ));
+        if ($validate->fails()) {
+        	// dd($validate);
+            return Redirect::route('register')->withErrors($validate)->withInput();
+        } 
+        else{
+
+        }
 			$data=Input::all();
 			$role_id = $data['role_id'];
 			
 			$data['password']=Hash::make($data['password']);
 			$user = new User;
 			$user->fill($data);
+			
 			$user->save();
 			
-			if($user->save())
+				$Activity = new Activity;
+				$Activity->authenticated_user_id = Auth::User()->id;
+				$Activity->activity_type_id = 9;
+				if ($user->save() && $Activity->save())
+
 			{
 
 			$email = Input::get('email');
@@ -90,6 +110,10 @@ class UsersController extends BaseController
 			$user->save();
 			
 			if($user->save())
+				$Activity = new Activity;
+				$Activity->authenticated_user_id = Auth::User()->id;
+				$Activity->activity_type_id = 11;
+				if ($user->save() && $Activity->save())
 			{
 
 			$email = Input::get('email');
@@ -110,7 +134,10 @@ class UsersController extends BaseController
 
 
 			}
-			
+			$Activity = new Activity;
+				$Activity->authenticated_user_id = Auth::User()->id;
+				$Activity->activity_type_id = 1;
+				if ($article->save() && $Activity->save())
 				
 				return Redirect::to('adminihome')->withMessage('You have successful added a User!');
 			
@@ -190,7 +217,7 @@ class UsersController extends BaseController
 				$news = News::paginate(15);
 
 
-				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				// $newSearchs = News::orderBy('id','desc')->take(10)->get();
 
 				$arts = News::orderBy('id','desc')->take(5)->get();
 
@@ -200,14 +227,17 @@ class UsersController extends BaseController
 
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 
+				$notifications = Activity::where('authenticated_user_id', Auth::User()->id)->get();
+				
 				$sports = Category::where('name','=','sports')->first();
 
 				$politics= Category::where('name','=','politics')->first();
 
-				$news_arts = News::orderBy('id','desc')->take(5)->get();
+				// $news_arts = News::orderBy('id','desc')->take(5)->get();
 				
-				Return View::make('admin.adminiHome')->with('users',$users)->with('userscount',$userscount)->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics)->with('latest_posts',$latest_posts)->with('users',$users);
+				Return View::make('admin.adminiHome')->with('users',$users)->with('userscount',$userscount)->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('user',$user)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics)->with('latest_posts',$latest_posts)->with('users',$users)->with('notifications',$notifications);
 			}
+
 			public function userdash()
 				{
 				$user = User::all();
@@ -254,10 +284,21 @@ class UsersController extends BaseController
 			public function userviewArticle($id)
 			{
 				$categories = Category::paginate(10);
-				$news = News::where('category_id', '=', $id);
+				// $news = News::where('category_id', '=', $id);
+				$new = News::find($id);
+				// $news = News::orderBy('id','desc')->first();
 				$newArts = News::all();
 				// $entertainments = Category::where('slug', '=', 'entertainment')->news;				
-				Return View::make('user.userviewarticle')->with('categories',$categories)->with('newArts',$newArts)->with('news',$news);
+				Return View::make('users.userviewarticle')->with('categories',$categories)->with('newArts',$newArts)->with('new',$new);
+			}
+			public function viewArticleCategory($id)
+			{
+				$categories = Category::paginate(30);
+				$newCats = News::where('category_id', '=', $id)->paginate(10);
+				$news = News::orderBy('id','desc')->first();
+				$newArts = News::all();
+				// $entertainments = Category::where('slug', '=', 'entertainment')->news;				
+				Return View::make('users.viewArticleCategory')->with('categories',$categories)->with('news',$news)->with('newArts',$newArts)->with('newCats',$newCats);
 			}
 
 			public function storeprofile()

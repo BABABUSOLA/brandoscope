@@ -26,7 +26,7 @@
         <div class="page-header-menu">
             <div class="container">
                 <!-- BEGIN HEADER SEARCH BOX -->
-                <form class="search-form" action="{{URL::route('getSearch')}}" method="GET">
+                <form class="search-form" action="{{URL::route('userSearch')}}" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="keyword">
                         <span class="input-group-btn">
@@ -50,7 +50,7 @@
                             </a>
                             
                         </li>
-                        <li class="menu-dropdown ">
+                        {{-- <li class="menu-dropdown ">
                             <a href="{{('#about')}}"> ARTICLE
                                 <span class="arrow"></span>
                             </a>
@@ -63,7 +63,7 @@
                                 </li>
                             </ul>
                             
-                        </li>
+                        </li> --}}
                         
                         
                     </div>
@@ -139,7 +139,7 @@
                                                     
                                                     <div id="accordion1_1" class="panel">
                                                         @foreach($categories as $category)
-                                                        <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
+                                                        <div class="panel-body"><a href="{{url('userviewArticleCategory/' . $category->id)}}">{{$category->name}}</a>
                                                         
                                                     </div>
                                                     @endforeach
@@ -184,10 +184,10 @@
                                                                 <div class="panel-body">{{ Str::limit($art->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <button class="btn btn-success pull-left " id="comment" >Comment</button>
+                                                                    <a href="{{url('userviewarticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                   {{--  <button class="btn btn-success pull-left " id="comment" >Comment</button> --}}
                                                                     <br>
-                                                                    <hr>
+                                                                    {{-- <hr>
                                                                     <div class = "hideclass" >
                                                                         <div class="form-group" >
                                                                             <form method="post" action="{{URL::route('comment')}}">
@@ -197,9 +197,9 @@
                                                                                     <i class="fa fa-user"></i>
                                                                                     <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                     <input type="hidden" name="news_id" value="{{ $art->id}}">
-                                                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                     {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                    --}}                                                                            <button class="btn btn-success pull-right" type="submit" >Send</button>
+                                                                                    --}}                                                                           {{--  <button class="btn btn-success pull-right" type="submit" >Send</button>
                                                                                     <br>
                                                                                 </div>
                                                                                 
@@ -215,9 +215,9 @@
                                                                             {{$comment->text}}
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
+                                                                    @endforeach --}}
                                                                     <hr>
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                             
@@ -249,21 +249,21 @@
                                                                 <div class="panel-body">{{ Str::limit($entertainment->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                 <a href="{{url('userviewarticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                   {{--  <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a> --}}
                                                                     <br>
                                                                     <hr>
                                                                     
-                                                                    <form method="post" action="{{URL::route('comment')}}">
+                                                                   {{--  <form method="post" action="{{URL::route('comment')}}">
                                                                         <div class="form-group ">
                                                                             <label class="control-label visible-ie8 visible-ie9">Comment</label>
                                                                             <div class="input-icon">
                                                                                 <i class="fa fa-user"></i>
                                                                                 <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                 <input type="hidden" name="news_id" value="{{ $entertainment->id}}">
-                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                 {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                --}}                                                                            <button class="btn btn-success pull-right" type="submit">Send</button>
+                                                                                --}}                                                                            {{-- <button class="btn btn-success pull-right" type="submit">Send</button>
                                                                                 <br>
                                                                             </div>
                                                                         </div>
@@ -277,8 +277,8 @@
                                                                             {{$comment->text}}
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    @endforeach --}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -309,21 +309,21 @@
                                                                 <div class="panel-body">{{ Str::limit($sport->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                   <a href="{{url('userviewarticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                   {{--  <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a> --}}
                                                                     <br>
                                                                     <hr>
                                                                     
-                                                                    <form method="post" action="{{URL::route('comment')}}">
+                                                                   {{--  <form method="post" action="{{URL::route('comment')}}">
                                                                         <div class="form-group ">
                                                                             <label class="control-label visible-ie8 visible-ie9">Comment</label>
                                                                             <div class="input-icon">
                                                                                 <i class="fa fa-user"></i>
                                                                                 <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                 <input type="hidden" name="news_id" value="{{ $sports->id}}">
-                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                 {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                --}}                                                                            <button class="btn btn-success pull-right" type="submit">Send</button>
+                                                                                --}}                                                                            {{-- <button class="btn btn-success pull-right" type="submit">Send</button>
                                                                                 <br>
                                                                             </div>
                                                                         </div>
@@ -338,8 +338,8 @@
                                                                         </div>
                                                                     </div>
                                                                     @endforeach
-                                                                    <hr>
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    <hr> --}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -370,21 +370,21 @@
                                                                 <div class="panel-body">{{ Str::limit($politics->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" onclick="comment()" >Comment</button></a>
+                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><a href="{{url('viewArticle/' . $art->id)}}"><a href="{{url('userviewarticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                   {{--  <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" onclick="comment()" >Comment</button></a> --}}
                                                                     <br>
                                                                     <hr>
                                                                     
-                                                                    <form method="post" action="{{URL::route('comment')}}">
+                                                                    {{-- <form method="post" action="{{URL::route('comment')}}">
                                                                         <div class="form-group ">
                                                                             <label class="control-label visible-ie8 visible-ie9">Comment</label>
                                                                             <div class="input-icon">
                                                                                 <i class="fa fa-user"></i>
                                                                                 <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                 <input type="hidden" name="news_id" value="{{ $politics->id}}">
-                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                 {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                --}}                                                                            <button class="btn btn-success pull-right" type="submit" >Send</button>
+                                                                                --}}                                                                            {{-- <button class="btn btn-success pull-right" type="submit" >Send</button>
                                                                                 <br>
                                                                             </div>
                                                                         </div>
@@ -399,8 +399,8 @@
                                                                         </div>
                                                                     </div>
                                                                     @endforeach
-                                                                    <hr>
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    <hr> --}}
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>

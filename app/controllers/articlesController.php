@@ -17,6 +17,7 @@ class articlesController extends BaseController {
 
 				$cats=  Category::lists('name','id');
 				$tags= Tag::lists('name','id');
+
 				Return View::make('author.newArticle')->with(['roles'=>$article_roles, 'cats2'=>$cats,'cats'=>$article_cat, 'tags'=>$article_tag, 'tags2'=>$tags, 'user2'=>$users]);
 			}
 			public function storeArticle()
@@ -28,7 +29,14 @@ class articlesController extends BaseController {
 				$article->fill($data);
 				$article->save();
 				
-				Return Redirect::route('authorProfile');
+				$Activity = new Activity;
+				$Activity->authenticated_user_id = Auth::User()->id;
+				$Activity->activity_type_id = 3;
+				if ($article->save() && $Activity->save())
+				{
+					Return Redirect::route('authorProfile');
+				}
+				
 			}
 			
 			public function editArticle()
@@ -62,7 +70,7 @@ class articlesController extends BaseController {
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				$arts = News::orderBy('id','desc')->take(5)->get();
-				$categories = Category::paginate(20);
+				$categories = Category::paginate(30);
 				Return View::make('author.authorProfile')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles);
 			}
 			public function authorAccount()
@@ -72,7 +80,7 @@ class articlesController extends BaseController {
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(5)->get();
 				$arts = News::orderBy('id','desc')->take(20)->get();
-				$categories = Category::paginate(20);
+				$categories = Category::paginate(30);
 				Return View::make('author.authorAccount')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('user2',$user2);
 			}
 			public function authorNews()
@@ -93,7 +101,7 @@ class articlesController extends BaseController {
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				$arts = News::orderBy('id','desc')->take(5)->get();
-				$categories = Category::paginate(20);
+				$categories = Category::paginate(10);
 				Return View::make('author.authorNews')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics);
 			}
 		
@@ -106,24 +114,37 @@ class articlesController extends BaseController {
 			}
 			public function viewArticle($id)
 			{
-				$categories = Category::paginate(10);
-				$news = News::where('category_id', '=', $id)->paginate(10);
+				$categories = Category::paginate(30);
+				// $news = News::where('category_id', '=', $id)->paginate(10);
+				$new = News::find($id);
 				$newArts = News::all();
-				Return View::make('author.viewArticle')->with('news',$news)->with('categories',$categories)->with('newArts',$newArts);
+
+				Return View::make('author.viewArticle')->with('new',$new)->with('categories',$categories)->with('newArts',$newArts);
 			}
 			public function viewArtCategory($id)
 			{
-				$categories = Category::paginate(10);
-				$news = News::where('category_id', '=', $id)->paginate(10);
+				$categories = Category::paginate(30);
+				$newCats = News::where('category_id', '=', $id)->paginate(10);
 				$newArts = News::all();
 				// $entertainments = Category::where('slug', '=', 'entertainment')->news;				
-				Return View::make('author.viewArticle')->with('categories',$categories)->with('newArts',$newArts)->with('news',$news);
+				Return View::make('author.viewArticleCategory')->with('categories',$categories)->with('newArts',$newArts)->with('newCats',$newCats);
 			}
 			public function deleteArticle($id)
 			{
 				$noneed = News::find($id);
 				$noneed->delete();
-				Return Redirect::back()->with('noneed',$noneed);
+				
+				$Activity = new Activity;
+				$Activity->authenticated_user_id = Auth::User()->id;
+				$Activity->activity_type_id = 6;
+				if ($noneed->delete() && $Activity->save())
+				{
+				Return Redirect::back()->withMessage('article deleted Successfully');
+				}
+			else
+			{
+				Return Redirect::back()->withMessage('article  not deleted due to some errors');
+			}
 			}
 			public function getSearch()
 			{
@@ -131,7 +152,7 @@ class articlesController extends BaseController {
 				$keyword = Input::get('keyword');
 				$tags = Tag::all();
 				$news = News::all();
-				$categories = Category::paginate(20);
+				$categories = Category::paginate(30);
 				$cats  = Category::all();
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				Return View::make('author.search')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('categories',$categories)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
@@ -144,8 +165,11 @@ class articlesController extends BaseController {
 				$comment->fill($data);
 
 
-				//dd($comment);
 				if($comment->save($data))
+					$Activity = new Activity;
+				$Activity->authenticated_user_id = Auth::User()->id;
+				$Activity->activity_type_id = 8;
+				if ($comment->save($data) && $Activity->save())
 				{
 					return Redirect::back()->with('success','Comment Added Successfully');
 				}

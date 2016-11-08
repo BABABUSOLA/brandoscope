@@ -11,6 +11,7 @@
                         <div class="container">
                             <div class="page-logo font-blue-steel" style="font-size:30px; padding-top:10px;">
                                 <strong>BRANDOSCOPE</strong>
+
                             </div>
                             
                             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -104,31 +105,7 @@
                                     <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         <div class="portlet light ">
-                                            <div class="portlet-title">
-                                                
-                                                <div class="actions">
-                                                    <div class="btn-group">
-                                                        <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu pull-right">
-                                                            <li>
-                                                                <a href="#"> Option 1</a>
-                                                            </li>
-                                                            <li class="divider"> </li>
-                                                            <li>
-                                                                <a href="#">Option 2</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Option 3</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Option 4</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                          
                                             <div class="portlet-body">
                                                 <div class="tiles">
                                                     
@@ -138,7 +115,7 @@
                                                         </div>
                                                         <div class="tile-object">
                                                             <div class="name"> Notifications</div>
-                                                            <div class="number"> 12 </div>
+                                                            <div class="number"> {{$notifications->count()}}</div>
                                                         </div>
                                                     </div>
                                                    {{--  <div class="tile double selected bg-green-turquoise">
@@ -173,47 +150,32 @@
                                                        
                                                     </div>
                                                     <div class="tile double bg-blue-madison">
-                                                      
+                                                      @if(isset($latest_posts))
                                                         <div class="tile-body">
                                                             
-                                                            <h4>{{$latest_posts->slug}}</h4>
+                                                            <h4>{{Str::limit($latest_posts->slug,10)}}</h4>
                                                             <p>{{ Str::limit($latest_posts->text, 50) }} </p>
                                                         </div>
                                                         <div class="tile-object">
                                                             <div class=" name uppercase"> {{$latest_posts->user->first_name}} {{$latest_posts->user->last_name}} </div>
                                                             <div class="number"> {{$latest_posts->created_at}} </div>
                                                         </div>
-                                                       
+                                                       @endif
                                                     </div>
                                                     
-                                                    {{-- <div class="tile image selected">
-                                                        <div class="tile-body">
-                                                        <img src="../assets/pages/media/gallery/image2.jpg" alt=""> </div>
-                                                        <div class="tile-object">
-                                                            <div class="name"> Media </div>
-                                                        </div>
-                                                    </div> --}}
-                                                    {{-- <div class="tile bg-green">
-                                                        <div class="tile-body">
-                                                            <i class="fa fa-bar-chart-o"></i>
-                                                        </div>
-                                                        <div class="tile-object">
-                                                            <div class="name"> Reports </div>
-                                                            <div class="number"> </div>
-                                                        </div>
-                                                    </div> --}}
+                                                   
                                                     <div class="tile double bg-grey-cascade">
                                                         <div class="tile-body">
-                                                            
-                                                            <h3>@lisa_wong</h3>
-                                                            <p> I really love this theme. I look forward to check the next release! </p>
+                                                         {{--    
+                                                            <h3> {{$comment->user->first_name}}</h3>
+                                                            <p>  {{ Str::limit($comment->text, 100) }}</p> --}}
                                                         </div>
                                                         <div class="tile-object">
                                                             <div class="name">
                                                                 <i class="fa fa-pencil"></i>
                                                                 Comments
                                                             </div>
-                                                            <div class="number"> 10:45PM, 23 Jan </div>
+                                                           {{--  <div class="number">{{$new->created_at->toDateString()}} </div> --}}
                                                         </div>
                                                     </div>
                                                     
@@ -223,7 +185,7 @@
                                                         </div>
                                                         <div class="tile-object">
                                                             <div class="name">News </div>
-                                                            <div class="number"> 124 </div>
+                                                            <div class="number"> {{$arts->count()}}</div>
                                                         </div>
                                                     </div>
                                                     
@@ -316,6 +278,7 @@
                                                             
                                                         </div>
                                                         <!-- end title top stories -->
+                                                        @if(isset($arts)&&isset($arts))
                                                         @foreach($arts as $art)
                                                         
                                                         <div class="panel panel-info ">
@@ -329,10 +292,11 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <button class="btn btn-success pull-left " id="comment" >Comment</button>
                                                                     <br>
-                                                                    <hr>
-                                                                    <div class = "hideclass" >
+                                                                   {{--  <button class="btn btn-success pull-left " id="comment" >Comment</button> --}}
+                                                                   {{--  <br>
+                                                                    <hr> --}}
+                                                                   {{--  <div class = "hideclass" >
                                                                         <div class="form-group" >
                                                                             <form method="post" action="{{URL::route('comment')}}">
                                                                                 
@@ -341,16 +305,16 @@
                                                                                     <i class="fa fa-user"></i>
                                                                                     <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                     <input type="hidden" name="news_id" value="{{ $art->id}}">
-                                                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                     {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                    --}}                                                                            <button class="btn btn-success pull-right" type="submit" >Send</button>
+                                                                                    --}}                                                                           {{--  <button class="btn btn-success pull-right" type="submit" >Send</button>
                                                                                     <br>
                                                                                 </div>
                                                                                 
                                                                             </form>
                                                                         </div>
-                                                                    </div>
-                                                                    @foreach($art->comments as $comment)
+                                                                    </div> --}}
+                                                                   {{--  @foreach($art->comments as $comment)
                                                                     <div class="panel panel-info">
                                                                         <div class="panel-heading caption">
                                                                             {{$comment->user->first_name}}
@@ -359,7 +323,7 @@
                                                                             {{$comment->text}}
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
+                                                                    @endforeach --}}
                                                                     <hr>
                                                                     Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                 </div>
@@ -369,6 +333,7 @@
                                                         </div>
                                                         
                                                         @endforeach
+                                                        @endif
                                                         {{$news->links() }}
                                                         <!-- start entertainment -->
                                                         
@@ -381,6 +346,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
+                                                        @if(isset($arts)&&isset($entertainments))
                                                         @foreach($entertainments->news as $entertainment)
                                                         
                                                         <div class="panel panel-info">
@@ -394,7 +360,8 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                    <br>
+                                                                   {{--  <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
                                                                     <br>
                                                                     <hr>
                                                                     
@@ -405,14 +372,14 @@
                                                                                 <i class="fa fa-user"></i>
                                                                                 <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                 <input type="hidden" name="news_id" value="{{ $entertainment->id}}">
-                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                 {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                --}}                                                                            <button class="btn btn-success pull-right" type="submit">Send</button>
+                                                                                --}}                        {{--                                                     <button class="btn btn-success pull-right" type="submit">Send</button>
                                                                                 <br>
                                                                             </div>
                                                                         </div>
-                                                                    </form>
-                                                                    @foreach($entertainment->comments as $comment)
+                                                                    </form> --}}
+                                                                   {{--  @foreach($entertainment->comments as $comment)
                                                                     <div class="panel panel-info">
                                                                         <div class="panel-heading caption">
                                                                             {{$comment->user->first_name}}
@@ -421,13 +388,15 @@
                                                                             {{$comment->text}}
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
+                                                                    @endforeach --}}
+                                                                    <hr>
                                                                     Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
+                                                        @endif
                                                         {{$news->links() }}
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
@@ -441,6 +410,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
+                                                         @if(isset($arts)&&isset($sports))
                                                         @foreach($sports->news as $sport)
                                                         
                                                         <div class="panel panel-info">
@@ -454,7 +424,8 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
+                                                                    <br>
+                                                                    {{-- <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" >Comment</button></a>
                                                                     <br>
                                                                     <hr>
                                                                     
@@ -465,14 +436,14 @@
                                                                                 <i class="fa fa-user"></i>
                                                                                 <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                 <input type="hidden" name="news_id" value="{{ $sports->id}}">
-                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                 {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                --}}                                                                            <button class="btn btn-success pull-right" type="submit">Send</button>
+                                                                                --}}                                                                           {{--  <button class="btn btn-success pull-right" type="submit">Send</button>
                                                                                 <br>
                                                                             </div>
                                                                         </div>
-                                                                    </form>
-                                                                    @foreach($sport->comments as $comment)
+                                                                    </form> --}}
+                                                                  {{--   @foreach($sport->comments as $comment)
                                                                     <div class="panel panel-info">
                                                                         <div class="panel-heading caption">
                                                                             {{$comment->user->first_name}}
@@ -481,7 +452,7 @@
                                                                             {{$comment->text}}
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
+                                                                    @endforeach --}}
                                                                     <hr>
                                                                     Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
@@ -489,6 +460,7 @@
                                                         </div>
                                                         
                                                         @endforeach
+                                                        @endif
                                                         {{$news->links() }}
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
@@ -502,6 +474,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
+                                                         @if(isset($arts)&&isset($politics))
                                                         @foreach($politics->news as $politics)
                                                         
                                                         <div class="panel panel-info">
@@ -515,7 +488,8 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                    <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" onclick="comment()" >Comment</button></a>
+                                                                    <br>
+                                                                    {{-- <a href="{{url('userviewArt/' . $art->id)}}"><button class="btn btn-success pull-left" onclick="comment()" >Comment</button></a>
                                                                     <br>
                                                                     <hr>
                                                                     
@@ -526,9 +500,9 @@
                                                                                 <i class="fa fa-user"></i>
                                                                                 <textarea value="text" name="text" class="form-control" placeholder="Type your comments here" column=""></textarea>
                                                                                 <input type="hidden" name="news_id" value="{{ $politics->id}}">
-                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id}}"> --}}
                                                                                 {{--                                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                                --}}                                                                            <button class="btn btn-success pull-right" type="submit" >Send</button>
+                                                                                --}}                                                                            {{-- <button class="btn btn-success pull-right" type="submit" >Send</button>
                                                                                 <br>
                                                                             </div>
                                                                         </div>
@@ -542,7 +516,7 @@
                                                                             {{$comment->text}}
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
+                                                                    @endforeach --}}
                                                                     <hr>
                                                                     Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
@@ -550,6 +524,7 @@
                                                         </div>
                                                         
                                                         @endforeach
+                                                        @endif
                                                         {{$news->links() }}
                                                         <!-- end entertainment -->
                                                         <!-- end profile -->
@@ -577,28 +552,26 @@
                                             <div class="portlet-body">
                                                 
                                                 <div class="tiles">
-                                                    @if (isset($users))
-                                                    @foreach($users as $user)
-                                                    <div class="tile double bg-green">
-                                                        <div class="tile-body">
+                                                     @if(isset($notifications))
+                                                    @foreach($notifications as $notification)
+                                                    <div class="panel panel-bg-green">
+                                                        <div class="panel-heading">
+                                                            
+                                                         
+                                                             {{ $notification->userauth->first_name}} {{ $notification->acttype->name}} at {{$notification->created_at}}                                                      
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    @endforeach
+                                                    @else
+                                                    <div class="tile-body">
                                                             <br>
                                                             
 
-                                                            <h3>@ {{ $user->first_name}}</h3>
-                                                            <p>{{$user->email}}</p>
-                                                            <p>{{$user->role->name}}</p>
+                                                            <h3>No User Yet</h3>
 
                                                             
                                                         </div>
-                                                        <div class="tile-object">
-                                                            <div class="name">
-                                                                <i class="fa fa-pencil"></i>
-                                                                <a href="">View Profile</a>
-                                                            </div>
-                                                            <div class="number">{{$user->created_at}}</div>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
                                                     @endif
                                                     
                                                 </div>

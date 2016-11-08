@@ -31,7 +31,7 @@
                 <h4><strong> CONTINUE COMPANY REGISTRATION TO BRANDOSCOPE</strong></h4>
                 <p> Enter your personal details below: </p>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">First Name</label>
+                    <label class="control-label visible-ie8 visible-ie9">Company Name</label>
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                         
@@ -41,7 +41,7 @@
                
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Email</label>
+                    <label class="control-label visible-ie8 visible-ie9">Company Address</label>
                     <div class="input-icon">
                         <i class="fa fa-envelope"></i>
                        
@@ -49,11 +49,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
+                    <label class="control-label visible-ie8 visible-ie9">Company Website</label>
                     <div class="input-icon">
                         <i class="fa fa-phone-square"></i>
                        
-                        {{ Form::text('website','',array('class'=>'form-control','placeholder'=>'Company website','required data validation-required-message'=>'Please enter your  company website.'))}}
+                        {{ Form::text('website','',array('class'=>'form-control','placeholder'=>'Company website'))}}
                     </div>
                 </div>
                     @if(isset($userid))

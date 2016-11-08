@@ -24,6 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $dates=['deleted_at'];
 	public static $rules= array(
+		
 		'email'=>'required|max:64|unique:user,email|email',
 		'password'=>'required|min:6|password_confirmation',
 		);
@@ -42,6 +43,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Comment','user_id');
 	}
+	public function authuseractivity()
+	{
+		return $this->hasMany('Activity','authenticated_user_id');
+	}
 
-
+	public function activityuseractivity()
+	{
+		return $this->hasMany('Activity','activity_user_id');
+	}
 }

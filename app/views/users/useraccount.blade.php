@@ -1,41 +1,36 @@
 @extends('layouts.masterAdminHome')
-
-
 @section('body')
-
-
-
-    <body class="page-container-bg-solid">
-        <div class="page-wrapper">
-            <div class="page-wrapper-row">
-                <div class="page-wrapper-top">
-                    <!-- BEGIN HEADER -->
-                    <div class="page-header">
-                        <!-- BEGIN HEADER TOP -->
-                        <div class="page-header-top">
-                            <div class="container">
-                                <div class="page-logo font-blue-steel" style="font-size:30px; padding-top:10px;">
-                                        <strong>BRANDOSCOPE</strong>
-                                        <!-- if the person registers under admin then it should be the name of the company -->
-                                    </div>
-                               <!-- BEGIN TOP NAVIGATION MENU -->
-                                <div class="top-menu">
-                                   
-                                  
-                                  
-                                    {{link_to_route('logout','LOGOUT','',array('class'=>'btn blue-oleo'))}}
-                                      
-                                </div>
-                                <!-- END TOP NAVIGATION MENU -->
+<body class="page-container-bg-solid">
+    <div class="page-wrapper">
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-top">
+                <!-- BEGIN HEADER -->
+                <div class="page-header">
+                    <!-- BEGIN HEADER TOP -->
+                    <div class="page-header-top">
+                        <div class="container">
+                            <div class="page-logo font-blue-steel" style="font-size:30px; padding-top:10px;">
+                                <strong>BRANDOSCOPE</strong>
+                                <!-- if the person registers under admin then it should be the name of the company -->
                             </div>
+                            <!-- BEGIN TOP NAVIGATION MENU -->
+                            <div class="top-menu">
+                                
+                                
+                                
+                                {{link_to_route('logout','LOGOUT','',array('class'=>'btn blue-oleo'))}}
+                                
+                            </div>
+                            <!-- END TOP NAVIGATION MENU -->
                         </div>
-                        <!-- END HEADER TOP -->
-                        <!-- BEGIN HEADER MENU -->
-                        <div class="page-header-menu">
-                            <div class="container">
-                                 <!-- BEGIN HEADER SEARCH BOX -->
-                                <!-- BEGIN HEADER SEARCH BOX -->
-                                <form class="search-form" action="{{URL::route('getSearch')}}" method="GET">
+                    </div>
+                    <!-- END HEADER TOP -->
+                    <!-- BEGIN HEADER MENU -->
+                    <div class="page-header-menu">
+                        <div class="container">
+                            <!-- BEGIN HEADER SEARCH BOX -->
+                           <!-- BEGIN HEADER SEARCH BOX -->
+                            <form class="search-form" action="{{URL::route('userSearch')}}" method="GET">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search" name="keyword">
                                         <span class="input-group-btn">
@@ -48,32 +43,31 @@
                                     </div>
 
                                 </form>
-                                 
-                                <!-- END HEADER SEARCH BOX -->
-                               
-                                <!-- END HEADER SEARCH BOX -->
-                                
-                                 <div class="hor-menu  ">
-                                    <ul class="nav navbar-nav">
-                                        <li class="menu-dropdown ">
-                                            <a href="{{url('homepage')}}"> HOME
-                                                <span class="arrow"></span>
-                                            </a>
-                                         
-                                        </li>
-                                        <li class="menu-dropdown ">
-                                            <a href="{{('#about')}}"> ABOUT
-                                                <span class="arrow"></span>
-                                            </a>
-                                            
-                                        </li>
-                                        <li class="menu-dropdown">
-                                            <a href="{{url('contact')}}"> CONTACTS
-                                                <span class="arrow"></span>
-                                            </a>
-                                            
-                                        </li>
-                                       
+                            <!-- END HEADER SEARCH BOX -->
+                            
+                            <!-- END HEADER SEARCH BOX -->
+                            
+                            <div class="hor-menu  ">
+                                <ul class="nav navbar-nav">
+                                    <li class="menu-dropdown ">
+                                        <a href="{{url('userdash')}}"> HOME
+                                            <span class="arrow"></span>
+                                        </a>
+                                        
+                                    </li>
+                                    <li class="menu-dropdown ">
+                                        <a href="{{('#about')}}"> ABOUT
+                                            <span class="arrow"></span>
+                                        </a>
+                                        
+                                    </li>
+                                    <li class="menu-dropdown">
+                                        <a href="{{url('contact')}}"> CONTACTS
+                                            <span class="arrow"></span>
+                                        </a>
+                                        
+                                    </li>
+                                    
                                 </div>
                                 <!-- END MEGA MENU -->
                             </div>
@@ -90,12 +84,12 @@
                         <!-- BEGIN CONTENT -->
                         <div class="page-content-wrapper">
                             <!-- BEGIN CONTENT BODY -->
-                       
+                            
                             <div class="page-content">
                                 <div class="container">
                                     
-                                     <!-- BEGIN PAGE CONTENT INNER -->
-                                      <!-- BEGIN PAGE CONTENT INNER -->
+                                    <!-- BEGIN PAGE CONTENT INNER -->
+                                    <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         
                                         <div class="profile">
@@ -105,247 +99,238 @@
                                                         <a href="{{url('userdash')}}" > Overview </a>
                                                     </li>
                                                     <li class="active">
-
                                                         <a href="{{url('useraccount')}}"> Account </a>
                                                     </li>
                                                     
                                                 </ul>
-                                              
-                            <div class="row">
-                                                            
-                            <div class="col-md-12">
-                                <br>
+                                                
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-12">
+                                                        <br>
                                                         
-                                    <div class="tab-pane" id="tab_1_3">
-                                                       
-                                                        <div class="row profile-account">
-                                                            <div class="col-md-3">
-                                                                <ul class="ver-inline-menu tabbable margin-bottom-10">
-                                                                    <li class="active" id="main">
-                                                                        <a data-toggle="tab" href="#tab_1-1">
+                                                        <div class="tab-pane" id="tab_1_3">
+                                                            
+                                                            <div class="row profile-account">
+                                                                <div class="col-md-3">
+                                                                    <ul class="ver-inline-menu tabbable margin-bottom-10">
+                                                                        <li class="active" id="main">
+                                                                            <a data-toggle="tab" href="#tab_1-1">
                                                                             <i class="fa fa-cog"></i> Personal info </a>
-                                                                        <span class="after"> </span>
-                                                                    </li>
-                                                                    <li id="pencil">
-                                                                        <a data-toggle="tab" href="#tab_1-2">
+                                                                            <span class="after"> </span>
+                                                                        </li>
+                                                                        <li id="pencil">
+                                                                            <a data-toggle="tab" href="#tab_1-2">
                                                                             <i class="fa fa-pencil"></i> Edit info </a>
-                                                                        <span class="after"> </span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a data-toggle="tab" href="#tab_3-3">
+                                                                            <span class="after"> </span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a data-toggle="tab" href="#tab_3-3">
                                                                             <i class="fa fa-lock"></i> Change Password </a>
-                                                                    </li>
-                                                                    
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <div class="tab-content">
-
-                                                                    <div id="tab_1-1" class="tab-pane active">
-                                                                        {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
-                                                                    <fieldset>
-                    
-              
-        
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">first name</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-font"></i>
-                       
-                                                                        {{ Form::text('first_name',$user2->first_name,array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name','disabled'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-font"></i>
-                               
-                                                                        {{ Form::text('last_name',$user2->last_name,array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name','disabled'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                    
-                                                                    <label class="control-label visible-ie8 visible-ie9">Email</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-envelope"></i>
-                      
-                                                                        {{ Form::email('email',$user2->email,array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email','disabled'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-phone-square"></i>
-                       
-                                                                         {{ Form::input('tel','mobile_phone',$user2->mobile_phone,array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.','disabled'))}}
-                                                                    </div>
-                                                                </div>
-        
-                                                                
-                                                               
-                                                                <div class="form-actions">
-                   
-                                                                        {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
-
-                                                                    
+                                                                        </li>
                                                                         
+                                                                    </ul>
                                                                 </div>
-         
-                                                                </fieldset>
-                                                                    {{Form::close()}}
-                                                                    <button class="btn blue pull-right" onclick="doThis()" id="edit">Edit</button>
-            <!-- END REGISTRATION FORM -->          
-                                                                      
-                                                            </div>
-                                                            <!-- end tab_1 -->
-                                                            <div id="tab_1-2" class="tab-pane ">
-                                                                        {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
-                                                                    <fieldset>
-                    
-              
-        
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">first name</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-font"></i>
-                       
-                                                                        {{ Form::text('first_name',$user2->first_name,array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-font"></i>
-                               
-                                                                        {{ Form::text('last_name',$user2->last_name,array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                    
-                                                                    <label class="control-label visible-ie8 visible-ie9">Email</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-envelope"></i>
-                      
-                                                                        {{ Form::email('email',$user2->email,array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
-                                                                    <div class="input-icon">
-                                                                        <i class="fa fa-phone-square"></i>
-                       
-                                                                         {{ Form::input('tel','mobile_phone',$user2->mobile_phone,array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
-                                                                    </div>
-                                                                </div>
-        
-                                                                
-                                                               
-                                                                <div class="form-actions">
-                   
-                                                                        {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
-
-                                                                       
-                                                                        {{Form::submit('Save',array('class'=>'btn green pull-right'))}}
-                                                                        
-                                                                </div>
-         
-                                                                </fieldset>
-                                                                    {{Form::close()}}
-            <!-- END REGISTRATION FORM -->
-                                                                      
-                                                            </div>
-                                                            <div id="tab_3-3" class="tab-pane">
-                                                                       
-                                                                             {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
-                                                                             <fieldset>
-                                                                            <div class="form-group">
-                                                                                <label class="control-label">Current Password</label>
+                                                                <div class="col-md-9">
+                                                                    <div class="tab-content">
+                                                                        <div id="tab_1-1" class="tab-pane active">
+                                                                            {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
+                                                                            <fieldset>
                                                                                 
-                                                                                <div class="controls">
+                                                                                
+                                                                                
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label visible-ie8 visible-ie9">first name</label>
                                                                                     <div class="input-icon">
-                                                                                        <i class="fa fa-check"></i>
-                          
-                                                                                        {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Current password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                                        <i class="fa fa-font"></i>
+                                                                                        
+                                                                                        {{ Form::text('first_name',$user2->first_name,array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name','disabled'))}}
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <label class="control-label">New Password</label>
-                                                                               
-                                                                                <div class="controls">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
                                                                                     <div class="input-icon">
-                                                                                        <i class="fa fa-check"></i>
-                          
-                                                                                        {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'New password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                                        <i class="fa fa-font"></i>
+                                                                                        
+                                                                                        {{ Form::text('last_name',$user2->last_name,array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name','disabled'))}}
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label class="control-label">Reset Password</label>
-                                                                               
-                                                                                <div class="controls">
+                                                                                <div class="form-group">
+                                                                                    
+                                                                                    <label class="control-label visible-ie8 visible-ie9">Email</label>
                                                                                     <div class="input-icon">
-                                                                                        <i class="fa fa-check"></i>
-                          
-                                                                                        {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Reset your password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                                        <i class="fa fa-envelope"></i>
+                                                                                        
+                                                                                        {{ Form::email('email',$user2->email,array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email','disabled'))}}
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            
-                                                                           
-                                                                            <div class="margin-top-10">
-                                                                                <a href="#" class="btn green"> Change Password </a>
-                                                                                <a href="#" class="btn default"> Cancel </a>
-                                                                            </div>
-                                                                        </fieldset>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
+                                                                                    <div class="input-icon">
+                                                                                        <i class="fa fa-phone-square"></i>
+                                                                                        
+                                                                                        {{ Form::input('tel','mobile_phone',$user2->mobile_phone,array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.','disabled'))}}
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                                
+                                                                                
+                                                                                <div class="form-actions">
+                                                                                    
+                                                                                    {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
+                                                                                    
+                                                                                    
+                                                                                </div>
+                                                                                
+                                                                            </fieldset>
                                                                             {{Form::close()}}
-                                                                      
-                                                                    </div>  
-                                                            <!-- end tab_3-3 -->   
-                                                                  
+                                                                            
+                                                                            <!-- END REGISTRATION FORM -->
+                                                                            
+                                                                        </div>
+                                                                        <!-- end tab_1 -->
+                                                                        <div id="tab_1-2" class="tab-pane ">
+                                                                            {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
+                                                                            <fieldset>
+                                                                                
+                                                                                
+                                                                                
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label visible-ie8 visible-ie9">first name</label>
+                                                                                    <div class="input-icon">
+                                                                                        <i class="fa fa-font"></i>
+                                                                                        
+                                                                                        {{ Form::text('first_name',$user2->first_name,array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
+                                                                                    <div class="input-icon">
+                                                                                        <i class="fa fa-font"></i>
+                                                                                        
+                                                                                        {{ Form::text('last_name',$user2->last_name,array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name'))}}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    
+                                                                                    <label class="control-label visible-ie8 visible-ie9">Email</label>
+                                                                                    <div class="input-icon">
+                                                                                        <i class="fa fa-envelope"></i>
+                                                                                        
+                                                                                        {{ Form::email('email',$user2->email,array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
+                                                                                    <div class="input-icon">
+                                                                                        <i class="fa fa-phone-square"></i>
+                                                                                        
+                                                                                        {{ Form::input('tel','mobile_phone',$user2->mobile_phone,array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                                
+                                                                                
+                                                                                <div class="form-actions">
+                                                                                    
+                                                                                    {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
+                                                                                    
+                                                                                    {{Form::submit('Save',array('class'=>'btn green pull-right'))}}
+                                                                                    
+                                                                                </div>
+                                                                                
+                                                                            </fieldset>
+                                                                            {{Form::close()}}
+                                                                            <!-- END REGISTRATION FORM -->
+                                                                            
+                                                                        </div>
+                                                                        <div id="tab_3-3" class="tab-pane">
+                                                                            
+                                                                            {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
+                                                                            <fieldset>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">Current Password</label>
+                                                                                    
+                                                                                    <div class="controls">
+                                                                                        <div class="input-icon">
+                                                                                            <i class="fa fa-check"></i>
+                                                                                            
+                                                                                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Current password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">New Password</label>
+                                                                                    
+                                                                                    <div class="controls">
+                                                                                        <div class="input-icon">
+                                                                                            <i class="fa fa-check"></i>
+                                                                                            
+                                                                                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'New password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">Reset Password</label>
+                                                                                    
+                                                                                    <div class="controls">
+                                                                                        <div class="input-icon">
+                                                                                            <i class="fa fa-check"></i>
+                                                                                            
+                                                                                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Reset your password','required data validation-required-message'=>'Re-type your password'))}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                                
+                                                                                <div class="margin-top-10">
+                                                                                    <a href="#" class="btn green"> Change Password </a>
+                                                                                    <a href="#" class="btn default"> Cancel </a>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                            {{Form::close()}}
+                                                                            
+                                                                        </div>
+                                                                        <!-- end tab_3-3 -->
+                                                                        
+                                                                    </div>
                                                                 </div>
+                                                                <!--end col-md-9-->
                                                             </div>
-                                                            <!--end col-md-9-->
                                                         </div>
+                                                        <!--end tab-pane-->
+                                                        
                                                     </div>
-                                                    <!--end tab-pane-->
-                                                  
-                                                        </div>
-                                                    </div>
-                                                    <!--end tab-pane-->
                                                 </div>
+                                                <!--end tab-pane-->
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- END PAGE CONTENT INNER -->
                                 </div>
+                                <!-- END PAGE CONTENT INNER -->
                             </div>
-                            <!-- END PAGE CONTENT BODY -->
-                            <!-- END CONTENT BODY -->
                         </div>
-                        <!-- END CONTENT -->
-                    
+                        <!-- END PAGE CONTENT BODY -->
+                        <!-- END CONTENT BODY -->
                     </div>
-                    <!-- END CONTAINER -->
+                    <!-- END CONTENT -->
+                    
                 </div>
+                <!-- END CONTAINER -->
             </div>
-           
         </div>
+        
     </div>
-
 </div>
-      
-    <script>
-        function doThis(){
-            console.log('cool'
-                );
-            $(#main).removeClass('active');
-            $(#pencil).addClass('active');
-        }
-    </script>
-    </body>
+</div>
 
-
-
+<script>
+function doThis(){
+console.log('cool'
+);
+$(#main).removeClass('active');
+$(#pencil).addClass('active');
+}
+</script>
+</body>
 @stop
