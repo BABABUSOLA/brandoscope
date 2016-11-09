@@ -163,6 +163,7 @@
                                                                     
                                                                     <div class="tab-content">
                                                                         <div id="tab_1_1" class="tab-pane active">
+                                                                            @if(isset($news))
                                                                             <div class="panel-group">
                                                                                 <!-- title top stories-->
                                                                                 <div class="panel panel-success">
@@ -183,7 +184,7 @@
                                                                                                 <div class="col-md-8">
                                                                                                     <h1 class="panel-title caption uppercase ">
                                                                                                     
-                                                                                                   {{--  <a href="#">{{ $new->slug }}</a> --}}
+                                                                                                    <a href="#">{{ $new->slug }}</a>
                                                                                                     </h1>
                                                                                                 </div>
                                                                                                 <div class="col-md-2">
@@ -225,7 +226,7 @@
                                                                                 <br>
                                                                                 <br>
                                                                                 
-                                                                                
+                                                                                @endif
                                                                             </div>
                                                                         </div>
                                                                     </div>

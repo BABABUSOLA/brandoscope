@@ -45,7 +45,7 @@
                 <div class="hor-menu  ">
                     <ul class="nav navbar-nav">
                         <li class="menu-dropdown ">
-                            <a href="{{url('homepage')}}"> HOME
+                            <a href="{{url('authorprofile')}}"> HOME
                                 <span class="arrow"></span>
                             </a>
                             
@@ -58,9 +58,7 @@
                                 <li>
                                     <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
                                 </li>
-                                <li>
-                                    <a href="#">Edit Article</a>
-                                </li>
+                               
                             </ul>
                             
                         </li>
@@ -121,6 +119,20 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                                <!-- start pinned article -->
+                                                 <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                    PINNED ARTICLE
+                                                </div>
+                                                @if(isset($pin_arts))
+                                                @foreach($pin_arts as $pin_art)
+                                                <div class="portlet-title">
+                                                    <br>
+                                                   <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->slug, 30)}}</a> 
+                                                </div>
+                                                 @endforeach
+                                                 @endif
+                                            </div>
                                                 <!-- start categories -->
                                                 
                                                 <div class="panel panel-info">
@@ -145,6 +157,7 @@
                                                 {{$categories->links() }}
                                             </div>
                                             <!--end col-md-8-->
+
                                         </div>
                                         
                                         <!-- end categories -->
@@ -171,7 +184,7 @@
                                                             <div class="panel-heading caption">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <div class="col-md-9">
+                                                                        <div class="col-md-8">
                                                                             <h3 class="panel-title  caption ">
                                                                             {{$userArticle->slug}}
                                                                             </h3>
@@ -186,7 +199,7 @@
                                                                          
                                                                             </h1>
                                                                         </div>
-                                                                        <div class="col-md-1">
+                                                                        <div class="col-md-2">
                                                                             <h3 class="panel-title  caption pull-right ">
                                                                             @foreach($tags as $tag)
                                                                             @if($tag->id == $userArticle->tag_id)

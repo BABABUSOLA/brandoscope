@@ -48,24 +48,12 @@
                             <div class="hor-menu  ">
                                 <ul class="nav navbar-nav">
                                     <li class="menu-dropdown ">
-                                        <a href="{{url('authorprofile')}}"> HOME
+                                        <a href="{{url('adminihome')}}"> HOME
                                             <span class="arrow"></span>
                                         </a>
                                         
                                     </li>
-                                    <li class="menu-dropdown ">
-                                        <a href="{{('#')}}"> ARTICLE
-                                            <span class="arrow"></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
-                                            </li>
-                                            
-                                        </ul>
-                                        
-                                    </li>
-                                    
+                                  
                                     
                                 </div>
                                 <!-- END MEGA MENU -->
@@ -86,12 +74,11 @@
                             
                             <div class="page-content">
                                 <div class="container">
-                                    
-                                    
+                         
                                     <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            {{-- <div class="col-md-3">
                                                 <div class="panel panel-info">
                                                     <div class="panel-heading caption">
                                                         <h1 class="panel-title caption uppercase">
@@ -112,21 +99,21 @@
                                                 {{$categories->links() }}
                                             </div>
                                             <!-- end page portlet light-->
-                                        </div>
-                                        <div class="col-md-9">
+                                        </div> --}}
+                                        <div class="col-md-12">
                                             <div id="tab_1_1" class="tab-pane active">
                                                 
-                                                @if(isset($new))
+                                                @if(isset($new_Admin))
                                                 <div class="panel-group">
                                                     
                                                     <div class="panel panel-info">
                                                         <div class="panel-heading caption">
                                                             <h3 class="panel-title caption uppercase">
-                                                            {{ Str::limit($new->slug, 100) }}
+                                                            {{ Str::limit($new_Admin->slug, 100) }}
                                                             </h3>
                                                         </div>
                                                         <div id="accordion1_1" class="panel">
-                                                            <div class="panel-body"> {{$new->text}}
+                                                            <div class="panel-body"> {{$new_Admin->text}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,8 +122,8 @@
                                                 
                                                 
                                                 <div style="margin-left:20px;">
-                                                    <h3 class="sbold blog-comments-title">Comments ({{$new->comments->count()}})</h3>
-                                                    @foreach($new->comments as $comment)
+                                                    <h3 class="sbold blog-comments-title">Comments ({{$new_Admin->comments->count()}})</h3>
+                                                    @foreach($new_Admin->comments as $comment)
                                                     <div class="panel panel-info">
                                                         <div class="panel-body">
                                                             {{$comment->text}}
@@ -162,8 +149,8 @@
                                                     <div class="input-icon">
                                                         <i class="fa fa-user"></i>
                                                         <textarea value="text" name="text" rows="8" class="form-control" placeholder="Type your comments here" column=""></textarea>
-                                                        <input type="hidden" name="news_id" value="{{ $new->id}}">
-                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
+                                                        <input type="text" name="news_id" value="{{ $new_Admin->id}}">
+                                                        <input type="text" name="user_id" value="{{ Auth::user()->id}}">
                                                         <button class="btn btn-success pull-right" type="submit">Send</button>
                                                         <br>
                                                     </div>

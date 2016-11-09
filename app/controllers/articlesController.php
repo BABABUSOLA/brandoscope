@@ -66,12 +66,12 @@ class articlesController extends BaseController {
 
 				$user = Auth::User();
 				$userArticles = News::orderBy('id','desc')->take(10)->where('user_id', '=', $user->id)->get();
-			
+				$pin_arts = News::where('pinned_art','=',1 )->get();
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				$categories = Category::paginate(30);
-				Return View::make('author.authorProfile')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles);
+				Return View::make('author.authorProfile')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles)->with('pin_arts',$pin_arts);
 			}
 			public function authorAccount()
 			{	
@@ -91,20 +91,45 @@ class articlesController extends BaseController {
 				$article_tag = Tag::get();
 
 				$user = Auth::User();
+
 				$userArticles = News::orderBy('id','desc')->take(10)->where('user_id', '=', $user->id)->get();
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 
 				$sports = Category::where('name','=','sports')->first();
+				$pin_arts = News::where('pinned_art','=',1 )->get();
 
 				$politics= Category::where('name','=','politics')->first();
 
 				$news = News::paginate(15);
-				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				$newsearchs = News::orderBy('id','desc')->paginate(15);
+				// echo "<pre>";
+				// dd($newSearchs);
+				// echo "</pre>";
+				
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				$categories = Category::paginate(10);
-				Return View::make('author.authorNews')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics);
+				Return View::make('author.authorNews')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newsearchs',$newsearchs)->with('user',$user)->with('roles',$article_roles)->with('cats',$article_cat)->with('tags',$article_tag)->with('userArticles',$userArticles)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics)->with('pin_arts',$pin_arts);
 			}
-		
+			public function pinnedNews($id)
+			{
+				$Article_pin = new News;
+				$Article_pin = News::find($id);
+				$Article_pin->pinned_art = 1;
+				$Article_pin->save();
+				
+				Return Redirect::back()->withMessage('Pinned new article');
+
+			}
+			public function unpinnedNews($id)
+			{
+				$article_pin = new News;
+				$article_pin = News::find($id);
+				$article_pin->pinned_art = 0;
+				$article_pin->save();
+				Return Redirect::back()->withMessage('Article unpinned');
+
+			}
+
 			public function listArticle()
 			{
 				$categories = Category::paginate(30);
@@ -112,6 +137,7 @@ class articlesController extends BaseController {
 				$news = News::orderBy('id','desc')->take(20)->get();
 				Return View::make('author.listArticle')->with('categories',$categories)->with('news',$news);
 			}
+		
 			public function viewArticle($id)
 			{
 				$categories = Category::paginate(30);

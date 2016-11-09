@@ -15,9 +15,9 @@ class CreateNewsTable extends Migration {
 		Schema::create('news', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
 			$table->string('slug', 150);
 			$table->text('text');
+			$table->boolean('pinned_art')->default(0);
 			$table->integer('tag_id')->unsigned();
 			$table->foreign('tag_id')->references('id')->on('tags');
 			$table->integer('category_id')->unsigned();

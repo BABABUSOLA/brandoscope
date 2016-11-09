@@ -58,9 +58,7 @@
                                 <li>
                                     <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
                                 </li>
-                                <li>
-                                    <a href="#">Edit Article</a>
-                                </li>
+                                
                             </ul>
                             
                         </li>
@@ -111,6 +109,7 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="panel panel-info">
+                                                    
                                                     <div class="panel-heading">
                                                         <h1 class="font-green sbold uppercase">{{Auth::User()->first_name}} {{Auth::User()->last_name}} </h1>
                                                         
@@ -129,20 +128,25 @@
                                                             <i class="fa fa-heart"></i> Reading</li>
                                                         </ul>
                                                     </div>
+                                                    
                                                 </div>
-                                               <!-- start pinned articles -->
+                                                <!-- start pinned articles -->
                                                 <div class="panel panel-success">
-                                                <div class="panel-heading">
-                                                    PINNED ARTICLE
+                                                    <div class="panel-heading">
+                                                        PINNED ARTICLE
+                                                    </div>
+                                                    @if(isset($pin_arts))
+                                                    @foreach($pin_arts as $pin_art)
+                                                    <div class="portlet-title">
+                                                        <br>
+                                                        
+                                                        <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->slug, 30)}}</a>
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
                                                 </div>
-                                                @foreach($arts as $art)
-                                                <div class="portlet-title">
-                                                   <a href="{{url('viewArticle/' . $art->id)}}">{{Str::limit($art->slug, 30)}}</a> 
-                                                </div>
-                                                 @endforeach
-
-                                            </div>
-                                             <!-- start categories -->
+                                                <!-- start categories -->
+                                                @if(isset($categories))
                                                 <div class="panel panel-info">
                                                     
                                                     <div class="panel-heading caption">
@@ -162,12 +166,11 @@
                                                 
                                             </div>
                                             
-
-                                           
+                                            
                                             <div style="margin:20px 0;">
                                                 {{$categories->links() }}
                                             </div>
-
+                                            @endif
                                             <!--end col-md-8-->
                                         </div>
                                         
@@ -190,6 +193,7 @@
                                                             
                                                         </div>
                                                         <!-- end title top stories -->
+                                                        @if(isset($arts))
                                                         @foreach($arts as $art)
                                                         
                                                         <div class="panel panel-info ">
@@ -203,10 +207,10 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                  
+                                                                   
                                                                     <br>
                                                                     <hr>
-                                                                
+                                                                    
                                                                     Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
@@ -216,6 +220,7 @@
                                                         
                                                         @endforeach
                                                         {{$news->links() }}
+                                                        @endif
                                                         <!-- start entertainment -->
                                                         
                                                         <div class="panel panel-success">
@@ -227,6 +232,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
+                                                        @if(isset($entertainments))
                                                         @foreach($entertainments->news as $entertainment)
                                                         
                                                         <div class="panel panel-info">
@@ -240,7 +246,7 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                  
+                                                                    
                                                                     Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
@@ -248,6 +254,7 @@
                                                         
                                                         @endforeach
                                                         {{$news->links() }}
+                                                        @endif
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
                                                         
@@ -260,6 +267,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
+                                                        @if(isset($sports))
                                                         @foreach($sports->news as $sport)
                                                         
                                                         <div class="panel panel-info">
@@ -273,11 +281,11 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                  
+                                                                    
                                                                     <br>
                                                                     <hr>
                                                                     
-                                                                 
+                                                                    
                                                                     Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
@@ -285,6 +293,7 @@
                                                         
                                                         @endforeach
                                                         {{$news->links() }}
+                                                        @endif
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
                                                         
@@ -297,6 +306,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
+                                                        @if(isset($politics))
                                                         @foreach($politics->news as $politics)
                                                         
                                                         <div class="panel panel-info">
@@ -310,10 +320,10 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                  
+                                                                    
                                                                     <br>
                                                                     <hr>
-                                                                  
+                                                                    
                                                                     Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                 </div>
                                                             </div>
@@ -321,7 +331,51 @@
                                                         
                                                         @endforeach
                                                         {{$news->links() }}
+                                                        @endif
                                                         <!-- end entertainment -->
+                                                        <!-- All news-->
+                                                        <div class="panel panel-success">
+                                                            <div class="panel-heading caption">
+                                                                <h3 class="panel-title caption uppercase">
+                                                                News
+                                                                </h3>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                        @foreach($newsearchs as $newsearch)
+                                                        
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading caption">
+                                                                <h3 class="panel-title caption uppercase">
+                                                                {{$newsearch->slug}}
+                                                                </h3>
+                                                            </div>
+                                                            <div id="accordion1_1" class="panel">
+                                                                <div class="panel-body">{{ Str::limit($newsearch->text, 300) }}
+                                                                    <br>
+                                                                    <br>
+                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                     @if(isset($newsearch->pinned_art) && ($newsearch->pinned_art == 0))
+                                                                    <a href="{{url('pinnednews/' . $art->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
+                                                                    @elseif(isset($newsearch->pinned_art) && ($newsearch->pinned_art == 1))
+                                                                    <a href="{{url('unpinnednews/' . $art->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>
+                                                                    @endif
+                                                                    <br>
+                                                                    <hr>
+                                                                    
+                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        @endforeach
+                                                        
+                                                        <div style="margin:20px 0;">
+                                                            {{$newsearchs->links() }}
+                                                        </div>
+                                                        
+                                                        <!-- end all news -->
                                                     </div>
                                                 </div>
                                             </div>
