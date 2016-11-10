@@ -38,6 +38,7 @@ Route::post('registeradmincont',array('uses'=>'UsersController@admincont','as'=>
 Route::get('viewarticleadmin/{id}',array('uses'=>'UsersController@viewArticleAdmin','as'=>'viewArticleAdmin'));
 Route::get('getsearchadmin',array('uses'=>'UsersController@getSearchAdmin','as'=>'getSearchAdmin'));
 Route::post('storeprofile',array('uses'=>'UsersController@storeprofile','as'=>'storeprofile'));
+// Route::post('authorstoreprofile',array('uses'=>'articlesController@storeprofileauthor','as'=>'Authorstoreprofile'));
 //user view
 Route::get('useraccount',array('uses'=>'UsersController@useraccount','as'=>'useraccount'));
 Route::get('usersearch',array('uses'=>'UsersController@usersearch','as'=>'userSearch'));
@@ -64,8 +65,9 @@ Route::post('comment',array('uses'=>'articlesController@postComment','as'=>'comm
 		Route::get('userdash',array('uses'=>'UsersController@userdash','as'=>'userdash'));
 		Route::get('viewArticleCategory/{id}',array('uses'=>'articlesController@viewArtCategory','as'=>'viewArticleCat'));
 		Route::get('userviewArticleCategory/{id}',array('uses'=>'UsersController@viewArticleCategory','as'=>'userViewArticleCat'));
-		// pinned articles
+		
+	});
+// pinned articles
 		Route::get('pinnednews/{id}',array('uses'=>'articlesController@pinnedNews','as'=>'pinnedNews'));
 		Route::get('unpinnednews/{id}',array('uses'=>'articlesController@unpinnedNews','as'=>'unpinnedNews'));
-	});
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

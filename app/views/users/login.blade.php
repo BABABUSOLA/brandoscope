@@ -30,6 +30,11 @@
                         <div class="panel panel-info">
                             <div class="panel-heading"> {{Session::get('message')}}</div>
                         </div>
+             
+             @elseif (Session::has('fail'))
+                        <div class="panel panel-info">
+                            <div class="panel-heading"> {{Session::get('fail')}}</div>
+                        </div>
              @endif
             <!-- BEGIN LOGIN FORM -->
             {{-- <form class="login-form" action="index.html" method="post"> --}}

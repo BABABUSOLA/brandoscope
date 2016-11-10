@@ -128,7 +128,7 @@
                             <div class=" panel-heading " style="text-align:center"> There is no news in the category selected</div>
                             <!-- to view the particular dashboard of the user -->
                             <div class="panel-body" style="text-align:center">
-                                Please select another category or click on this <a href="{{url('')}}">link</a> to go back to your homepage
+                                Please select another category or click on this <a href="{{url('userdash')}}">link</a> to go back to your homepage
                             </div>
                         </div>
                                                     @endif

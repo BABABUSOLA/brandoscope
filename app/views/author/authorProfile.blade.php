@@ -124,14 +124,15 @@
                                                 <div class="panel-heading">
                                                     PINNED ARTICLE
                                                 </div>
-                                                @if(isset($pin_arts))
-                                                @foreach($pin_arts as $pin_art)
-                                                <div class="portlet-title">
-                                                    <br>
-                                                   <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->slug, 30)}}</a> 
-                                                </div>
-                                                 @endforeach
-                                                 @endif
+                                                 @if(isset($pin_arts))
+                                                    @foreach($pin_arts as $pin_art)
+                                                    <div class="portlet-title">
+                                                        <br>
+                                                  
+                                                        <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
                                             </div>
                                                 <!-- start categories -->
                                                 

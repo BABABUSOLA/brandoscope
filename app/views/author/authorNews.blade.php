@@ -111,6 +111,7 @@
                                                 <div class="panel panel-info">
                                                     
                                                     <div class="panel-heading">
+
                                                         <h1 class="font-green sbold uppercase">{{Auth::User()->first_name}} {{Auth::User()->last_name}} </h1>
                                                         
                                                         <p>
@@ -133,14 +134,15 @@
                                                 <!-- start pinned articles -->
                                                 <div class="panel panel-success">
                                                     <div class="panel-heading">
+
                                                         PINNED ARTICLE
                                                     </div>
                                                     @if(isset($pin_arts))
                                                     @foreach($pin_arts as $pin_art)
                                                     <div class="portlet-title">
                                                         <br>
-                                                        
-                                                        <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->slug, 30)}}</a>
+                                                  
+                                                        <a href="{{url('viewArticle/' . $pin_art->news->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
                                                     </div>
                                                     @endforeach
                                                     @endif
@@ -157,7 +159,7 @@
                                                     
                                                     <div id="accordion1_1" class="panel">
                                                         @foreach($categories as $category)
-                                                        <div class="panel-body"><a href="{{url('viewArticle/' . $category->id)}}">{{$category->name}}</a>
+                                                        <div class="panel-body"><a href="{{url('viewArticleCategory/' . $category->id)}}">{{$category->name}}</a>
                                                         
                                                     </div>
                                                     @endforeach
@@ -342,24 +344,26 @@
                                                             </div>
                                                             
                                                         </div>
-                                                        
-                                                        @foreach($newsearchs as $newsearch)
+                                                        @if(isset($newSearchs))
+                                                        @foreach($newSearchs as $newSearch)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
                                                                 <h3 class="panel-title caption uppercase">
-                                                                {{$newsearch->slug}}
+                                                                {{$newSearch->slug}}
                                                                 </h3>
                                                             </div>
                                                             <div id="accordion1_1" class="panel">
-                                                                <div class="panel-body">{{ Str::limit($newsearch->text, 300) }}
+                                                                <div class="panel-body">{{ Str::limit($newSearch->text, 300) }} 
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                     @if(isset($newsearch->pinned_art) && ($newsearch->pinned_art == 0))
-                                                                    <a href="{{url('pinnednews/' . $art->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
-                                                                    @elseif(isset($newsearch->pinned_art) && ($newsearch->pinned_art == 1))
-                                                                    <a href="{{url('unpinnednews/' . $art->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>
+                                                                    <a href="{{url('viewArticle/' . $newSearch->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    
+                                                                  
+                                                                     @if(!$newSearch->isPinned($newSearch->id)) 
+                                                                    <a href="{{url('pinnednews/' . $newSearch->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
+                                                                    @else
+                                                                    <a href="{{url('unpinnednews/' . $newSearch->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>
                                                                     @endif
                                                                     <br>
                                                                     <hr>
@@ -372,9 +376,9 @@
                                                         @endforeach
                                                         
                                                         <div style="margin:20px 0;">
-                                                            {{$newsearchs->links() }}
+                                                            {{$newSearchs->links() }}
                                                         </div>
-                                                        
+                                                        @endif
                                                         <!-- end all news -->
                                                     </div>
                                                 </div>

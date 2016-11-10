@@ -91,6 +91,9 @@ else{
 				return Redirect::to('login')->withMessage('Registration successful. Please login!');
 			}
 			
+				return Redirect::to('register')->withErrors('Invalid input');
+			 
+			
 			}
 		public function storeadmin()
 		{
@@ -174,6 +177,7 @@ else{
 			{
 				Return View::make('users.contact');
 			}
+
 			public function admincont()
 			{
 				$company = new Company;
@@ -200,13 +204,14 @@ else{
 				$users = User::orderBy('id','desc')->where('user_id',$userid)->take(5)->get();
 				$userscount = User::where('user_id',$userid)->get();
 				$user = User::all();
-				$pin_arts = News::where('pinned_art','=',1 )->get();
+				$pin_arts = Pin::where('user_id','=',Auth::User()->id)->get();
 				$news = News::paginate(15);
 				$newSearchs = News::orderBy('id','desc')->paginate(15);
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				$latest_posts = News::orderBy('id','desc')->first();
 				$categories = Category::paginate(20);
 				
+
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 				$notifications = Activity::where('authenticated_user_id', Auth::User()->id)->get();
 				
@@ -220,15 +225,17 @@ else{
 				{
 				$user = User::all();
 				$news = News::paginate(15);
-				$newSearchs = News::orderBy('id','desc')->take(10)->get();
+				// $news = News::orderBy('id','desc')->take(10)->get();
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				$categories = Category::paginate(20);
+				$pin_arts = Pin::where('user_id','=',Auth::User()->id)->get();
+
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 				$sports = Category::where('name','=','sports')->first();
 				$politics= Category::where('name','=','politics')->first();
 				$news_arts = News::orderBy('id','desc')->take(5)->get();
 				
-				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('newSearchs',$newSearchs)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics);
+				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics)->with('pin_arts',$pin_arts);
 			}
 			public function useraccount()
 				{
@@ -308,7 +315,7 @@ else{
 				$categories = Category::paginate(30);
 				$cats  = Category::all();
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
-				Return View::make('admin.searchAdmin')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs)->with('newSearchs',$newSearchs);
+				Return View::make('admin.searchAdmin')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
 
 			}
 	}

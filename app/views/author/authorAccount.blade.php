@@ -55,18 +55,6 @@
                                         </a>
                                         
                                     </li>
-                                    <li class="menu-dropdown ">
-                                        <a href="{{('#about')}}"> ABOUT
-                                            <span class="arrow"></span>
-                                        </a>
-                                        
-                                    </li>
-                                    <li class="menu-dropdown">
-                                        <a href="{{url('contact')}}"> CONTACTS
-                                            <span class="arrow"></span>
-                                        </a>
-                                        
-                                    </li>
                                     
                                 </div>
                                 <!-- END MEGA MENU -->
@@ -122,11 +110,12 @@
                                                                             <i class="fa fa-cog"></i> Personal info </a>
                                                                             <span class="after"> </span>
                                                                         </li>
-                                                                        
-                                                                        <li>
-                                                                            <a data-toggle="tab" href="#tab_3-3">
-                                                                            <i class="fa fa-lock"></i> Change Password </a>
+                                                                         <li id="pencil">
+                                                                            <a data-toggle="tab" href="#tab_1-2">
+                                                                            <i class="fa fa-pencil"></i> Edit info </a>
+                                                                            <span class="after"> </span>
                                                                         </li>
+                                                                       
                                                                         
                                                                     </ul>
                                                                 </div>
@@ -176,7 +165,7 @@
                                                                                 
                                                                                 <div class="form-actions">
                                                                                     
-                                                                                    {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
+                                                                                    {{link_to_route('authorProfile','Back','',array('class'=>'btn red pull-left'))}}
                                                                                     
                                                                                     
                                                                                 </div>
@@ -188,7 +177,7 @@
                                                                             
                                                                         </div>
                                                                         <!-- end tab_1 -->
-                                                                        <div id="tab_1-2" class="tab-pane ">
+                                                                         <div id="tab_1-2" class="tab-pane ">
                                                                             {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
                                                                             <fieldset>
                                                                                 
@@ -232,7 +221,7 @@
                                                                                 
                                                                                 <div class="form-actions">
                                                                                     
-                                                                                    {{link_to_route('userdash','Back','',array('class'=>'btn red pull-left'))}}
+                                                                                    {{link_to_route('authorProfile','Back','',array('class'=>'btn red pull-left'))}}
                                                                                     
                                                                                     {{Form::submit('Save',array('class'=>'btn green pull-right'))}}
                                                                                     
@@ -243,54 +232,7 @@
                                                                             <!-- END REGISTRATION FORM -->
                                                                             
                                                                         </div>
-                                                                        <div id="tab_3-3" class="tab-pane">
-                                                                            
-                                                                            {{Form::open(array('route'=>'storeprofile','class'=>'login-form'))}}
-                                                                            <fieldset>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">Current Password</label>
-                                                                                    
-                                                                                    <div class="controls">
-                                                                                        <div class="input-icon">
-                                                                                            <i class="fa fa-check"></i>
-                                                                                            
-                                                                                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Current password','required data validation-required-message'=>'Re-type your password'))}}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">New Password</label>
-                                                                                    
-                                                                                    <div class="controls">
-                                                                                        <div class="input-icon">
-                                                                                            <i class="fa fa-check"></i>
-                                                                                            
-                                                                                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'New password','required data validation-required-message'=>'Re-type your password'))}}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">Reset Password</label>
-                                                                                    
-                                                                                    <div class="controls">
-                                                                                        <div class="input-icon">
-                                                                                            <i class="fa fa-check"></i>
-                                                                                            
-                                                                                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Reset your password','required data validation-required-message'=>'Re-type your password'))}}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                
-                                                                                
-                                                                                <div class="margin-top-10">
-                                                                                    <a href="#" class="btn green"> Change Password </a>
-                                                                                    <a href="#" class="btn default"> Cancel </a>
-                                                                                </div>
-                                                                            </fieldset>
-                                                                            {{Form::close()}}
-                                                                            
-                                                                        </div>
-                                                                        <!-- end tab_3-3 -->
+                                                                       
                                                                         
                                                                     </div>
                                                                 </div>

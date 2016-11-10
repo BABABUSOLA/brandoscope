@@ -37,6 +37,19 @@
                 <fieldset>
                     
                 <h4><strong>REGISTER TO BRANDOSCOPE</strong></h4>
+               {{--  @foreach($errors as $error)
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                {{$validate}}
+                    </div>
+
+                </div>
+                @endforeach --}}
+                 @if (Session::has('$validate'))
+                        <div class="panel panel-danger">
+                            <div class="panel-heading"> {{Session::get('$validate')}}</div>
+                        </div>
+             @endif
                 <p> Enter your personal details below: </p>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">First Name</label>

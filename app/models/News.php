@@ -37,5 +37,17 @@ class News extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Comment','news_id');
 	}
-
+	public function pins()
+	{
+		return $this->hasMany('Pin','news_id');
+	}
+	public function isPinned($id){
+    $how = Pin::where('user_id', '=', Auth::user()->id)->where('news_id', '=', $id)->get();
+   if (count($how) > 0){
+       return true;
+   }
+   else{
+       return false;
+   }
+}
 }

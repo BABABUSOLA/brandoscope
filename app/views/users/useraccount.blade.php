@@ -55,18 +55,18 @@
                                         </a>
                                         
                                     </li>
-                                    <li class="menu-dropdown ">
+                                 {{--    <li class="menu-dropdown ">
                                         <a href="{{('#about')}}"> ABOUT
                                             <span class="arrow"></span>
                                         </a>
                                         
-                                    </li>
-                                    <li class="menu-dropdown">
+                                    </li> --}}
+                                   {{--  <li class="menu-dropdown">
                                         <a href="{{url('contact')}}"> CONTACTS
                                             <span class="arrow"></span>
                                         </a>
                                         
-                                    </li>
+                                    </li> --}}
                                     
                                 </div>
                                 <!-- END MEGA MENU -->
@@ -124,10 +124,7 @@
                                                                             <i class="fa fa-pencil"></i> Edit info </a>
                                                                             <span class="after"> </span>
                                                                         </li>
-                                                                        <li>
-                                                                            <a data-toggle="tab" href="#tab_3-3">
-                                                                            <i class="fa fa-lock"></i> Change Password </a>
-                                                                        </li>
+                                                                       
                                                                         
                                                                     </ul>
                                                                 </div>

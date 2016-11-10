@@ -149,8 +149,8 @@
                                                     <div class="input-icon">
                                                         <i class="fa fa-user"></i>
                                                         <textarea value="text" name="text" rows="8" class="form-control" placeholder="Type your comments here" column=""></textarea>
-                                                        <input type="text" name="news_id" value="{{ $new_Admin->id}}">
-                                                        <input type="text" name="user_id" value="{{ Auth::user()->id}}">
+                                                        <input type="hidden" name="news_id" value="{{ $new_Admin->id}}">
+                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id}}">
                                                         <button class="btn btn-success pull-right" type="submit">Send</button>
                                                         <br>
                                                     </div>

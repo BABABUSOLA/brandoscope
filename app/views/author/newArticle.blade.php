@@ -62,9 +62,9 @@
                                                 <li>
                                                     <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
                                                 </li>
-                                                <li>
+                                               {{--  <li>
                                                     <a href="{{url('editArticle')}}">Edit Article</a>
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                             
                                         </li>
@@ -128,10 +128,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="btn-group btn-group-solid">
+                                            {{-- <div class="btn-group btn-group-solid">
                                                
                                                  {{link_to_route('editArticle','Edit','',array('class'=>'btn btn-warning pull-left'))}}
-                                            </div>
+                                            </div> --}}
                                            
                                             <div class=" pull-right">
                                                 

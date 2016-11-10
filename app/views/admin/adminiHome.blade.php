@@ -10,8 +10,12 @@
                     <div class="page-header-top">
                         <div class="container">
                             <div class="page-logo font-blue-steel" style="font-size:30px; padding-top:10px;">
+                                @if($users->role_id =! 3)
                                 <strong>BRANDOSCOPE</strong>
-
+                                @else
+                             
+                                <strong>{{Auth::User()->first_name}}</strong>
+                                @endif
                             </div>
                             
                             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -96,11 +100,26 @@
                                     <!-- BEGIN PAGE CONTENT INNER -->
                                     <div class="page-content-inner">
                                         <div class="portlet light ">
-                                          
+                                            
                                             <div class="portlet-body">
                                                 <div class="tiles">
-                                                    
-                                                    <div class="tile  bg-blue-hoki">
+                                                     <div class="tile double selected bg-green-turquoise">
+                                                        {{-- <div class="corner"> </div>
+                                                        <div class="check"> </div>
+                                                        <div class="tile-body"> --}}
+                                                         {{--    <h4>support@brandoscope.com</h4>
+                                                            <p> Re: Metronic v1.2 - Project Update! </p>
+                                                            <p> 24 March 2013 12.30PM confirmed for the project plan update meeting... </p> --}}
+                                                       {{--  </div> --}}
+                                                        {{-- <div class="tile-object">
+                                                            <div class="name">
+                                                                <i class="fa fa-envelope"></i>
+                                                            </div>
+                                                            <div class="number"> 14 </div>
+                                                        </div> --}}
+                                                    </div>
+                                                    <a href="#notifications">
+                                                        <div class="tile  bg-blue-hoki"  >
                                                         <div class="tile-body">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
@@ -109,39 +128,29 @@
                                                             <div class="number"> {{$notifications->count()}}</div>
                                                         </div>
                                                     </div>
-                                                    <div class="tile double selected bg-green-turquoise">
-                                                        <div class="corner"> </div>
-                                                        <div class="check"> </div>
-                                                        <div class="tile-body">
-                                                            <h4>support@brandoscope.com</h4>
-                                                            <p> Re: Metronic v1.2 - Project Update! </p>
-                                                            <p> 24 March 2013 12.30PM confirmed for the project plan update meeting... </p>
-                                                        </div>
-                                                        <div class="tile-object">
-                                                            <div class="name">
-                                                                <i class="fa fa-envelope"></i>
-                                                            </div>
-                                                            <div class="number"> 14 </div>
-                                                        </div>
-                                                    </div>
+                                                    </a>
+                                                    
+                                                   <a href="#members">
                                                     <div class="tile selected bg-yellow-saffron">
                                                         <div class="corner"> </div>
                                                         <div class="tile-body">
                                                             <i class="fa fa-user"></i>
                                                         </div>
-                                                       
-                                                        <div class="tile-object">
-                                                             @if(isset($userscount))
                                                         
+                                                        <div class="tile-object">
+                                                            @if(isset($userscount))
+                                                            
                                                             <div class="name"> Members </div>
                                                             <div class="number"> {{$userscount->count()}} </div>
                                                             
-                                                        @endif
+                                                            @endif
                                                         </div>
-                                                       
+                                                        
                                                     </div>
-                                                    <div class="tile double bg-blue-madison">
-                                                      @if(isset($latest_posts))
+                                                   </a>
+                                                    <a href="#News">
+                                                        <div class="tile double bg-blue-madison">
+                                                        @if(isset($latest_posts))
                                                         <div class="tile-body">
                                                             
                                                             <h4>{{Str::limit($latest_posts->slug,10)}}</h4>
@@ -151,10 +160,12 @@
                                                             <div class=" name uppercase"> {{$latest_posts->user->first_name}} {{$latest_posts->user->last_name}} </div>
                                                             <div class="number"> {{$latest_posts->created_at}} </div>
                                                         </div>
-                                                       @endif
+                                                        @endif
                                                     </div>
+                                                    </a>
                                                     
-                                             
+                                                    
+                                                    
                                                     
                                                     <div class="tile bg-blue-steel">
                                                         <div class="tile-body">
@@ -166,12 +177,12 @@
                                                         </div>
                                                     </div>
                                                     
-                                                   
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- end page portlet light-->
-                                        <div class="portlet light" id="notification">
+                                        <div class="portlet light" id="members">
                                             
                                             <div class="portlet-title uppercase">
                                                 <div class="panel bg-grey">
@@ -193,11 +204,9 @@
                                                         <div class="tile-body">
                                                             <br>
                                                             
-
                                                             <h3 class="uppercase"> {{ $user->first_name}} {{ $user->last_name}}</h3>
                                                             <p>{{$user->email}}</p>
                                                             <p>{{$user->role->name}}</p>
-
                                                             
                                                         </div>
                                                         <div class="tile-object">
@@ -218,7 +227,7 @@
                                             </div>
                                         </div>
                                         <!-- end members -->
-                                        <div class="portlet light" id="notification">
+                                        <div class="portlet light" id="News">
                                             
                                             <div class="portlet-title uppercase">
                                                 <div class="panel ">
@@ -226,7 +235,7 @@
                                                         <h1 >
                                                         News
                                                         </h1>
-                                                      
+                                                        
                                                     </div>
                                                     
                                                 </div>
@@ -234,37 +243,36 @@
                                             <div class="portlet-body">
                                                 
                                                 <div class="tiles">
-                                                  
-                                                     <div class="panel-group">
-                                                         <!-- start pinned article -->
-                                                         
+                                                    
+                                                    <div class="panel-group">
+                                                        <!-- start pinned article -->
+                                                        
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading caption">
                                                                 <h3 class="panel-title caption uppercase">
-                                                               Pinned News
-
+                                                                Pinned News
                                                                 </h3>
                                                             </div>
                                                             
                                                         </div>
-
-                                                        @if(isset($pin_arts) && isset($arts))
-                                                        @foreach(($pin_arts as $pin_art) && ($arts as $art))
+                                                        @if(isset($pin_arts))
+                                                        @foreach($pin_arts as $pin_art)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
-                                                                <a href="{{url('viewarticleadmin/' . $art->id)}}">{{Str::limit($pin_art->slug, 100)}}</a>
+                                                                <a href="{{url('viewarticleadmin/' . $pin_art->news->id)}}">{{Str::limit($pin_art->news->slug, 100)}}</a>
                                                             </div>
-                                                           
+                                                            
                                                         </div>
                                                         
                                                         @endforeach
                                                         
-                                                       
+                                                        
                                                         @endif
-                                                       
-                                                        <!-- end pinned article -->
 
+                                                       
+                                                        
+                                                        <!-- end pinned article -->
                                                         <!-- title top stories-->
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading caption">
@@ -290,7 +298,7 @@
                                                                     <br>
                                                                     <a href="{{url('viewarticleadmin/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     <br>
-                                                                
+                                                                    
                                                                     <hr>
                                                                     Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
                                                                 </div>
@@ -328,7 +336,7 @@
                                                                     <br>
                                                                     <a href="{{url('viewarticleadmin/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     <br>
-                                                                  
+                                                                    
                                                                     <hr>
                                                                     Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
@@ -350,7 +358,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
-                                                         @if(isset($arts)&&isset($sports))
+                                                        @if(isset($arts)&&isset($sports))
                                                         @foreach($sports->news as $sport)
                                                         
                                                         <div class="panel panel-info">
@@ -365,7 +373,7 @@
                                                                     <br>
                                                                     <a href="{{url('viewArticleAdmin/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     <br>
-                                                                  
+                                                                    
                                                                     <hr>
                                                                     Posted at {{$art->created_at}} by {{$art->user->first_name}}
                                                                 </div>
@@ -387,7 +395,7 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
-                                                         @if(isset($arts)&&isset($politics))
+                                                        @if(isset($arts)&&isset($politics))
                                                         @foreach($politics->news as $politics)
                                                         
                                                         <div class="panel panel-info">
@@ -414,8 +422,8 @@
                                                         {{$news->links() }}
                                                         <!-- end entertainment -->
                                                         <!-- end profile -->
-                                                         <!-- All news-->
-                                                        <div class="panel panel-success">
+                                                        <!-- All news-->
+                                                        <div class="panel panel-success" >
                                                             <div class="panel-heading caption">
                                                                 <h3 class="panel-title caption uppercase">
                                                                 News
@@ -423,7 +431,7 @@
                                                             </div>
                                                             
                                                         </div>
-                                                        @if(isset($arts)&&isset($newSearchs))
+                                                        @if(isset($newSearchs))
                                                         @foreach($newSearchs as $newSearch)
                                                         
                                                         <div class="panel panel-info">
@@ -436,11 +444,12 @@
                                                                 <div class="panel-body">{{ Str::limit($newSearch->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewarticleadmin/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                     @if(isset($newSearch->pinned_art) && ($newSearch->pinned_art == 0))
-                                                                    <a href="{{url('pinnednews/' . $art->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
-                                                                    @elseif(isset($newSearch->pinned_art) && ($newSearch->pinned_art == 1))
-                                                                    <a href="{{url('unpinnednews/' . $art->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>
+                                                                    <a href="{{url('viewarticleadmin/' . $newSearch->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                   
+                                                                     @if(!$newSearch->isPinned($newSearch->id)) 
+                                                                    <a href="{{url('pinnednews/' . $newSearch->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
+                                                                    @else
+                                                                    <a href="{{url('unpinnednews/' . $newSearch->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>
                                                                     @endif
                                                                     <br>
                                                                     <hr>
@@ -452,23 +461,23 @@
                                                         
                                                         @endforeach
                                                         
-                                                      @endif
+                                                        @endif
                                                         <!-- end all news -->
-                                                       
+                                                        
                                                     </div>
                                                 </div>
                                                 
                                             </div>
-
                                         </div>
                                         <!-- end notification -->
-                                         <div class="portlet light" id="notification">
+                                        <div id="notifications">
+                                           <div class="portlet light" >
                                             
                                             <div class="portlet-title uppercase">
                                                 <div class="panel bg-grey">
                                                     <div class="panel-heading caption">
                                                         <h1 >
-                                                       Notifications
+                                                        Notifications
                                                         </h1>
                                                         
                                                     </div>
@@ -478,33 +487,33 @@
                                             <div class="portlet-body">
                                                 
                                                 <div class="tiles">
-                                                     @if(isset($notifications))
+                                                    @if(isset($notifications))
                                                     @foreach($notifications as $notification)
                                                     <div class="panel panel-bg-green">
                                                         <div class="panel-heading">
                                                             
-                                                         
-                                                             {{ $notification->userauth->first_name}} {{ $notification->acttype->name}} at {{$notification->created_at}}                                                      
+                                                            
+                                                            {{ $notification->userauth->first_name}} {{ $notification->acttype->name}} at {{$notification->created_at}}
                                                         </div>
-                                                       
+                                                        
                                                     </div>
                                                     @endforeach
                                                     @else
                                                     <div class="tile-body">
-                                                            <br>
-                                                            
-
-                                                            <h3>No User Yet</h3>
-
-                                                            
-                                                        </div>
+                                                        <br>
+                                                        
+                                                        <h3>No User Yet</h3>
+                                                        
+                                                    </div>
                                                     @endif
                                                     
                                                 </div>
                                                 
                                             </div>
                                         </div>
-                                        <!--end notifier -->
+                                        <!--end notifier --> 
+                                        </div>
+                                        
                                     </div>
                                     
                                 </div>
