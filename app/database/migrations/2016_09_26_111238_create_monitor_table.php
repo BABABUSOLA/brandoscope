@@ -20,7 +20,7 @@ class CreateMonitorTable extends Migration {
 			$table->string('email');
 			$table->string('phone_number');
 			$table->integer('company_id')->unsigned();
-			$table->foreign('company_id')->references('id')->on('companies');
+			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

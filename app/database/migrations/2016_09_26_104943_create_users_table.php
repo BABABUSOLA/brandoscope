@@ -21,10 +21,10 @@ class CreateUsersTable extends Migration {
 			$table->string('mobile_phone', 20);
 			$table->string('password', 64);
 			$table->integer('role_id')->unsigned();
-			$table->foreign('role_id')->references('id')->on('roles');
+			$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('remember_token', 100)->nullable();
 			$table->integer('user_id')->unsigned()->nullable();
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

@@ -19,11 +19,11 @@ class CreateNewsTable extends Migration {
 			$table->text('text');
 			// $table->boolean('pinned_art')->default(0);
 			$table->integer('tag_id')->unsigned();
-			$table->foreign('tag_id')->references('id')->on('tags');
+			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('category_id')->unsigned();
-			$table->foreign('category_id')->references('id')->on('categories');
+			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

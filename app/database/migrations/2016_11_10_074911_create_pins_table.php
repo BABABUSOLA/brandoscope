@@ -17,9 +17,9 @@ class CreatePinsTable extends Migration {
 			//
 			$table->increments('id');
 			$table->integer('news_id')->unsigned();
-			$table->foreign('news_id')->references('id')->on('news');
+			$table->foreign('news_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

@@ -100,7 +100,7 @@ class articlesController extends BaseController {
 
 				$sports = Category::where('name','=','sports')->first();
 				$pin_arts = Pin::where('user_id','=',Auth::User()->id)->get();
-				
+
 				$politics= Category::where('name','=','politics')->first();
 
 
@@ -179,6 +179,7 @@ class articlesController extends BaseController {
 				$Activity = new Activity;
 				$Activity->authenticated_user_id = Auth::User()->id;
 				$Activity->activity_type_id = 6;
+				$Activity->save();
 				if ($noneed->delete() && $Activity->save())
 				{
 				Return Redirect::back()->withMessage('article deleted Successfully');
