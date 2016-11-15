@@ -87,55 +87,57 @@
                             <div class="portlet box">
                                 
                                 <div class="portlet-body form">
-                                    {{Form::open(array('route'=>'storeArticle','class'=>'login-form'))}}
+
+                                    {{Form::open(array('route'=> array('updateArticle',$article->id)))}}
                                     <fieldset>
                                         <div class="form-body">
                                             <div class="form-group">
-                                                {{ Form::text('slug','',array('class'=>'form-control','placeholder'=>'Title','required data validation-required-message'=>'Please the title'))}}
+                                                {{ Form::text('slug',$article->slug,array('class'=>'form-control'))}}
                                                 
                                             </div>
                                             <div class="form-group">
-                                                {{ Form::textarea('text','',array('class'=>'form-control','placeholder'=>'Body','required data validation-required-message'=>'Please enter your text'))}}
+                                                {{ Form::textarea('text',$article->text,array('class'=>'form-control'))}}
                                                 
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">
                                                      
-                                                            @if(isset($cats2))
-                                                            {{ Form::select('category_id',$cats2,array('class'=>'form-control col-md-9','placeholder'=>'Section','required data validation-required-message'=>'please select the category'))}}
-                                                            @endif
+                                                           {{--  @if(isset($cats2)) --}}
+                                                            {{ Form::select('category_id',$cats2,array('class'=>'form-control col-md-9','placeholder'=>'Section'))}}
+                                                           {{--  @endif --}}
                                                         
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <div class="controls">
-                                                            
-                                                        </div>
+                                                           {{-- <input class="hidden" value="{{$user->id}}" name="user_id"> 
+                                                        </div> --}}
+                                                        {{Form::hidden('user_id',$user->id)}}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-9">
                                                     <div class="form-group">
-                                                         @if(isset($tags2))
-                                                            {{ Form::select('tag_id',$tags2,array('class'=>'form-control ','placeholder'=>'Tags','required data validation-required-message'=>'please select the tag'))}}
-                                                            @endif
+                                                        {{--  @if(isset($tags2)) --}}
+                                                            {{ Form::select('tag_id',$tags2,array('class'=>'form-control '))}}
+                                                      {{--       @endif --}}
                                                         
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="btn-group btn-group-solid">
+                                            {{-- <div class="btn-group btn-group-solid">
                                                
                                                  {{link_to_route('editArticle','Edit','',array('class'=>'btn btn-warning pull-left'))}}
                                             </div>
-                                           
+                                            --}}
                                             <div class=" pull-right">
                                                 
-                                                <button class="btn btn-success " type="submit">Upload
-                                                </button>
-                                               
+                                               {{--  <button class="btn btn-success " type="submit">Upload
+                                                </button> --}}
+                                               {{Form::submit('Upload',array('class'=>'btn btn-success'))}}
                                             </div>
                                         </div>
                                     </fieldset>

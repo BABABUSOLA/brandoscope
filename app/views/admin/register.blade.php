@@ -42,7 +42,7 @@
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                        
-                        {{ Form::text('first_name','',array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
+                        {{ Form::text('first_name','',array('class'=>'form-control','placeholder'=>'First name'))}}
                         
                          </div>
                          <div>
@@ -71,7 +71,7 @@
                     <div class="input-icon">
                         <i class="fa fa-envelope"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />  --}}
-                        {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
+                        {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'Email',))}}
                        
                     </div>
                     <div>
@@ -85,7 +85,7 @@
                     <div class="input-icon">
                         <i class="fa fa-phone-square"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="text" placeholder="mobile_phone" name="mobile_phone" /> --}}
-                        {{ Form::input('tel','mobile_phone','',array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
+                        {{ Form::input('tel','mobile_phone','',array('class'=>'form-control','placeholder'=>'Mobile Phone number'))}}
                         
                          </div>
                          <div>
@@ -100,7 +100,7 @@
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password" placeholder="Password" name="password" />  --}}
-                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
+                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password'))}}
                         
                     </div>
                     <div>
@@ -115,7 +115,7 @@
                         <div class="input-icon">
                             <i class="fa fa-check"></i>
                             {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> --}}
-                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
+                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password'))}}
                              
                              </div>
                              <div>

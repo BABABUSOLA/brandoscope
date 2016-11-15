@@ -174,7 +174,15 @@
                                                                                     
                                                                                 </div>
                                                                                 <!-- end title top stories -->
-                                                                                
+                                                                                 @if(count($news) < 1)
+                                                                                <div class="panel panel-info ">
+                                                                                    <div class=" panel-heading " style="text-align:center"> There is no result found for  <strong> {{$keyword}}</strong> </div>
+                                                                                    <!-- to view the particular dashboard of the user -->
+                                                                                    <div class="panel-body" style="text-align:center">
+                                                                                        Please search for another word or click on this <a href="{{url('userdash')}}">link</a> to go back to your homepage
+                                                                                    </div>
+                                                                                </div>
+                                                                                @endif
                                                                                 <div class="panel panel-info">
                                                                                     @foreach($news as $new)
                                                                                     <div class="panel-heading caption">

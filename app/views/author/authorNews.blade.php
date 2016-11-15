@@ -111,7 +111,6 @@
                                                 <div class="panel panel-info">
                                                     
                                                     <div class="panel-heading">
-
                                                         <h1 class="font-green sbold uppercase">{{Auth::User()->first_name}} {{Auth::User()->last_name}} </h1>
                                                         
                                                         <p>
@@ -131,22 +130,7 @@
                                                     </div>
                                                     
                                                 </div>
-                                                <!-- start pinned articles -->
-                                                <div class="panel panel-success">
-                                                    <div class="panel-heading">
-
-                                                        PINNED ARTICLE
-                                                    </div>
-                                                    @if(isset($pin_arts))
-                                                    @foreach($pin_arts as $pin_art)
-                                                    <div class="portlet-title">
-                                                        <br>
-                                                  
-                                                        <a href="{{url('viewArticle/' . $pin_art->news->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
-                                                    </div>
-                                                    @endforeach
-                                                    @endif
-                                                </div>
+                                                
                                                 <!-- start categories -->
                                                 @if(isset($categories))
                                                 <div class="panel panel-info">
@@ -185,6 +169,26 @@
                                             <div class="tab-content">
                                                 <div id="tab_1_1" class="tab-pane active">
                                                     <div class="panel-group">
+                                                        <!-- pinned news  -->
+                                                        <div class="panel panel-success">
+                                                            <div class="panel-heading caption">
+                                                                <div class="panel-title caption uppercase">
+                                                                    Pinned News
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @if(isset($pin_arts))
+                                                        @foreach($pin_arts as $pin_art)
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-body">
+                                                                
+                                                                <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        @endforeach
+                                                        @endif
+                                                        <!-- end pinned news -->
                                                         <!-- title top stories-->
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading caption">
@@ -209,7 +213,7 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                   
+                                                                    
                                                                     <br>
                                                                     <hr>
                                                                     
@@ -354,13 +358,13 @@
                                                                 </h3>
                                                             </div>
                                                             <div id="accordion1_1" class="panel">
-                                                                <div class="panel-body">{{ Str::limit($newSearch->text, 300) }} 
+                                                                <div class="panel-body">{{ Str::limit($newSearch->text, 300) }}
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $newSearch->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     
-                                                                  
-                                                                     @if(!$newSearch->isPinned($newSearch->id)) 
+                                                                    
+                                                                    @if(!$newSearch->isPinned($newSearch->id))
                                                                     <a href="{{url('pinnednews/' . $newSearch->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
                                                                     @else
                                                                     <a href="{{url('unpinnednews/' . $newSearch->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>

@@ -38,33 +38,38 @@ class UsersController extends BaseController
 		public function store()
 		{
 			$validate = Validator::make(Input::all(), array(
-'first_name' => 'required|min:4',
-'last_name' => 'required|min:4',
-'password' => 'required|min:6',
-'confirm_password' => 'required|same:password',
-'email' => 'required|unique:users|min:10',
-'mobile_phone' => 'required|min:11',
-));
-if ($validate->fails()) {
-	// dd($validate);
-return Redirect::route('register')->withErrors($validate)->withInput();
-}
-else{
-}
+			'first_name' => 'required|min:4',
+			'last_name' => 'required|min:4',
+			'password' => 'required|min:6',
+			'confirm_password' => 'required|same:password',
+			'email' => 'required|unique:users|min:10',
+			'mobile_phone' => 'required|digits:11',
+			));
+			if ($validate->fails()) {
+				// dd($validate);
+			return Redirect::route('register')->withErrors($validate)->withInput();
+			}
+			else
+			{
+			
 			$data=Input::all();
 			$role_id = $data['role_id'];
 			
 			$data['password']=Hash::make($data['password']);
 			$user = new User;
 			$user->fill($data);
-			
+			// if($user->save())
+			// {
+			// 	Auth::login($user);
+			// 	return Redirect::route('home')->with('success','You registered successfully');
+			// }
 			$user->save();
 			
 				// $Activity = new Activity;
 				// $Activity->authenticated_user_id = Auth::User()->id;
 				// $Activity->activity_type_id = 9;
 				// if ($user->save() && $Activity->save())
-			{
+			
 			$email = Input::get('email');
 			$first_name = Input::get('first_name');
 			$last_name = Input::get('last_name');
@@ -79,22 +84,37 @@ else{
 				{
 					$message->to($info[0],$info[1])->subject('Welcome to Brandoscope' );
 				});
-			}
+			
 			
 			if($role_id === '3')
 			{
-				
-				return View::make('admin.registerAdmin')->with('userid',$user->id);
+				Session::put('userid',$user->id);
+				return Redirect::to('adminregister');
 			}
-			else
+			if($role_id === '2')
 			{
-				return Redirect::to('login')->withMessage('Registration successful. Please login!');
+				Auth::login($user);
+				return Redirect::to('authorprofile')->withMessage('Registration successful.Welcome!');
+			}
+			if($role_id === '1')
+			{
+				Auth::login($user);
+				return Redirect::to('userdash')->withMessage('Registration successful.Welcome!');
 			}
 			
 				return Redirect::to('register')->withErrors('Invalid input');
-			 
+			
 			
 			}
+		}
+
+		public function registerAdmin()
+		{
+				$user = Auth::User();
+				$userid= Session::get('userid');
+				
+				return View::make('admin.registerAdmin')->with('userid',$userid);
+		}
 		public function storeadmin()
 		{
 			$user = new User;
@@ -173,12 +193,20 @@ else{
 				
 				return View::make('users.login')->withErrors('Invalid email or password');
 			}
-			public function contacts()
-			{
-				Return View::make('users.contact');
-			}
-
+			
 			public function admincont()
+			{
+				$regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+				$validate = Validator::make(Input::all(), array(
+				'name' => 'required|unique:companies|min:4',
+				'address' => 'required|min:15',
+				'website' =>'sometimes|required|regex:'.$regex,
+				));
+				if ($validate->fails()) {
+					// dd($validate);
+				return Redirect::to('adminregister')->withErrors($validate)->withInput();
+				}
+				else
 			{
 				$company = new Company;
 				$data=Input::all();
@@ -186,21 +214,23 @@ else{
 				$company->save();
 			
 			if($company->save())
-			{
-			$companyname = Input::get('name');
-			$address = Input::get('address');
-			$website = Input::get('website');
-			$app_status = 'successful';
-			
-			
+				{
+
+				$companyname = Input::get('name');
+				$address = Input::get('address');
+				$website = Input::get('website');
+				$app_status = 'successful';
+			Auth::login($company);
+			return Redirect::to('adminihome')->withMessage('Welcome to Brandoscope!');
+				}
 			}
-			
 				
-				return Redirect::to('adminihome')->withMessage('Welcome to Brandoscope!');
-			}
+		}
 			public function adminhomepage()
 			{
+
 				$userid =Session::get('userid');
+			
 				$users = User::orderBy('id','desc')->where('user_id',$userid)->take(5)->get();
 				$userscount = User::where('user_id',$userid)->get();
 				$user = User::all();
@@ -211,7 +241,6 @@ else{
 				$latest_posts = News::orderBy('id','desc')->first();
 				$categories = Category::paginate(20);
 				
-
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 				$notifications = Activity::where('authenticated_user_id', Auth::User()->id)->get();
 				
@@ -221,6 +250,18 @@ else{
 				
 				Return View::make('admin.adminiHome')->with('users',$users)->with('userscount',$userscount)->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('user',$user)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics)->with('latest_posts',$latest_posts)->with('users',$users)->with('notifications',$notifications)->with('newSearchs',$newSearchs)->with('pin_arts',$pin_arts);
 			}
+			public function isAdmin()
+			{
+				$how = Auth::user()->role->id;
+				if ($how == 3)
+				{
+				return true;
+				}
+			else
+				{
+				return false;
+				}
+			}
 			public function userdash()
 				{
 				$user = User::all();
@@ -229,11 +270,11 @@ else{
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				$categories = Category::paginate(20);
 				$pin_arts = Pin::where('user_id','=',Auth::User()->id)->get();
-
+				
 				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 				$sports = Category::where('name','=','sports')->first();
 				$politics= Category::where('name','=','politics')->first();
-				$news_arts = News::orderBy('id','desc')->take(5)->get();
+				$news_arts = News::orderBy('id','desc')->paginate(15);
 				
 				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics)->with('pin_arts',$pin_arts);
 			}
@@ -274,9 +315,9 @@ else{
 				
 				$new = News::find($id);
 				
-				$newArts = News::all();
+				$arts = News::all();
 								
-				Return View::make('users.userviewarticle')->with('categories',$categories)->with('newArts',$newArts)->with('new',$new);
+				Return View::make('users.userviewarticle')->with('categories',$categories)->with('arts',$arts)->with('new',$new);
 			}
 			public function viewArticleCategory($id)
 			{
@@ -308,7 +349,6 @@ else{
 				$arts = News::orderBy('id','desc')->take(5)->get();
 				
 			
-
 				$keyword = Input::get('keyword');
 				$tags = Tag::all();
 				$news = News::all();
@@ -316,6 +356,5 @@ else{
 				$cats  = Category::all();
 				$newSearchs = News::orderBy('id','desc')->take(10)->get();
 				Return View::make('admin.searchAdmin')->with('news',News::where('slug','LIKE','%'.$keyword.'%')->paginate(10))->with('keyword',$keyword)->with('cats',$cats)->with('tags',$tags)->with('newSearchs',$newSearchs);
-
 			}
 	}

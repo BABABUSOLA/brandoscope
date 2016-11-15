@@ -172,7 +172,7 @@
                                                                                 
                                                                             </fieldset>
                                                                             {{Form::close()}}
-                                                                            <button class="btn blue pull-right" onclick="doThis()" id="edit">Edit</button>
+                                                                           
                                                                             <!-- END REGISTRATION FORM -->
                                                                             
                                                                         </div>

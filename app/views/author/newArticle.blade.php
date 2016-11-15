@@ -107,12 +107,12 @@
                                                         
                                                     </div>
                                                     
-                                                    <input class="hidden" value="{{$user2->id}}" name="user_id">
+                                                    
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <div class="controls">
-                                                            
+                                                           <input class="hidden" value="{{$user2->id}}" name="user_id"> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -128,7 +128,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div class="btn-group btn-group-solid">
+                                           {{--  <div class="btn-group btn-group-solid">
                                                
                                                  {{link_to_route('editArticle','Edit','',array('class'=>'btn btn-warning pull-left'))}}
                                             </div> --}}

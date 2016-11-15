@@ -119,21 +119,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <!-- start pinned article -->
-                                                 <div class="panel panel-success">
-                                                <div class="panel-heading">
-                                                    PINNED ARTICLE
-                                                </div>
-                                                 @if(isset($pin_arts))
-                                                    @foreach($pin_arts as $pin_art)
-                                                    <div class="portlet-title">
-                                                        <br>
-                                                  
-                                                        <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
-                                                    </div>
-                                                    @endforeach
-                                                    @endif
-                                            </div>
+                                           
                                                 <!-- start categories -->
                                                 
                                                 <div class="panel panel-info">
@@ -170,6 +156,24 @@
                                             <div class="tab-content">
                                                 <div id="tab_1_1" class="tab-pane active">
                                                     <div class="panel-group">
+                                                        <!-- pinned news  -->
+                                                        <div class="panel panel-success">
+                                                            <div class="panel-heading caption">
+                                                                <div class="panel-title caption uppercase">
+                                                                    Pinned News
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                          @if(isset($pin_arts))
+                                                    @foreach($pin_arts as $pin_art)
+                                                        <div class="panel-body">
+                                                          <br>
+                                                  
+                                                        <a href="{{url('viewArticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
+                                                        </div>
+                                                         @endforeach
+                                                    @endif
+                                                        <!-- end pinned news -->
                                                         <!-- title top stories-->
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading caption">
@@ -220,7 +224,9 @@
                                                                     {{ Str::limit($userArticle->text, 300) }}
                                                                                     <br>
                                                                                     <a href="{{url('viewArticle/' . $userArticle->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                                    <a href="{{url('delarticle/' . $userArticle->id)}}"><button class="btn btn-info pull-right" >Delete</button></a> 
+                                                                                    <a href="{{url('delarticle/' . $userArticle->id)}}"><button class="btn btn-info pull-right" >Delete</button></a>
+                                                                                    <a href="{{url('editArticle/' . $userArticle->id)}}"><button class="btn btn-warning pull-left" >Edit</button></a> 
+                                                                                     
                                                                     
                                                                 </div>
 

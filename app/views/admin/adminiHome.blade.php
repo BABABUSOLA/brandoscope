@@ -10,12 +10,15 @@
                     <div class="page-header-top">
                         <div class="container">
                             <div class="page-logo font-blue-steel" style="font-size:30px; padding-top:10px;">
-                                @if($users->role_id =! 3)
+                               
+                      @if(isset($company))
+                     {{--  dd({{Auth::User()->company->name}}); --}}
+            
+                                <strong>{{$company->name}}</strong>
+                            @else
                                 <strong>BRANDOSCOPE</strong>
-                                @else
-                             
-                                <strong>{{Auth::User()->first_name}}</strong>
-                                @endif
+                        @endif      
+                               
                             </div>
                             
                             <!-- BEGIN TOP NAVIGATION MENU -->

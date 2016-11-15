@@ -163,6 +163,7 @@
                                                                     
                                                                     <div class="tab-content">
                                                                         <div id="tab_1_1" class="tab-pane active">
+                                                                            
                                                                             @if(isset($news))
                                                                             <div class="panel-group">
                                                                                 <!-- title top stories-->
@@ -175,7 +176,15 @@
                                                                                     
                                                                                 </div>
                                                                                 <!-- end title top stories -->
-                                                                                
+                                                                                @if(count($news) < 1)
+                                                                                <div class="panel panel-info ">
+                                                                                    <div class=" panel-heading " style="text-align:center"> There is no result found for {{$keyword}}</div>
+                                                                                    <!-- to view the particular dashboard of the user -->
+                                                                                    <div class="panel-body" style="text-align:center">
+                                                                                        Please search for another word or click on this <a href="{{url('authorprofile')}}">link</a> to go back to your homepage
+                                                                                    </div>
+                                                                                </div>
+                                                                                @endif
                                                                                 <div class="panel panel-info">
                                                                                     @foreach($news as $new)
                                                                                     <div class="panel-heading caption">

@@ -50,21 +50,6 @@
                             </a>
                             
                         </li>
-                        {{-- <li class="menu-dropdown ">
-                            <a href="{{('#about')}}"> ARTICLE
-                                <span class="arrow"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="{{url('newArticle')}}" class="nav-link"> New Article</a>
-                                </li>
-                                <li>
-                                    <a href="#">Edit Article</a>
-                                </li>
-                            </ul>
-                            
-                        </li> --}}
-                        
                         
                     </div>
                     <!-- END MEGA MENU -->
@@ -162,6 +147,27 @@
                                             <div class="tab-content">
                                                 <div id="tab_1_1" class="tab-pane active">
                                                     <div class="panel-group">
+                                                         <!-- pinned news  -->
+                                                        <div class="panel panel-success">
+                                                            <div class="panel-heading caption">
+                                                                <div class="panel-title caption uppercase">
+                                                                    Pinned News
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                         @if(isset($pin_arts))
+                                                    @foreach($pin_arts as $pin_art)
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">
+                                                               
+                                                        <a href="{{url('userviewarticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
+                                                            </div>
+                                                        </div>
+                                                           @endforeach
+                                                    @endif
+                                                       
+                                                       
+                                                        <!-- end pinned news -->
                                                         <!-- title top stories-->
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading caption">
@@ -172,6 +178,7 @@
                                                             
                                                         </div>
                                                         <!-- end title top stories -->
+                                                        @if(isset($arts))
                                                         @foreach($arts as $art)
                                                         
                                                         <div class="panel panel-info ">
@@ -197,6 +204,7 @@
                                                         </div>
                                                         
                                                         @endforeach
+                                                        @endif
                                                         {{$news->links() }}
                                                         <!-- start entertainment -->
                                                         
@@ -310,7 +318,7 @@
                                                         {{$news->links() }}
                                                         <!-- end entertainment -->
                                                         <!-- start news -->
-                                                      {{--   
+                                                        
                                                         <div class="panel panel-success">
                                                             <div class="panel-heading caption">
                                                                 <h3 class="panel-title caption uppercase">
@@ -319,6 +327,7 @@
                                                             </div>
                                                             
                                                         </div>
+
                                                          @if(isset($news_arts))
                                                         @foreach($news_arts as $news_art)
                                                         
@@ -333,9 +342,10 @@
                                                                     <br>
                                                                     <br>
                                                                     <a href="{{url('viewArticle/' . $news_art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
-                                                                     @if(isset($news_art->pinned_art) && ($news_art->pinned_art == 0))
+                                                                    
+                                                                    @if(!$news_art->isPinned($news_art->id)) 
                                                                     <a href="{{url('pinnednews/' . $news_art->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
-                                                                    @elseif(isset($news_art->pinned_art) && ($news_art->pinned_art == 1))
+                                                                    @else
                                                                     <a href="{{url('unpinnednews/' . $news_art->id)}}"><button class="btn btn-info pull-left" >unPin</button></a>
                                                                     @endif
                                                                     <br>
@@ -352,7 +362,7 @@
                                                             {{$news_arts->links() }}
                                                         </div>
                                                         @endif
-                                                        <!-- end news --> --}}
+                                                        <!-- end news -->
                                                     </div>
                                                 </div>
                                             </div>

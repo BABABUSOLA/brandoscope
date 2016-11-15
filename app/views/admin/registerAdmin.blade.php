@@ -27,7 +27,25 @@
             {{Form::open(array('route'=>'adminRegCont','class'=>'login-form'))}}
           
             <fieldset>
-                
+                 @if(Session::has('message'))
+                    <div class="col-md-10">
+                        <div class="alert alert-info">
+                            {{ Session::get('message') }}
+                        </div>
+                    </div>
+                    @endif
+
+                    @if(count($errors) > 0)
+             <div class="panel panel-danger">
+                <div class="panel panel-heading"> <strong>Please enter the correct input values</strong>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+             </div>
+             @endif
                 <h4><strong> CONTINUE COMPANY REGISTRATION TO BRANDOSCOPE</strong></h4>
                 <p> Enter your personal details below: </p>
                 <div class="form-group">
@@ -35,7 +53,7 @@
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                         
-                        {{ Form::text('name','',array('class'=>'form-control','placeholder'=>'Company name','required data validation-required-message'=>'Please enter your  company name'))}}
+                        {{ Form::text('name','',array('class'=>'form-control','placeholder'=>'Company name'))}}
                     </div>
                 </div>
                
@@ -45,7 +63,7 @@
                     <div class="input-icon">
                         <i class="fa fa-envelope"></i>
                        
-                        {{ Form::text('address','',array('class'=>'form-control','placeholder'=>'Company Address','required data validation-required-message'=>'Please enter your Company Address'))}}
+                        {{ Form::text('address','',array('class'=>'form-control','placeholder'=>'Company Address'))}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -53,7 +71,7 @@
                     <div class="input-icon">
                         <i class="fa fa-phone-square"></i>
                        
-                        {{ Form::text('website','',array('class'=>'form-control','placeholder'=>'Company website'))}}
+                        {{ Form::url('website','',array('class'=>'form-control','placeholder'=>'https://www.example.com'))}}
                     </div>
                 </div>
                     @if(isset($userid))

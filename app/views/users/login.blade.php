@@ -32,7 +32,7 @@
                         </div>
              
              @elseif (Session::has('fail'))
-                        <div class="panel panel-info">
+                        <div class="panel panel-danger">
                             <div class="panel-heading"> {{Session::get('fail')}}</div>
                         </div>
              @endif

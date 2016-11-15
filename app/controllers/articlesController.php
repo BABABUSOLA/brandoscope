@@ -39,14 +39,31 @@ class articlesController extends BaseController {
 				
 			}
 			
-			public function editArticle()
+			public function editArticle($id)
 			{
+				$user = Auth::User();
+				$article = News::find($id);
+				// dd($article->id);
+				$userArticles = News::orderBy('id','desc')->take(10)->where('user_id', '=', $article->id)->get();
 				$article_roles = Role::get();
 				$article_cat = Category::get();
 				$article_tag = Tag::get();
 				$cats=  Category::lists('name','id');
 				$tags= Tag::lists('name','id');
-				Return View::make('author.editArticle')->with(['roles'=>$article_roles, 'cats2'=>$cats,'cats'=>$article_cat, 'tags'=>$article_tag, 'tags2'=>$tags]);
+				Return View::make('author.editArticle')->with(['roles'=>$article_roles, 'cats2'=>$cats,'cats'=>$article_cat, 'tags'=>$article_tag, 'tags2'=>$tags,'userArticles'=>$userArticles,'article'=>$article,'user'=>$user]);
+			}
+
+			public function authArticle($id)
+			{
+				
+				$article = News::find($id);
+				$data= Input::all();
+				$article->fill($data);
+				
+				$article->save();
+				
+				
+				Return Redirect::to('authorprofile');
 			}
 			public function articleDashboard()
 			{

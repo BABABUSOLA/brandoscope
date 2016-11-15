@@ -39,19 +39,14 @@
                                 <div class="hor-menu  ">
                                     <ul class="nav navbar-nav">
                                         <li class="menu-dropdown ">
-                                            <a href="{{url('homepage')}}"> HOME
+                                            <a href="{{url('/')}}"> HOME
                                                 <span class="arrow"></span>
                                             </a>
                                          
                                         </li>
-                                        <li class="menu-dropdown ">
-                                            <a href="#"> ABOUT
-                                                <span class="arrow"></span>
-                                            </a>
-                                            
-                                        </li>
+                                     
                                         <li class="menu-dropdown">
-                                            <a href="#"> CONTACTS
+                                            <a href="{{url('contact_request')}}"> CONTACTS
                                                 <span class="arrow"></span>
                                             </a>
                                             
@@ -79,7 +74,7 @@
                                     <!-- BEGIN PAGE BREADCRUMBS -->
                                     <ul class="page-breadcrumb breadcrumb">
                                         <li>
-                                            <a href="{{url('homepage')}}">Home</a>
+                                            <a href="{{url('/')}}">Home</a>
                                             <i class="fa fa-circle"></i>
                                         </li>
                                          <li>
@@ -100,14 +95,14 @@
                                                         <div class="c-content-title-1">
                                                             <h3 class="uppercase">Have a question?</h3>
                                                             <div class="c-line-left bg-dark"></div>
-                                                            <form action="#">
+                                                            {{-- <form action="#">
                                                                 <div class="input-group input-group-lg c-square">
                                                                     <input type="text" class="form-control c-square" placeholder="Ask a question" />
                                                                     <span class="input-group-btn">
                                                                         <button class="btn uppercase" type="button">Go!</button>
                                                                     </span>
                                                                 </div>
-                                                            </form>
+                                                            </form> --}}
                                                             <p>Ask your questions away and let our dedicated customer service help you look through our FAQs to get your questions answered!</p>
                                                         </div>
                                                     </div>
@@ -119,7 +114,40 @@
                                                             <div class="c-line-left bg-dark"></div>
                                                             <p class="c-font-lowercase">Our helpline is always open to receive any inquiry or feedback. Please feel free to drop us an email from the form below and we will get back to you as soon as we can.</p>
                                                         </div>
-                                                        <form action="#">
+                                                        {{Form::open(array('url'=>'contact_request'))}}
+                                                        <fieldset>
+                                                            @foreach($errors->all(':message')as $message)
+                                                            <ul>
+                                                                <li>
+                                                                     **{{$message}} 
+                                                                </li>
+                                                            </ul>
+                                                              
+                                                            @endforeach
+                                                            @if(Session::has('message'))
+                                                            {{Session::get('message')}}
+                                                            @endif
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                {{Form::text('name','',array('class'=>'form-control input-md','placeholder'=>'Your Name'))}}
+                                                            </div>
+                                                           
+                                                            <div class="form-group">
+                                                                {{Form::email('email','',array('class'=>'form-control input-md','placeholder'=>'Your Email'))}}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{Form::input('tel','mobile_phone','',array('class'=>'form-control input-md','placeholder'=>'Contact phone:080xxxxxxxx'))}}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{Form::textarea('message','',array('class'=>'form-control input-md','placeholder'=>'Write comment here...'))}}
+                                                            </div>
+                                                        </div>
+
+                                                        </fieldset>
+                                                       {{Form::reset('Clear',array('class'=>'btn grey '))}}
+                                                       {{Form::submit('Send',array('class'=>'btn info pull-right'))}}
+                                                        {{Form::close()}}
+                                                      {{--   <form action="#">
                                                             <div class="form-group">
                                                                 <input type="text" placeholder="Your Name" class="form-control input-md"> </div>
                                                             <div class="form-group">
@@ -130,7 +158,7 @@
                                                                 <textarea rows="8" name="message" placeholder="Write comment here ..." class="form-control input-md"></textarea>
                                                             </div>
                                                             <button type="submit" class="btn grey">Submit</button>
-                                                        </form>
+                                                        </form> --}}
                                                     </div>
                                                 </div>
                                             </div>

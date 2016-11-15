@@ -37,18 +37,17 @@
                 <fieldset>
                     
                 <h4><strong>REGISTER TO BRANDOSCOPE</strong></h4>
-               {{--  @foreach($errors as $error)
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                {{$validate}}
-                    </div>
-
+               
+             @if(count($errors) > 0)
+             <div class="panel panel-danger">
+                <div class="panel panel-heading"> <strong>Please enter the correct input values</strong>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                @endforeach --}}
-                 @if (Session::has('$validate'))
-                        <div class="panel panel-danger">
-                            <div class="panel-heading"> {{Session::get('$validate')}}</div>
-                        </div>
+             </div>
              @endif
                 <p> Enter your personal details below: </p>
                 <div class="form-group">
@@ -56,7 +55,7 @@
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                        
-                        {{ Form::text('first_name','',array('class'=>'form-control','placeholder'=>'First name','required data validation-required-message'=>'Please enter your  first name'))}}
+                        {{ Form::text('first_name','',array('class'=>'form-control','placeholder'=>'First name'))}}
                          </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +63,7 @@
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
                        {{--  <input class="form-control placeholder-no-fix" type="text" placeholder="last Name" name="last_name" /> --}}
-                       {{ Form::text('last_name','',array('class'=>'form-control','placeholder'=>'Last name','required data validation-required-message'=>'Please enter your  Last name'))}}
+                       {{ Form::text('last_name','',array('class'=>'form-control','placeholder'=>'Last name'))}}
                          </div>
                 </div>
                 <div class="form-group">
@@ -73,7 +72,7 @@
                     <div class="input-icon">
                         <i class="fa fa-envelope"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />  --}}
-                        {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'Email','required data validation-required-message'=>'Please enter your  Email'))}}
+                        {{ Form::email('email','',array('class'=>'form-control','placeholder'=>'Email'))}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -81,7 +80,7 @@
                     <div class="input-icon">
                         <i class="fa fa-phone-square"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="text" placeholder="mobile_phone" name="mobile_phone" /> --}}
-                        {{ Form::input('tel','mobile_phone','',array('class'=>'form-control','placeholder'=>'Mobile Phone number','required data validation-required-message'=>'Please enter your  mobile phone number.'))}}
+                        {{ Form::input('tel','mobile_phone','',array('class'=>'form-control','placeholder'=>'Mobile Phone number'))}}
                          </div>
                 </div>
         
@@ -90,7 +89,7 @@
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
                         {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="password" placeholder="Password" name="password" />  --}}
-                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password','required data validation-required-message'=>'Please enter a valid password'))}}
+                        {{ Form::password('password',array('class'=>'form-control','placeholder'=>'Enter Password'))}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -99,7 +98,7 @@
                         <div class="input-icon">
                             <i class="fa fa-check"></i>
                             {{-- <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> --}}
-                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password','required data validation-required-message'=>'Re-type your password'))}}
+                            {{ Form::password('confirm_password',array('class'=>'form-control','placeholder'=>'Re-type your password'))}}
                              </div>
                     </div>
                 </div>
