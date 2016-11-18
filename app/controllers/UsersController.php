@@ -230,7 +230,7 @@ class UsersController extends BaseController
 			{
 
 				$userid =Session::get('userid');
-			
+
 				$users = User::orderBy('id','desc')->where('user_id',$userid)->take(5)->get();
 				$userscount = User::where('user_id',$userid)->get();
 				$user = User::all();
@@ -241,12 +241,11 @@ class UsersController extends BaseController
 				$latest_posts = News::orderBy('id','desc')->first();
 				$categories = Category::paginate(20);
 				
-				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
 				$notifications = Activity::where('authenticated_user_id', Auth::User()->id)->get();
 				
-				$sports = Category::where('name','=','sports')->first();
-				$politics= Category::where('name','=','politics')->first();
-				
+				$entertainments = News::orderBy('id','desc')->where('category_id', '=', '35')->take(5)->get();
+				$sports = News::orderBy('id','desc')->where('category_id', '=' , '105')->take(5)->get();
+				$politics= News::orderBy('id','desc')->where('category_id', '=' , '87')->take(5)->get();
 				
 				Return View::make('admin.adminiHome')->with('users',$users)->with('userscount',$userscount)->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('user',$user)->with('entertainments',$entertainments)->with('sports',$sports)->with('politics',$politics)->with('latest_posts',$latest_posts)->with('users',$users)->with('notifications',$notifications)->with('newSearchs',$newSearchs)->with('pin_arts',$pin_arts);
 			}
@@ -267,13 +266,15 @@ class UsersController extends BaseController
 				$user = User::all();
 				$news = News::paginate(15);
 				// $news = News::orderBy('id','desc')->take(10)->get();
-				$arts = News::orderBy('id','desc')->take(5)->get();
+				$arts =Countview::select('news_id',DB::raw('count(*) as total'))->groupBy('news_id')->take(5)->get();
+				// dd($arts);
+				// $arts = News::orderBy('id','desc')->take(5)->get();
 				$categories = Category::paginate(20);
 				$pin_arts = Pin::where('user_id','=',Auth::User()->id)->get();
 				
-				$entertainments = Category::orderBy('id','desc')->where('name', '=', 'entertainment')->first();
-				$sports = Category::where('name','=','sports')->first();
-				$politics= Category::where('name','=','politics')->first();
+				$entertainments = News::orderBy('id','desc')->where('category_id', '=', '35')->take(5)->get();
+				$sports = News::orderBy('id','desc')->where('category_id', '=' , '105')->take(5)->get();
+				$politics= News::orderBy('id','desc')->where('category_id', '=' , '87')->take(5)->get();
 				$news_arts = News::orderBy('id','desc')->paginate(15);
 				
 				Return View::make('users.userdashboard')->with('categories',$categories)->with('arts',$arts)->with('news',$news)->with('user',$user)->with('entertainments',$entertainments)->with('news_arts',$news_arts)->with('sports',$sports)->with('politics',$politics)->with('pin_arts',$pin_arts);
@@ -301,6 +302,10 @@ class UsersController extends BaseController
 			
 			public function viewArticleAdmin($id)
 			{
+				$countview= new Countview();
+				$countview->news_id=$id;
+				$countview->user_id=Auth::user()->id;
+				$countview->save();
 				$categories = Category::paginate(10);
 				
 				$new_Admin = News::find($id);
@@ -311,6 +316,11 @@ class UsersController extends BaseController
 			}
 			public function userviewArticle($id)
 			{
+				
+				$countview= new Countview();
+				$countview->news_id=$id;
+				$countview->user_id=Auth::user()->id;
+				$countview->save();
 				$categories = Category::paginate(10);
 				
 				$new = News::find($id);

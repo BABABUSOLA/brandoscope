@@ -160,7 +160,7 @@
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading">
                                                                
-                                                        <a href="{{url('userviewarticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 30)}}</a>
+                                                        <a href="{{url('userviewarticle/' . $pin_art->id)}}">{{Str::limit($pin_art->news->slug, 60)}}</a>
                                                             </div>
                                                         </div>
                                                            @endforeach
@@ -179,33 +179,33 @@
                                                         </div>
                                                         <!-- end title top stories -->
                                                         @if(isset($arts))
-                                                        @foreach($arts as $art)
-                                                        
-                                                        <div class="panel panel-info ">
+                                                       @foreach($arts as $art)
+                                                       
+                                                          <div class="panel panel-info ">
                                                             <div class="panel-heading caption">
                                                                 <h1 class="panel-title caption uppercase">
-                                                                {{$art->slug}}
+                                                                {{$art->news->slug}}
                                                                 </h1>
                                                             </div>
                                                             <div id="accordion1_1" class="panel">
-                                                                <div class="panel-body">{{ Str::limit($art->text, 300) }}
+                                                                <div class="panel-body">{{ Str::limit($art->news->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('userviewarticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    <a href="{{url('userviewarticle/' . $art->id)}}"><button class="btn btn-info pull-right" id="countview" >Read More</button></a>
                                                                    
                                                                     <br>
                                                                   
                                                                     <hr>
-                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
+                                                                    Posted at {{$art->news->created_at}} by {{$art->news->user->first_name}}
                                                                 </div>
                                                             </div>
                                                             
                                                             
                                                         </div>
                                                         
-                                                        @endforeach
+                                                        @endforeach 
                                                         @endif
-                                                        {{$news->links() }}
+                                                       
                                                         <!-- start entertainment -->
                                                         
                                                         <div class="panel panel-success">
@@ -217,7 +217,8 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
-                                                        @foreach($entertainments->news as $entertainment)
+                                                        @if(isset($entertainments))
+                                                        @foreach($entertainments as $entertainment)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
@@ -234,13 +235,14 @@
                                                                     <br>
                                                                     <hr>
                                                                    
-                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
+                                                                    Posted at {{$entertainment->created_at}} by {{$entertainment->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                                     
+                                                        @endif
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
                                                         
@@ -253,7 +255,8 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
-                                                        @foreach($sports->news as $sport)
+                                                        @if(isset($sports))
+                                                        @foreach($sports as $sport)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
@@ -271,13 +274,14 @@
                                                                     <hr>
                                                                     
                                                                     
-                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
+                                                                    Posted at {{$sport->created_at}} by {{$sport->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                                      
+                                                        @endif
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
                                                         
@@ -290,8 +294,8 @@
                                                             
                                                         </div>
                                                         <!-- entertainment -->
-                                                        
-                                                        @foreach($politics->news as $politics)
+                                                        @if(isset($politics))
+                                                        @foreach($politics as $politics)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
@@ -309,13 +313,14 @@
                                                                     <hr>
                                                                     
                                                                     
-                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
+                                                                    Posted at {{$politics->created_at}} by {{$politics->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                                       
+                                                        @endif
                                                         <!-- end entertainment -->
                                                         <!-- start news -->
                                                         
@@ -341,7 +346,7 @@
                                                                 <div class="panel-body">{{ Str::limit($news_art->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $news_art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    <a href="{{url('userviewarticle/' . $news_art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     
                                                                     @if(!$news_art->isPinned($news_art->id)) 
                                                                     <a href="{{url('pinnednews/' . $news_art->id)}}"><button class="btn btn-danger pull-left" >Pin</button></a>
@@ -388,10 +393,14 @@
 </div>
 </div>
 </div>
-<script>
-// $('#comment').click(function(){
-//          $('#hide').toggleClass('hidden');
-//     });
+{{ HTML::script("../assets/global/plugins/jquery.min.js")}}
+<script type="text/javascript">
+$(document).ready(function(){
+$('#countview').click(function(){
+       
+    });
+});
+
 </script>
 </body>
 @stop

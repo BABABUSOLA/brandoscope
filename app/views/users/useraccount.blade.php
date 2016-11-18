@@ -29,20 +29,19 @@
                     <div class="page-header-menu">
                         <div class="container">
                             <!-- BEGIN HEADER SEARCH BOX -->
-                           <!-- BEGIN HEADER SEARCH BOX -->
+                            <!-- BEGIN HEADER SEARCH BOX -->
                             <form class="search-form" action="{{URL::route('userSearch')}}" method="GET">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="keyword">
-                                        <span class="input-group-btn">
-                                          
-                                                <i class="icon-magnifier"></i>
-                                          
-                                             <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
-                                        </span>
-                                       
-                                    </div>
-
-                                </form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="keyword">
+                                    <span class="input-group-btn">
+                                        
+                                        <i class="icon-magnifier"></i>
+                                        
+                                        <button value="Search" class="btn btn-success pull-right search" type="submit">Search</button>
+                                    </span>
+                                    
+                                </div>
+                            </form>
                             <!-- END HEADER SEARCH BOX -->
                             
                             <!-- END HEADER SEARCH BOX -->
@@ -55,13 +54,13 @@
                                         </a>
                                         
                                     </li>
-                                 {{--    <li class="menu-dropdown ">
+                                    {{--    <li class="menu-dropdown ">
                                         <a href="{{('#about')}}"> ABOUT
                                             <span class="arrow"></span>
                                         </a>
                                         
                                     </li> --}}
-                                   {{--  <li class="menu-dropdown">
+                                    {{--  <li class="menu-dropdown">
                                         <a href="{{url('contact')}}"> CONTACTS
                                             <span class="arrow"></span>
                                         </a>
@@ -124,7 +123,7 @@
                                                                             <i class="fa fa-pencil"></i> Edit info </a>
                                                                             <span class="after"> </span>
                                                                         </li>
-                                                                       
+                                                                        
                                                                         
                                                                     </ul>
                                                                 </div>
@@ -320,7 +319,6 @@
     </div>
 </div>
 </div>
-
 <script>
 function doThis(){
 console.log('cool'

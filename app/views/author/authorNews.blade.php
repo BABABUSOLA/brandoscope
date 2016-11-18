@@ -225,7 +225,7 @@
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                                     
                                                         @endif
                                                         <!-- start entertainment -->
                                                         
@@ -239,7 +239,7 @@
                                                         </div>
                                                         <!-- entertainment -->
                                                         @if(isset($entertainments))
-                                                        @foreach($entertainments->news as $entertainment)
+                                                        @foreach($entertainments as $entertainment)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
@@ -251,15 +251,15 @@
                                                                 <div class="panel-body">{{ Str::limit($entertainment->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    <a href="{{url('viewArticle/' . $entertainment->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$entertainment->created_at->toDateString()}} by {{$entertainment->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                                      
                                                         @endif
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
@@ -274,7 +274,7 @@
                                                         </div>
                                                         <!-- entertainment -->
                                                         @if(isset($sports))
-                                                        @foreach($sports->news as $sport)
+                                                        @foreach($sports as $sport)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
@@ -286,19 +286,19 @@
                                                                 <div class="panel-body">{{ Str::limit($sport->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    <a href="{{url('viewArticle/' . $sport->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     
                                                                     <br>
                                                                     <hr>
                                                                     
                                                                     
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$sport->created_at->toDateString()}} by {{$sport->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                               
                                                         @endif
                                                         <!-- end entertainment -->
                                                         <!-- start entertainment -->
@@ -313,7 +313,7 @@
                                                         </div>
                                                         <!-- entertainment -->
                                                         @if(isset($politics))
-                                                        @foreach($politics->news as $politics)
+                                                        @foreach($politics as $politics)
                                                         
                                                         <div class="panel panel-info">
                                                             <div class="panel-heading caption">
@@ -325,18 +325,18 @@
                                                                 <div class="panel-body">{{ Str::limit($politics->text, 300) }}
                                                                     <br>
                                                                     <br>
-                                                                    <a href="{{url('viewArticle/' . $art->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
+                                                                    <a href="{{url('viewArticle/' . $politics->id)}}"><button class="btn btn-info pull-right" >Read More</button></a>
                                                                     
                                                                     <br>
                                                                     <hr>
                                                                     
-                                                                    Posted at {{$art->created_at->toDateString()}} by {{$art->user->first_name}}
+                                                                    Posted at {{$politics->created_at->toDateString()}} by {{$politics->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         
                                                         @endforeach
-                                                        {{$news->links() }}
+                                                   
                                                         @endif
                                                         <!-- end entertainment -->
                                                         <!-- All news-->
@@ -372,7 +372,7 @@
                                                                     <br>
                                                                     <hr>
                                                                     
-                                                                    Posted at {{$art->created_at}} by {{$art->user->first_name}}
+                                                                    Posted at {{$newSearch->created_at}} by {{$newSearch->user->first_name}}
                                                                 </div>
                                                             </div>
                                                         </div>
